@@ -1,0 +1,92 @@
+{
+  "id": 2,
+  "userId": 1,
+  "uuid": "e0775ee4-b0d6-498c-9dcc-957311281642",
+  "version": 3,
+  "name": "Bike_Sharing_dataset",
+  "description": "Bike Sharing Sample Dataset",
+  "header": true,
+  "path": "data/bike_sharing_sample_dataset.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "filterLinesContaining": "season",
+  "datasetSchema": "{columnNames:[\"datetime\",\"season\",\"holiday\",\"workingday\",\"weather\",\"temp\",\"atemp\",\"humidity\",\"windspeed\",\"casual\",\"registered\",\"count\"],columnTypes:[\"TIMESTAMP\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"DOUBLE\",\"DOUBLE\",\"INTEGER\",\"DOUBLE\",\"INTEGER\",\"INTEGER\",\"INTEGER\"],columnFormats:[\"dd/MM/yyyy HH:mm\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],columnMLTypes:[\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\"]}",
+  "dateCreated": "Jul 11, 2016 10:43:07 PM",
+  "dateLastUpdated": "Jul 11, 2016 10:43:07 PM",
+  "schemaModel": {
+    "schemaColumnList": [
+      {
+        "columnName": "datetime",
+        "columnType": "TIMESTAMP",
+        "columnFormat": "dd/MM/yyyy HH:mm",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "season",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "holiday",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "workingday",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "weather",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "temp",
+        "columnType": "DOUBLE",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "atemp",
+        "columnType": "DOUBLE",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "humidity",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "windspeed",
+        "columnType": "DOUBLE",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "casual",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "registered",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "count",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      }
+    ]
+  }
+}

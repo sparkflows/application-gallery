@@ -1,0 +1,213 @@
+{
+  "name": "Joins - 1",
+  "category": "ETL",
+  "description": "Inner and Full Joins",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "67px",
+      "y": "590px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "79px",
+      "y": "237.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "JoinUsingSQL",
+      "description": "This node creates a new DataFrame by performing Inner Join or Left Outer Join or Right Outer Join or Full Outer Join",
+      "type": "join",
+      "nodeClass": "fire.nodes.etl.NodeJoinUsingSQL",
+      "x": "442px",
+      "y": "484.656px",
+      "fields": [
+        {
+          "name": "tempTable1",
+          "value": "fire_temp_table1",
+          "widget": "textfield",
+          "title": "Temp Table1",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "tempTable2",
+          "value": "fire_temp_table2",
+          "widget": "textfield",
+          "title": "Temp Table2",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select a.c1, a.c2, b.c3, b.c4 from fire_temp_table1 a  JOIN fire_temp_table2 b ON(a.c1=b.c1 and a.c3=b.c3)",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "columns",
+          "value": "c1 c2 c3 c4",
+          "widget": "textarea_small",
+          "title": "SQL Output Column Names separated by space",
+          "description": "New Output Columns of the SQL",
+          "required": false
+        },
+        {
+          "name": "columnTypes",
+          "value": "double double double double",
+          "widget": "textarea_small",
+          "title": "SQL Output Column Types separated by space",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "JoinUsingSQL",
+      "description": "This node creates a new DataFrame by performing Inner Join or Left Outer Join or Right Outer Join or Full Outer Join",
+      "type": "join",
+      "nodeClass": "fire.nodes.etl.NodeJoinUsingSQL",
+      "x": "431px",
+      "y": "341.656px",
+      "fields": [
+        {
+          "name": "tempTable1",
+          "value": "fire_temp_table1",
+          "widget": "textfield",
+          "title": "Temp Table1",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "tempTable2",
+          "value": "fire_temp_table2",
+          "widget": "textfield",
+          "title": "Temp Table2",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select a.c1, a.c2, b.c3, b.c4 from fire_temp_table1 a FULL OUTER JOIN fire_temp_table2 b ON(a.c3=b.c3 and a.c4=b.c4)",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "columns",
+          "value": "c1 c2 c3 c4",
+          "widget": "textarea_small",
+          "title": "SQL Output Column Names separated by space",
+          "description": "New Output Columns of the SQL",
+          "required": false
+        },
+        {
+          "name": "columnTypes",
+          "value": "double double double double",
+          "widget": "textarea_small",
+          "title": "SQL Output Column Types separated by space",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "761px",
+      "y": "482.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "5",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "762px",
+      "y": "332.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "5",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "2",
+      "target": "4",
+      "id": 1
+    },
+    {
+      "source": "1",
+      "target": "4",
+      "id": 2
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 3
+    },
+    {
+      "source": "1",
+      "target": "3",
+      "id": 4
+    },
+    {
+      "source": "4",
+      "target": "6",
+      "id": 5
+    },
+    {
+      "source": "3",
+      "target": "5",
+      "id": 6
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": 19,
+  "userId": 1,
+  "uuid": "b57c52b1-064a-4899-a075-20286ae7dde6",
+  "version": 2,
+  "name": "ParquetFile",
+  "description": "Parquet Dataset",
+  "header": true,
+  "path": "data/parquetfile",
+  "delimiter": ",",
+  "datasetType": "PARQUET",
+  "datasetSchema": "{columnNames:[\"label\",\"text\"],columnTypes:[\"DOUBLE\",\"STRING\"],columnFormats:[\"\",\"\"],columnMLTypes:[\"NUMERIC\",\"TEXT\"]}",
+  "dateCreated": "Jun 12, 2016 8:09:33 PM",
+  "dateLastUpdated": "Jun 12, 2016 8:09:33 PM",
+  "schemaModel": {
+    "schemaColumnList": [
+      {
+        "columnName": "label",
+        "columnType": "DOUBLE",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "text",
+        "columnType": "STRING",
+        "columnFormat": "",
+        "columnMLType": "TEXT"
+      }
+    ]
+  }
+}

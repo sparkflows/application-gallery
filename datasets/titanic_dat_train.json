@@ -1,0 +1,76 @@
+{
+  "id": 33,
+  "userId": 1,
+  "uuid": "6fe6f5ec-5dca-453f-8f51-af31a96ebf63",
+  "version": 1,
+  "name": "titanic_dat_train",
+  "path": "data/titanic_dat/train.tsv",
+  "delimiter": "\\t",
+  "datasetType": "CSV",
+  "filterLinesContaining": "PassengerId",
+  "datasetSchema": "{columnNames:[\"PassengerId\",\"Survived\",\"Pclass\",\"Name\",\"Sex\",\"Age\",\"SibSp\",\"Parch\",\"Ticket\",\"Fare\",\"Cabin\",\"Embarked\"],columnTypes:[\"INTEGER\",\"INTEGER\",\"INTEGER\",\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"INTEGER\",\"STRING\",\"DOUBLE\",\"STRING\",\"STRING\"],columnMLTypes:[\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"NUMERIC\",\"TEXT\",\"TEXT\"]}",
+  "schemaModel": {
+    "schemaColumnList": [
+      {
+        "columnName": "PassengerId",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "Survived",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "Pclass",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "Name",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "Sex",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "Age",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "SibSp",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "Parch",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "Ticket",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "Fare",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "Cabin",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "Embarked",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      }
+    ]
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "name": "OneHotEncoder",
+  "category": "Machine Learning",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "107.983px",
+      "y": "238.977px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "PrintNRows",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "403.997px",
+      "y": "280.994px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "OneHotEncoder",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeOneHotEncoder",
+      "x": "426px",
+      "y": "434px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"c1\",\"c2\",\"c3\",\"c4\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Input columns for encoding",
+          "optionsMap": {
+          }
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"c1_v\",\"\",\"\",\"\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output columns"
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "PrintNRows",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "747.997px",
+      "y": "435.991px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "4"
+    },
+    {
+      "source": "4",
+      "target": "5"
+    },
+    {
+      "source": "5",
+      "target": "6"
+    }
+  ]
+}
+    

@@ -1,0 +1,98 @@
+{
+  "id": 9,
+  "userId": 1,
+  "uuid": "ecf80851-4d96-4d7a-91ef-dfa8fe8937ee",
+  "version": 2,
+  "name": "Housing",
+  "description": "Housing Dataset",
+  "header": true,
+  "path": "data/housing.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "filterLinesContaining": "price",
+  "datasetSchema": "{columnNames:[\"id\",\"price\",\"lotsize\",\"bedrooms\",\"bathrms\",\"stories\",\"driveway\",\"recroom\",\"fullbase\",\"gashw\",\"airco\",\"garagepl\",\"prefarea\"],columnTypes:[\"INTEGER\",\"DOUBLE\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"STRING\"],columnFormats:[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],columnMLTypes:[\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"TEXT\"]}",
+  "dateCreated": "Jun 14, 2016 9:20:22 PM",
+  "dateLastUpdated": "Jun 14, 2016 9:20:22 PM",
+  "schemaModel": {
+    "schemaColumnList": [
+      {
+        "columnName": "id",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "price",
+        "columnType": "DOUBLE",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "lotsize",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "bedrooms",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "bathrms",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "stories",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "driveway",
+        "columnType": "STRING",
+        "columnFormat": "",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "recroom",
+        "columnType": "STRING",
+        "columnFormat": "",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "fullbase",
+        "columnType": "STRING",
+        "columnFormat": "",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "gashw",
+        "columnType": "STRING",
+        "columnFormat": "",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "airco",
+        "columnType": "STRING",
+        "columnFormat": "",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "garagepl",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "prefarea",
+        "columnType": "STRING",
+        "columnFormat": "",
+        "columnMLType": "TEXT"
+      }
+    ]
+  }
+}

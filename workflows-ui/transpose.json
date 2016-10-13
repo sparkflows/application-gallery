@@ -1,0 +1,115 @@
+{
+  "name": "Transpose",
+  "category": "ETL",
+  "description": "Transpose example with - Scala Node",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "50px",
+      "y": "39.625px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "6fe6f5ec-5dca-453f-8f51-af33a96ebf63",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "212px",
+      "y": "206.641px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select PassengerId,  Survived , Pclass, Sex, Age  from fire_temp_table LIMIT 10",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "columns",
+          "value": "PassengerId Survived Pclass Sex Age",
+          "widget": "textarea_small",
+          "title": "SQL Output Column Names separated by space",
+          "description": "New Output Columns of the SQL",
+          "required": false
+        },
+        {
+          "name": "columnTypes",
+          "value": "integer integer integer string string",
+          "widget": "textarea_small",
+          "title": "SQL Output Column Types separated by space",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Scala",
+      "description": "This node runs any given Scala code. The input dataframe is passed in the variable inDF. The output dataframe is passed back by registering it as a temporary table.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeScala",
+      "x": "433px",
+      "y": "178.641px",
+      "fields": [
+        {
+          "name": "code",
+          "value": "import org.apache.spark.sql._\n\nval rddRecords = inDF.rdd.map(row => Seq(row.getInt(0)))\nval nrows = rddRecords.count().toInt\n\nval byColumnAndRow = rddRecords.zipWithIndex.flatMap {\n      case (row, rowIndex) => row.zipWithIndex.map {\n        case (number, columnIndex) => columnIndex ->(rowIndex, number)}}\n\nval byColumn = byColumnAndRow.groupByKey.sortByKey().values\n\nval transposed = byColumn.map {\n    indexedRow => indexedRow.toSeq.sortBy(_._1).map(_._2)}\nval transposedRow = transposed.map(x => Row.fromSeq(x))\n\nval schema = new StructType(Array(StructField(\"row_1\", IntegerType, nullable = true),StructField(\"row_2\", IntegerType, nullable = true), StructField(\"row_3\", IntegerType, nullable = true), StructField(\"row_4\", IntegerType, nullable = true), StructField(\"row_5\", IntegerType, nullable = true), StructField(\"row_6\", IntegerType, nullable = true), StructField(\"row_7\", IntegerType, nullable = true), StructField(\"row_8\", IntegerType, nullable = true), StructField(\"row_9\", IntegerType, nullable = true), StructField(\"row_10\", IntegerType, nullable = true)));\n//var arr = Array[StructField]()\n//for (i <- 1 to nrows) {\n  //    arr = arr :+ StructField(\"row_\" + i, IntegerType, true)}\n//val schema = StructType(arr)\n\nval outDF = sqlContext.createDataFrame(transposedRow, schema)\noutDF.registerTempTable(\"outDF\")",
+          "widget": "textarea_large",
+          "title": "Scala",
+          "description": "Scala code to be run. Input dataframe is in \"inDF\". Output/Result dataframe should be registered as a temporary table - df.registerTempTable(\"outDF\")",
+          "required": false
+        },
+        {
+          "name": "columns",
+          "value": "row_1 row_2 row_3 row_4 row_5 row_6 row_7 row_8 row_9 row_10",
+          "widget": "textarea_small",
+          "title": "Output DataFrame Column Names separated by space",
+          "description": "Output DataFrame column names",
+          "required": false
+        },
+        {
+          "name": "columnTypes",
+          "value": "string string string string string string string string string string",
+          "widget": "textarea_small",
+          "title": "Output DataFrames Column Types",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 2
+    }
+  ]
+}

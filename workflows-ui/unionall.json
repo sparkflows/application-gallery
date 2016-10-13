@@ -1,0 +1,93 @@
+{
+  "name": "UnionAll",
+  "category": "ETL",
+  "description": "This node creates a new DataFrame by merging all the rows without removing the duplicates",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "127px",
+      "y": "231.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "d8a1a0b1-93b8-4096-ab95-8e3a02d65263",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "UnionAll",
+      "description": "This node creates a new DataFrame by merging all the rows without removing the duplicates",
+      "type": "join",
+      "nodeClass": "fire.nodes.etl.NodeUnionAll",
+      "x": "491px",
+      "y": "349.656px",
+      "fields": []
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "811px",
+      "y": "263.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "93px",
+      "y": "394.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "d8a1a0b1-93b8-4096-ab95-8e3a02d65263",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          },
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "4",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "1",
+      "target": "2",
+      "id": 2
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 3
+    }
+  ]
+}
+    

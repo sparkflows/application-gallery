@@ -1,0 +1,121 @@
+{
+"id": 22,
+"userId": 2,
+"uuid": "2ff32692-9b3c-49de-91a7-401daf2590c1",
+"version": 1,
+"name": "flights_delay",
+"description": "flights_delay_dataset",
+"path": "data/flights_data.csv",
+"delimiter": ",",
+"datasetType": "CSV",
+"filterLinesContaining": "DEST",
+"datasetSchema": "{columnNames:[\"DAY_OF_MONTH\",\"DAY_OF_WEEK\",\"CARRIER\",\"TAIL_NUM\",\"FL_NUM\",\"ORIGIN_AIRPORT_ID\",\"ORIGIN\",\"DEST_AIRPORT_ID\",\"DEST\",\"CRS_DEP_TIME\",\"DEP_TIME\",\"DEP_DELAY_NEW\",\"CRS_ARR_TIME\",\"ARR_TIME\",\"ARR_DELAY_NEW\",\"CRS_ELAPSED_TIME\",\"DISTANCE\"],columnTypes:[\"INTEGER\",\"INTEGER\",\"STRING\",\"STRING\",\"INTEGER\",\"INTEGER\",\"STRING\",\"INTEGER\",\"STRING\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\"],columnFormats:[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],columnMLTypes:[\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"NUMERIC\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\"]}",
+"dateCreated": "May 27, 2016 8:06:02 PM",
+"dateLastUpdated": "May 27, 2016 8:06:02 PM",
+"schemaModel": {
+"schemaColumnList": [
+{
+"columnName": "DAY_OF_MONTH",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "DAY_OF_WEEK",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "CARRIER",
+"columnType": "STRING",
+"columnFormat": "",
+"columnMLType": "TEXT"
+},
+{
+"columnName": "TAIL_NUM",
+"columnType": "STRING",
+"columnFormat": "",
+"columnMLType": "TEXT"
+},
+{
+"columnName": "FL_NUM",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "ORIGIN_AIRPORT_ID",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "ORIGIN",
+"columnType": "STRING",
+"columnFormat": "",
+"columnMLType": "TEXT"
+},
+{
+"columnName": "DEST_AIRPORT_ID",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "DEST",
+"columnType": "STRING",
+"columnFormat": "",
+"columnMLType": "TEXT"
+},
+{
+"columnName": "CRS_DEP_TIME",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "DEP_TIME",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "DEP_DELAY_NEW",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "CRS_ARR_TIME",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "ARR_TIME",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "ARR_DELAY_NEW",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "CRS_ELAPSED_TIME",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+},
+{
+"columnName": "DISTANCE",
+"columnType": "INTEGER",
+"columnFormat": "",
+"columnMLType": "NUMERIC"
+}
+]
+}
+}

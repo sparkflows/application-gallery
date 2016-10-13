@@ -1,0 +1,306 @@
+{
+  "name": "LinearRegression",
+  "category": "Machine Learning",
+  "description": "LinearRegression test",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "76px",
+      "y": "346.641px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "VectorAssembler",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "134px",
+      "y": "156.641px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"c1\",\"c2\",\"c3\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "optionsMap": {},
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "feature_vector",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "LinearRegression",
+      "description": "",
+      "type": "ml-estimator",
+      "nodeClass": "fire.nodes.ml.NodeLinearRegression",
+      "x": "268px",
+      "y": "386.641px",
+      "fields": [
+        {
+          "name": "elasticNetParam",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "ElasticNet Param",
+          "description": "The ElasticNet mixing parameter. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "featuresCol",
+          "value": "feature_vector",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Features column of type vectorUDT for model fitting",
+          "optionsMap": {},
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "fitIntercept",
+          "value": "true",
+          "widget": "array",
+          "title": "Fit Intercept",
+          "description": "Whether to fit an intercept term",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        },
+        {
+          "name": "labelCol",
+          "value": "c4",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting",
+          "optionsMap": {},
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxIter",
+          "value": "2",
+          "widget": "textfield",
+          "title": "Maximum Iterations",
+          "description": "Maximum number of iterations (>= 0)",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Prediction Columns",
+          "description": "The prediction column created during model scoring",
+          "required": false
+        },
+        {
+          "name": "regParam",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "Regularization Param",
+          "description": "The regularization parameter",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "solver",
+          "value": "auto",
+          "widget": "array",
+          "title": "Solver",
+          "description": "The solver algorithm for optimization",
+          "optionsArray": [
+            "auto",
+            "l-bfgs",
+            "normal"
+          ],
+          "required": false
+        },
+        {
+          "name": "standardization",
+          "value": "true",
+          "widget": "array",
+          "title": "Standardization",
+          "description": "Whether to standardize the training features before fitting the model",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        },
+        {
+          "name": "tol",
+          "value": "0.000001",
+          "widget": "textfield",
+          "title": "Tolerance",
+          "description": "The convergence tolerance for iterative algorithms",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "weightCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Weight Column",
+          "description": "If the 'weight column' is not specified, all instances are treated equally with a weight 1.0",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Split",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSplit",
+      "x": "387px",
+      "y": "203.641px",
+      "fields": [
+        {
+          "name": "fraction1",
+          "value": ".5",
+          "widget": "textfield",
+          "title": "Fraction 1",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Predict",
+      "type": "ml-predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "555px",
+      "y": "310.641px",
+      "fields": []
+    },
+    {
+      "id": "9",
+      "name": "RegressionEvaluator",
+      "description": "Evaluator for regression, which expects two input columns: prediction and label.",
+      "type": "ml-evaluator",
+      "nodeClass": "fire.nodes.ml.NodeRegressionEvaluator",
+      "x": "519px",
+      "y": "448.641px",
+      "fields": [
+        {
+          "name": "metricName",
+          "value": "rmse",
+          "widget": "array",
+          "title": "Metric Name",
+          "description": "The metric used in evaluation.",
+          "optionsArray": [
+            "rmse",
+            "mse",
+            "r2",
+            "mae"
+          ],
+          "required": false
+        },
+        {
+          "name": "labelCol",
+          "value": "c4",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting.",
+          "optionsMap": {},
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "prediction",
+          "widget": "variable",
+          "title": "PredictionCol Column",
+          "description": "The prediction column.",
+          "optionsMap": {},
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "5",
+      "id": 2
+    },
+    {
+      "source": "5",
+      "target": "3",
+      "id": 3
+    },
+    {
+      "source": "3",
+      "target": "8",
+      "id": 4
+    },
+    {
+      "source": "5",
+      "target": "8",
+      "id": 5
+    },
+    {
+      "source": "8",
+      "target": "9",
+      "id": 6
+    }
+  ]
+}

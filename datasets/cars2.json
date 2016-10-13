@@ -1,0 +1,68 @@
+{
+  "id": 34,
+  "userId": 1,
+  "uuid": "1e404f69-a44f-4a76-be90-13cbffd06dfd",
+  "version": 1,
+  "name": "Cars2",
+  "header": true,
+  "path": "data/cars_detailed.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "filterLinesContaining": "economy",
+  "datasetSchema": "{columnNames:[\"economy (mpg)\",\"name\",\"cylinders\",\"displacement (cc)\",\"power (hp)\",\"weight (lb)\",\"0-60 mph (s)\",\"year\"],columnTypes:[\"DOUBLE\",\"STRING\",\"INTEGER\",\"DOUBLE\",\"INTEGER\",\"INTEGER\",\"DOUBLE\",\"INTEGER\"],columnFormats:[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],columnMLTypes:[\"NUMERIC\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\"]}",
+  "dateCreated": "Jun 26, 2016 12:28:00 PM",
+  "dateLastUpdated": "Jun 26, 2016 12:28:00 PM",
+  "schemaModel": {
+    "schemaColumnList": [
+      {
+        "columnName": "economy (mpg)",
+        "columnType": "DOUBLE",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "name",
+        "columnType": "STRING",
+        "columnFormat": "",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "cylinders",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "displacement (cc)",
+        "columnType": "DOUBLE",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "power (hp)",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "weight (lb)",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "0-60 mph (s)",
+        "columnType": "DOUBLE",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "year",
+        "columnType": "INTEGER",
+        "columnFormat": "",
+        "columnMLType": "NUMERIC"
+      }
+    ]
+  }
+}
+                

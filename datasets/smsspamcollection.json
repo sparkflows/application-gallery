@@ -1,0 +1,31 @@
+                {
+  "id": 31,
+  "userId": 1,
+  "uuid": "3c92ca1d-7ac0-49c4-9b91-d94d1ff5bce8",
+  "version": 1,
+  "name": "SMSSpamCollection",
+  "header": false,
+  "path": "data/SMSSpamCollection.tsv",
+  "delimiter": "\\t",
+  "datasetType": "CSV",
+  "datasetSchema": "{columnNames:[\"spam\",\"message\"],columnTypes:[\"STRING\",\"STRING\"],columnFormats:[\"\",\"\"],columnMLTypes:[\"TEXT\",\"TEXT\"]}",
+  "dateCreated": "Sep 8, 2016 10:36:17 PM",
+  "dateLastUpdated": "Sep 8, 2016 10:36:17 PM",
+  "schemaModel": {
+    "schemaColumnList": [
+      {
+        "columnName": "spam",
+        "columnType": "STRING",
+        "columnFormat": "",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "message",
+        "columnType": "STRING",
+        "columnFormat": "",
+        "columnMLType": "TEXT"
+      }
+    ]
+  }
+}
+                

@@ -1,0 +1,74 @@
+{
+  "name": "Summary",
+  "category": "Machine Learning",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "183.77px",
+      "y": "134.844px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "ecf80851-4d96-4d7a-91ef-dfa8fe8937ee",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Summary",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSummary",
+      "x": "454.773px",
+      "y": "145.838px",
+      "fields": [
+        {
+          "name": "colNames",
+          "value": "[\"price\",\"lotsize\",\"bedrooms\",\"bathrms\",\"stories\"]",
+          "widget": "variables",
+          "title": "Column Names",
+          "description": "Column Names for Summary",
+          "optionsMap": {}
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "755.764px",
+      "y": "152.838px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}
+    

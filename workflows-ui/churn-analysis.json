@@ -1,0 +1,399 @@
+{
+  "name": "Churn_Data_Analysis",
+  "category": "Machine Learning",
+  "description": "churn analysis",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "118px",
+      "y": "53.65px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "4e9387d5-6a14-4961-858e-15ec72787dfa",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "StringIndexer",
+      "description": "StringIndexer encodes a string column of labels to a column of label indices",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeStringIndexer",
+      "x": "167px",
+      "y": "320.65px",
+      "fields": [
+        {
+          "name": "handleInvalid",
+          "value": "skip",
+          "widget": "array",
+          "title": "Handle Invalid",
+          "description": "Invalid entries to be skipped or thrown error",
+          "optionsArray": [
+            "skip",
+            "error"
+          ],
+          "required": false
+        },
+        {
+          "name": "inputCols",
+          "value": "[\"state\",\"account_length\",\"area_code\",\"phone_number\",\"intl_plan\",\"voice_mail_plan\",\"number_vmail_messages\",\"total_day_minutes\",\"total_day_calls\",\"total_day_charge\",\"total_eve_minutes\",\"total_eve_calls\",\"total_eve_charge\",\"total_night_minutes\",\"total_night_calls\",\"total_night_charge\",\"total_intl_minutes\",\"total_intl_calls\",\"total_intl_charge\",\"number_customer_service_calls\",\"churned\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Column containing labels",
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"\",\"\",\"\",\"\",\"intl_plan_index\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"label\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output  columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "VectorAssembler",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "467px",
+      "y": "316.65px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"account_length\",\"number_vmail_messages\",\"total_day_calls\",\"total_day_charge\",\"total_eve_calls\",\"total_eve_charge\",\"total_night_calls\",\"total_intl_calls\",\"total_intl_charge\",\"intl_plan_index\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "features_vector",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Split",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSplit",
+      "x": "511.987px",
+      "y": "129.65px",
+      "fields": [
+        {
+          "name": "fraction1",
+          "value": ".8",
+          "widget": "textfield",
+          "title": "Fraction 1",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "RandomForestClassifier",
+      "description": "It supports both binary and multiclass labels, as well as both continuous and categorical features.",
+      "type": "ml-estimator",
+      "nodeClass": "fire.nodes.ml.NodeRandomForestClassifier",
+      "x": "767.987px",
+      "y": "31.6375px",
+      "fields": [
+        {
+          "name": "featuresCol",
+          "value": "features_vector",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Features column of type vectorUDT for model fitting",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "labelCol",
+          "value": "label",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Predictor Columns",
+          "description": "The prediction column created during model scoring.",
+          "required": false
+        },
+        {
+          "name": "probabilityCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Probability Column",
+          "description": "The column name for predicted class conditional probabilities",
+          "required": false
+        },
+        {
+          "name": "rawPredictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Raw Prediction Column",
+          "description": "The raw prediction (a.k.a. confidence) column name",
+          "required": false
+        },
+        {
+          "name": "featureSubsetStrategy",
+          "value": "auto",
+          "widget": "array",
+          "title": "Feature Subset Strategy",
+          "description": "The number of features to consider for splits at each tree node.",
+          "optionsArray": [
+            "auto",
+            "onethird",
+            "sqrt",
+            "log2"
+          ],
+          "required": false
+        },
+        {
+          "name": "impurity",
+          "value": "gini",
+          "widget": "array",
+          "title": "Impurity",
+          "description": "The Criterion used for information gain calculation",
+          "optionsArray": [
+            "gini",
+            "entropy"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxBins",
+          "value": "32",
+          "widget": "textfield",
+          "title": "Max Bins",
+          "description": "The maximum number of bins used for discretizing continuous features.Must be >= 2 and >= number of categories in any categorical feature.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxDepth",
+          "value": "5",
+          "widget": "textfield",
+          "title": "Max Depth",
+          "description": "The Maximum depth of a tree",
+          "datatypes": [
+            "int"
+          ],
+          "required": false
+        },
+        {
+          "name": "minInfoGain",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "Min Information Gain",
+          "description": "The Minimum information gain for a split to be considered at a tree node",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "minInstancesPerNode",
+          "value": "1",
+          "widget": "textfield",
+          "title": "Min Instances Per Node",
+          "description": "The Minimum number of instances each child must have after split",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "numTrees",
+          "value": "20",
+          "widget": "textfield",
+          "title": "Num Tress",
+          "description": "The number of trees to train",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "subsamplingRate",
+          "value": "1.0",
+          "widget": "textfield",
+          "title": "Subsampling Rate",
+          "description": "The fraction of the training data used for learning each decision tree.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "seed",
+          "value": "",
+          "widget": "textfield",
+          "title": "Seed",
+          "description": "The random seed",
+          "datatypes": [
+            "long"
+          ],
+          "required": false
+        },
+        {
+          "name": "cacheNodeIds",
+          "value": "false",
+          "widget": "array",
+          "title": "Cache Node Ids",
+          "description": "The caching nodes IDs. Can speed up training of deeper trees.",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "false",
+            "true"
+          ],
+          "required": false
+        },
+        {
+          "name": "checkpointInterval",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Checkpoint Interval",
+          "description": "The checkpoint interval. E.g. 10 means that the cache will get checkpointed every 10 iterations.Set checkpoint interval (>= 1) or disable checkpoint (-1)",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxMemoryInMB",
+          "value": "256",
+          "widget": "textfield",
+          "title": "Max memory",
+          "description": "Maximum memory in MB allocated to histogram aggregation.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Predict",
+      "type": "ml-predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "837px",
+      "y": "243.637px",
+      "fields": []
+    },
+    {
+      "id": "10",
+      "name": "BinaryClassificationEvaluator",
+      "description": "Evaluator for binary classification, which expects two input columns: rawPrediction and label.",
+      "type": "ml-evaluator",
+      "nodeClass": "fire.nodes.ml.NodeBinaryClassificationEvaluator",
+      "x": "762.987px",
+      "y": "417.65px",
+      "fields": [
+        {
+          "name": "labelCol",
+          "value": "label",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "rawPredictionCol",
+          "widget": "textfield",
+          "title": "RawPrediction Column",
+          "description": "The raw prediction (confidence) column.",
+          "required": false
+        },
+        {
+          "name": "metricName",
+          "value": "areaUnderROC",
+          "widget": "array",
+          "title": "Metric Name",
+          "description": "The metric used in evaluation.",
+          "optionsArray": [
+            "areaUnderROC",
+            "areaUnderPR"
+          ],
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "3",
+      "target": "5",
+      "id": 3
+    },
+    {
+      "source": "5",
+      "target": "6",
+      "id": 4
+    },
+    {
+      "source": "6",
+      "target": "9",
+      "id": 5
+    },
+    {
+      "source": "5",
+      "target": "9",
+      "id": 6
+    },
+    {
+      "source": "9",
+      "target": "10",
+      "id": 7
+    }
+  ]
+}
+    

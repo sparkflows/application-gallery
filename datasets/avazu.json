@@ -1,0 +1,136 @@
+{
+  "id": 1,
+  "userId": 1,
+  "uuid": "7fff0810-eb50-4b7e-8c9a-a55dcc2578f3",
+  "version": 2,
+  "name": "Avazu",
+  "header": false,
+  "path": "data/ctr_avazu_dataset/train_sample.csv",
+  "delimiter": ",",
+  "datasetType":"CSV",
+  "datasetSchema": "{columnNames:[\"id\",\"click\",\"hour\",\"C1\",\"banner_pos\",\"site_id\",\"site_domain\",\"site_category\",\"app_id\",\"app_domain\",\"app_category\",\"device_id\",\"device_ip\",\"device_model\",\"device_type\",\"device_conn_type\",\"col16\",\"col17\",\"col18\",\"col19\",\"col20\",\"col21\",\"col22\",\"col23\"],columnTypes:[\"STRING\",\"DOUBLE\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\"],columnMLTypes:[\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\"]}",
+  "schemaModel": {
+    "schemaColumnList": [
+      {
+        "columnName": "id",
+        "columnType": "STRING",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "click",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "hour",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "C1",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "banner_pos",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "site_id",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "site_domain",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "site_category",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "app_id",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "app_domain",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "app_category",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "device_id",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "device_ip",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "device_model",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "device_type",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "device_conn_type",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "col16",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "col17",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "col18",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "col19",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "col20",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "col21",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "col22",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "col23",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      }
+    ]
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "name": "kafka",
+  "category": "Streaming",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Streaming Kafka",
+      "description": "Reads in streaming text from topics in Kafka",
+      "type": "sparkstreaming",
+      "nodeClass": "fire.nodes.streaming.NodeStreamingKafka",
+      "x": "135.5px",
+      "y": "153.641px",
+      "fields": [
+        {
+          "name": "zkQuorum",
+          "value": "",
+          "widget": "textfield",
+          "title": "zkQuorum",
+          "description": "ZooKeeper Quorum",
+          "required": false
+        },
+        {
+          "name": "group",
+          "value": "",
+          "widget": "textfield",
+          "title": "Group",
+          "description": "Group",
+          "required": false
+        },
+        {
+          "name": "topics",
+          "value": "",
+          "widget": "textfield",
+          "title": "Topics",
+          "description": "List of Topics separated by ,",
+          "required": false
+        },
+        {
+          "name": "numThreads",
+          "value": "1",
+          "widget": "textfield",
+          "title": "Number of Threads",
+          "description": "Number of Threads",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "426.5px",
+      "y": "36.6562px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "FieldSplitter",
+      "description": "",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeFieldSplitter",
+      "x": "427.5px",
+      "y": "239.641px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "line",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "",
+          "optionsMap": {},
+          "datatypes": [
+            "string"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "taxi_id,date_time,lat,lon",
+          "widget": "textfield",
+          "title": "Column Names",
+          "description": "new column names separed by comma','.(ex: col1,co2,col3)",
+          "required": false
+        },
+        {
+          "name": "sep",
+          "value": ",",
+          "widget": "textfield",
+          "title": "Separator",
+          "description": "separator to split the input column value",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "HBaseLoad",
+      "description": "Loads all the rows in the incoming DataFrame onto HBase using the specific field mapping",
+      "type": "transform",
+      "nodeClass": "fire.nodes.hbase.NodeHBaseLoad",
+      "x": "909.5px",
+      "y": "241.656px",
+      "fields": [
+        {
+          "name": "hbaseTableName",
+          "value": "customer",
+          "widget": "textfield",
+          "title": "HBase Table Name",
+          "description": "HBase Table into which data gets loaded",
+          "required": false
+        },
+        {
+          "name": "rowKeyColumn",
+          "value": "hbase_row_key",
+          "widget": "variable",
+          "title": "Row Key Column",
+          "description": "DataFrame column which is used as the row keys of HBase",
+          "optionsMap": {
+            "0": "line",
+            "1": "taxi_id",
+            "2": "date_time",
+            "3": "lat",
+            "4": "lon",
+            "5": "hbase_row_key"
+          },
+          "required": false
+        },
+        {
+          "name": "dfCols",
+          "value": "[\"line\",\"taxi_id\",\"date_time\",\"lat\",\"lon\",\"hbase_row_key\"]",
+          "widget": "variables_map",
+          "title": "Variable",
+          "required": false
+        },
+        {
+          "name": "hbaseColumnFamily",
+          "value": "[\"\",\"\",\"\",\"cf\",\"cf\",\"\"]",
+          "widget": "variables_map_edit",
+          "title": "HBase Column Family",
+          "description": "HBase Column Family for the variable",
+          "required": false
+        },
+        {
+          "name": "hbaseCols",
+          "value": "[\"\",\"\",\"\",\"lat\",\"lat\",\"\"]",
+          "widget": "variables_map_edit",
+          "title": "HBase Columns",
+          "description": "HBase Column Name into which the variable is loaded",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "ConcatColumns",
+      "description": "This node creates a new DataFrame by concatenating the input columns",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeConcatColumns",
+      "x": "644.5px",
+      "y": "243.656px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"taxi_id\",\"date_time\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be concatenated",
+          "optionsMap": {
+            "0": "line",
+            "1": "taxi_id",
+            "2": "date_time",
+            "3": "lat",
+            "4": "lon"
+          },
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "hbase_row_key",
+          "widget": "textfield",
+          "title": "Concatenated Column Name",
+          "description": "Column name for the concatenated columns",
+          "required": false
+        },
+        {
+          "name": "sep",
+          "value": "_",
+          "widget": "textfield",
+          "title": "Separator",
+          "description": "Separator to be used when concatenating the columns",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "1",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "3",
+      "target": "5",
+      "id": 4
+    },
+    {
+      "source": "5",
+      "target": "4",
+      "id": 5
+    }
+  ]
+}
+    

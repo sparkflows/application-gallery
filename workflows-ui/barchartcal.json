@@ -1,0 +1,82 @@
+{
+  "name": "Bar Chart Calculator",
+  "category": "ETL",
+  "description": "Calculates Bar Chart for selected column",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "103px",
+      "y": "260.65625px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "51273c4b-a101-43b5-94ca-06a928a0ea97",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "BarChartCal",
+      "description": "This node calculates Bar Chart for specified column",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeBarChartCal",
+      "x": "418px",
+      "y": "206.65625px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "BIRTH_DT",
+          "widget": "variable",
+          "title": "Column Name",
+          "description": "Name of column to calculate bar chart",
+          "optionsMap": {
+            "0": "SWID",
+            "1": "BIRTH_DT",
+            "2": "GENDER_CD"
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "707px",
+      "y": "234.65625px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}
+    

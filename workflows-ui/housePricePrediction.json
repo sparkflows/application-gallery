@@ -1,0 +1,389 @@
+{
+  "name": "HousePricePrediction",
+  "category": "Machine Learning",
+  "description": "With Scala Node",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "66px",
+      "y": "40.6563px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "ecf80851-4d96-4d7a-91ef-dfa8fe8937ee",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "419px",
+      "y": "55.6406px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "ColumnFilter",
+      "description": "This node creates a new DataFrame that contains only the selected columns",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeColumnFilter",
+      "x": "18px",
+      "y": "180.641px",
+      "fields": [
+        {
+          "name": "columns",
+          "value": "[\"price\",\"lotsize\",\"bedrooms\",\"bathrms\",\"stories\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be included in the output DataFrame",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Scala",
+      "description": "This node runs any given Scala code. The input dataframe is passed in the variable inDF. The output dataframe is passed back by registering it as a temporary table.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeScala",
+      "x": "65px",
+      "y": "408.641px",
+      "fields": [
+        {
+          "name": "code",
+          "value": "import org.apache.spark.sql.types.{StructType,StructField,StringType,IntegerType,DoubleType};\nimport org.apache.spark.sql.Row;\n\n\nval inRDD = inDF.rdd.map(row => (row.getDouble(0), row.getInt(1), row.getInt(2), row.getInt(3), row.getInt(4)))\nval transferRDD = inRDD.map{case(price,lotsize,bedrooms,bathrms,stories) =>(price, scala.math.pow(bedrooms.toDouble,3).toInt, bedrooms*bathrms, stories, scala.math.sqrt(lotsize.toDouble).toInt)}\n         \n//val schema = new StructType(Array(StructField(\"price\", DoubleType, nullable = true),StructField(\"bedrooms\", IntegerType, nullable = true),StructField(\"bedandbathrooms\", IntegerType, nullable = true),StructField(\"lotsize\", IntegerType, nullable = true),StructField(\"stories\", IntegerType, nullable = true)))\nval schema = new StructType(Array(StructField(\"price\", DoubleType, nullable = true),StructField(\"bedrooms\", IntegerType, nullable = true),StructField(\"bedandbathrooms\", IntegerType, nullable = true),StructField(\"stories\", IntegerType, nullable = true),StructField(\"lotsize\", IntegerType, nullable = true)))\nval rowRDD = transferRDD.map{case(price,bedrooms,bedandbathrooms,stories,lotsize) => Row(price,bedrooms,bedandbathrooms,stories,lotsize)}\n                         \nval outDF = sqlContext.createDataFrame(rowRDD, schema)\n                         \n                         \noutDF.registerTempTable(\"outDF\")                  \n                      ",
+          "widget": "textarea_large",
+          "title": "Scala",
+          "description": "Scala code to be run. Input dataframe is in \"inDF\". Output/Result dataframe should be registered as a temporary table - df.registerTempTable(\"outDF\")",
+          "required": false
+        },
+        {
+          "name": "columns",
+          "value": "price bedrooms bedandbathrooms stories lotsize",
+          "widget": "textarea_small",
+          "title": "Output DataFrame Column Names separated by space",
+          "description": "Output DataFrame column names",
+          "required": false
+        },
+        {
+          "name": "columnTypes",
+          "value": "double double double double double",
+          "widget": "textarea_small",
+          "title": "Output DataFrames Column Types",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "VectorAssembler",
+      "description": "Merges multiple columns into a vector column",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "162px",
+      "y": "258.641px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"bedrooms\",\"bedandbathrooms\",\"stories\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "feature_vector",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Split",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSplit",
+      "x": "224px",
+      "y": "425.656px",
+      "fields": [
+        {
+          "name": "fraction1",
+          "value": ".8",
+          "widget": "textfield",
+          "title": "Fraction 1",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "LinearRegression",
+      "description": "",
+      "type": "ml-estimator",
+      "nodeClass": "fire.nodes.ml.NodeLinearRegression",
+      "x": "496px",
+      "y": "228.656px",
+      "fields": [
+        {
+          "name": "featuresCol",
+          "value": "feature_vector",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Features column of type vectorUDT for model fitting",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "labelCol",
+          "value": "price",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Prediction Columns",
+          "description": "The prediction column created during model scoring",
+          "required": false
+        },
+        {
+          "name": "fitIntercept",
+          "value": "true",
+          "widget": "array",
+          "title": "Fit Intercept",
+          "description": "Whether to fit an intercept term",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxIter",
+          "value": "100",
+          "widget": "textfield",
+          "title": "Maximum Iterations",
+          "description": "Maximum number of iterations (>= 0)",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "regParam",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "Regularization Param",
+          "description": "The regularization parameter",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "elasticNetParam",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "ElasticNet Param",
+          "description": "The ElasticNet mixing parameter. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "solver",
+          "value": "auto",
+          "widget": "array",
+          "title": "Solver",
+          "description": "The solver algorithm for optimization",
+          "optionsArray": [
+            "auto",
+            "l-bfgs",
+            "normal"
+          ],
+          "required": false
+        },
+        {
+          "name": "standardization",
+          "value": "true",
+          "widget": "array",
+          "title": "Standardization",
+          "description": "Whether to standardize the training features before fitting the model",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        },
+        {
+          "name": "tol",
+          "value": "1E-6",
+          "widget": "textfield",
+          "title": "Tolerance",
+          "description": "The convergence tolerance for iterative algorithms",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "weightCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Weight Column",
+          "description": "If the 'weight column' is not specified, all instances are treated equally with a weight 1.0",
+          "required": false
+        },
+        {
+          "name": "gridSearch",
+          "value": "",
+          "widget": "tab",
+          "title": "Grid Search",
+          "required": false
+        },
+        {
+          "name": "regParamGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Regularization Param Grid Search",
+          "description": "Regularization Parameters for Grid Search",
+          "required": false
+        },
+        {
+          "name": "elasticNetGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "ElasticNet Param Grid Search",
+          "description": "ElasticNet Parameters for Grid Search",
+          "required": false
+        },
+        {
+          "name": "maxIterGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "MaxIter Param Grid Search",
+          "description": "Maximum iteration Parameters for Grid Search",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Predict",
+      "type": "ml-predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "536px",
+      "y": "444.656px",
+      "fields": []
+    },
+    {
+      "id": "9",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "731px",
+      "y": "469.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "1",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 3
+    },
+    {
+      "source": "4",
+      "target": "5",
+      "id": 4
+    },
+    {
+      "source": "5",
+      "target": "6",
+      "id": 5
+    },
+    {
+      "source": "6",
+      "target": "7",
+      "id": 6
+    },
+    {
+      "source": "7",
+      "target": "8",
+      "id": 7
+    },
+    {
+      "source": "6",
+      "target": "8",
+      "id": 8
+    },
+    {
+      "source": "8",
+      "target": "9",
+      "id": 9
+    }
+  ]
+}

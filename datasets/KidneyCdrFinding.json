@@ -1,0 +1,89 @@
+{"id": 10,
+  "version": 0,
+  "name": "KidneyCdrFinding",
+  "description": "Kidney data with findings",
+  "uuid": "697b0419-9fd2-485b-b999-b8125c63e773",
+  "path": "data/kidney_cdr_finding.csv",
+  "delimiter": ",",
+  "datasetType":"CSV",
+  "datasetSchema": "{columnNames:[\"idfinding\",\"iddatasrcdtl\",\"valuename\",\"idperson\",\"idstatus\",\"idencounter\",\"idprovider\",\"srcvaluestr\",\"findvalnum\",\"findvalstr\",\"findvalum\",\"finddate\",\"findordinal\",\"dateadded\",\"dateupdated\"],columnTypes:[\"INTEGER\",\"INTEGER\",\"STRING\",\"INTEGER\",\"INTEGER\",\"STRING\",\"STRING\",\"STRING\",\"DOUBLE\",\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"STRING\",\"STRING\"],columnMLTypes:[\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"TEXT\",\"TEXT\"]}",
+  "schemaModel": {
+    "schemaColumnList": [
+      {
+        "columnName": "idfinding",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "iddatasrcdtl",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "valuename",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "idperson",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "idstatus",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "idencounter",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "idprovider",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "srcvaluestr",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "findvalnum",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "findvalstr",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "findvalum",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "finddate",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "findordinal",
+        "columnType": "INTEGER",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "dateadded",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "dateupdated",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      }
+    ]
+  }
+}

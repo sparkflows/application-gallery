@@ -1,0 +1,1 @@
+{"table":"person","rowkey": {"name" : "id", "csv" : {"name" : "personid", "index" : 1}}, "columnfamily": {"name" : "cf1", "column" : [{"name" : "fullname", "csv" : {"name": "fn", "index": 2}}, {"name" : "age", "csv" : {"name": "age", "index": 3}}, {"name" : "city", "csv" : {"name": "city", "index": 4}}]}}

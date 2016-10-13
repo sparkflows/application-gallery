@@ -1,0 +1,120 @@
+{
+  "id": 35,
+  "userId": 1,
+  "uuid": "4e9387d5-6a14-4961-858e-15ec72787dfa",
+  "version": 0,
+  "name": "Churn Prediction",
+  "path": "data/churn_prediction/churn.all",
+  "datasetType":"CSV",
+  "delimiter": ",",
+  "datasetSchema": "{columnNames:[\"state\",\"account_length\",\"area_code\",\"phone_number\",\"intl_plan\",\"voice_mail_plan\",\"number_vmail_messages\",\"total_day_minutes\",\"total_day_calls\",\"total_day_charge\",\"total_eve_minutes\",\"total_eve_calls\",\"total_eve_charge\",\"total_night_minutes\",\"total_night_calls\",\"total_night_charge\",\"total_intl_minutes\",\"total_intl_calls\",\"total_intl_charge\",\"number_customer_service_calls\",\"churned\"],columnTypes:[\"STRING\",\"DOUBLE\",\"DOUBLE\",\"STRING\",\"STRING\",\"STRING\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"STRING\"],columnMLTypes:[\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"TEXT\"]}",
+  "schemaModel": {
+    "schemaColumnList": [
+      {
+        "columnName": "state",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "account_length",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "area_code",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "phone_number",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "intl_plan",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "voice_mail_plan",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      },
+      {
+        "columnName": "number_vmail_messages",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_day_minutes",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_day_calls",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_day_charge",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_eve_minutes",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_eve_calls",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_eve_charge",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_night_minutes",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_night_calls",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_night_charge",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_intl_minutes",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_intl_calls",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "total_intl_charge",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "number_customer_service_calls",
+        "columnType": "DOUBLE",
+        "columnMLType": "NUMERIC"
+      },
+      {
+        "columnName": "churned",
+        "columnType": "STRING",
+        "columnMLType": "TEXT"
+      }
+    ]
+  }
+}
