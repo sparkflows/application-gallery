@@ -1,0 +1,49 @@
+{
+  "name": "PeopleParquet",
+  "category": "Parquet",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "442px",
+      "y": "368px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "4",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "776.991px",
+      "y": "367.994px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2"
+    }
+  ]
+}
+    

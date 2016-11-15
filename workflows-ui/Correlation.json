@@ -1,0 +1,64 @@
+{
+  "name": "Correlation",
+  "uuid": "a4181fe2-c1f3-4038-948b-cc8054aa9813",
+  "category": "Machine Learning",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "171.773px",
+      "y": "146.847px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Correlation",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeCorrelation",
+      "x": "551.773px",
+      "y": "159.848px",
+      "fields": [
+        {
+          "name": "colNames",
+          "value": "[\"c1\",\"c2\",\"c3\",\"c4\"]",
+          "widget": "variables",
+          "title": "Column Names",
+          "description": "Column Names for Summary",
+          "optionsMap": {
+            "0": "c1",
+            "1": "c2",
+            "2": "c3",
+            "3": "c4"
+          },
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float"
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}
+    

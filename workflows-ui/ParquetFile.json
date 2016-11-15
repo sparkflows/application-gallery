@@ -1,0 +1,49 @@
+{
+  "name": "ParquetFile",
+  "category": "Parquet",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "448.969px",
+      "y": "340.983px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "b57c52b1-064a-4899-a075-20286ae7dde6",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "801.983px",
+      "y": "337.983px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2"
+    }
+  ]
+}
+    

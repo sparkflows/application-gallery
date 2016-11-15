@@ -1,0 +1,78 @@
+{
+  "name": "StreamingSocket TextStream",
+  "category": "Streaming",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "StreamingSocketTextStream",
+      "description": "Reads in streaming text from a socket",
+      "type": "sparkstreaming",
+      "nodeClass": "fire.nodes.streaming.NodeStreamingSocketTextStream",
+      "x": "126.75px",
+      "y": "109.827px",
+      "fields": [
+        {
+          "name": "hostname",
+          "value": "localhost",
+          "widget": "textfield",
+          "title": "Hostname",
+          "description": "Host to connect to for listening",
+          "required": false
+        },
+        {
+          "name": "port",
+          "value": "9999",
+          "widget": "textfield",
+          "title": "Port",
+          "description": "Port to connect to ",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "458.761px",
+      "y": "129.841px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Documentation Large",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "95.9896px",
+      "y": "341.774px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "This workflow reads in streaming text data from a socket every 30 seconds.\n\nHost : localhost\nPort : 9999\n\nIt then prints out the first 10 rows of the incoming data every 30 seconds.\n\nYou will first need to run Netcat (a small utility found in most Unix-like systems) as a data server by using:\n\nnc -lk 9999\n\nMore details are available at : https://spark.apache.org/docs/1.6.0/streaming-programming-guide.html",
+          "widget": "textarea_large",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+ "type": "record",
+ "namespace": "com.sparkrecipes",
+ "name": "Location",
+ "doc": "My Location",
+ "fields": [
+            {"name": "zipcode", "type": "string"},
+            {"name": "lon", "type": "string"},
+            {"name": "lat", "type": "string"}
+           ]
+}

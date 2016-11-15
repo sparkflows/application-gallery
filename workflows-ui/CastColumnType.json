@@ -1,0 +1,85 @@
+{
+  "name": "Cast Column Type",
+  "category": "ETL",
+  "description": "Casts the data type of columns",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "53px",
+      "y": "337.65625px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "d8a1a0b1-93b8-4096-ab95-8e3a02d65263",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "CastColumnType",
+      "description": "This node casts the data type of columns",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "437px",
+      "y": "373.65625px",
+      "fields": [
+        {
+          "name": "colNames",
+          "value": "[]",
+          "widget": "variables",
+          "title": "Columns Name",
+          "description": "Name of columns to be casted separated by space",
+          "required": false
+        },
+        {
+          "name": "outputTypes",
+          "value": "",
+          "widget": "textfield",
+          "title": "Output data types",
+          "description": "Output data types separated by space",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "688px",
+      "y": "252.65625px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}
+    

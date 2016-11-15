@@ -1,0 +1,122 @@
+{
+  "name": "Transaction",
+  "category": "Transactions",
+  "description": "Transaction Data Analytics",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "107.953px",
+      "y": "150.953px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "883dd363-f832-4c6a-8681-0dffc8ab638a",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "433.953px",
+      "y": "158.953px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "GraphGroupByColumn",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeGraphGroupByColumn",
+      "x": "689px",
+      "y": "143.656px",
+      "fields": [
+        {
+          "name": "title",
+          "value": "Graph Grouped by Column",
+          "widget": "textfield",
+          "title": "Title",
+          "required": false
+        },
+        {
+          "name": "xlabel",
+          "value": "X axis",
+          "widget": "textfield",
+          "title": "X Label",
+          "required": false
+        },
+        {
+          "name": "ylabel",
+          "value": "Y axis",
+          "widget": "textfield",
+          "title": "Y Label",
+          "required": false
+        },
+        {
+          "name": "groupByColumn",
+          "value": "brand",
+          "widget": "variable",
+          "title": "Group By Column",
+          "optionsMap": {
+            "0": "id",
+            "1": "chain",
+            "2": "dept",
+            "3": "category",
+            "4": "company",
+            "5": "brand",
+            "6": "date",
+            "7": "productsize",
+            "8": "productmeasure",
+            "9": "purchasequantity",
+            "10": "purchaseamount"
+          },
+          "required": false
+        },
+        {
+          "name": "graphType",
+          "value": "LINECHART",
+          "widget": "enum",
+          "title": "Chart Type",
+          "optionsMap": {
+            "0": "Column Chart",
+            "1": "Bar Chart",
+            "2": "Line Chart",
+            "3": "Histogram Chart"
+          },
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}
+    

@@ -1,0 +1,330 @@
+{
+  "name": "Pipeline",
+  "category": "Machine Learning",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "2",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "110.5px",
+      "y": "40.625px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "6be87dab-55ab-4738-9fa6-97d8de4bd5f3",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Tokenizer",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeTokenizer",
+      "x": "346.5px",
+      "y": "108.641px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "message",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "Column containing text (such as sentence)",
+          "datatypes": [
+            "string"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "words",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "HashingTF",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeHashingTF",
+      "x": "574.5px",
+      "y": "31.6406px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "words",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "Contains sets of terms. In text processing, a 'set of terms' might be a bag of words",
+          "datatypes": [
+            "array"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "features",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Pipeline",
+      "description": "This node represents Pipeline from Spark ML",
+      "type": "ml-pipeline",
+      "nodeClass": "fire.nodes.ml.NodePipeline",
+      "x": "765.5px",
+      "y": "404.641px",
+      "fields": []
+    },
+    {
+      "id": "8",
+      "name": "LogisticRegression",
+      "description": "",
+      "type": "ml-estimator",
+      "nodeClass": "fire.nodes.ml.NodeLogisticRegression",
+      "x": "817.5px",
+      "y": "222.641px",
+      "fields": [
+        {
+          "name": "elasticNetParam",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "ElasticNet Param",
+          "description": "The ElasticNet mixing parameter. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "featuresCol",
+          "value": "features",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Features column of type vectorUDT for model fitting",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "fitIntercept",
+          "value": "true",
+          "widget": "array",
+          "title": "Fit Intercept",
+          "description": "Whether to fit an intercept term",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        },
+        {
+          "name": "labelCol",
+          "value": "label",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxIter",
+          "value": "100",
+          "widget": "textfield",
+          "title": "Maximum Iterations",
+          "description": "Maximum number of iterations (>= 0)",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "probabilityCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Probability Column",
+          "description": "The column name for predicted class conditional probabilities",
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Predictor Columns",
+          "description": "The prediction column created during model scoring",
+          "required": false
+        },
+        {
+          "name": "rawPredictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Raw Prediction Column",
+          "description": "The raw prediction (a.k.a. confidence) column name",
+          "required": false
+        },
+        {
+          "name": "regParam",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "Regularization Param",
+          "description": "The regularization parameter",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "standardization",
+          "value": "true",
+          "widget": "array",
+          "title": "Standardization",
+          "description": "Whether to standardize the training features before fitting the model",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        },
+        {
+          "name": "threshold",
+          "value": "0.5",
+          "widget": "textfield",
+          "title": "Threshold",
+          "description": "The threshold in binary classification prediction",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "tol",
+          "value": "1E-6",
+          "widget": "textfield",
+          "title": "Tolerance",
+          "description": "The convergence tolerance for iterative algorithms",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "weightCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Weight Column",
+          "description": "If the 'weight column' is not specified, all instances are treated equally with a weight 1.0",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Split",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSplit",
+      "x": "157px",
+      "y": "244.641px",
+      "fields": [
+        {
+          "name": "fraction1",
+          "value": ".5",
+          "widget": "textfield",
+          "title": "Fraction 1",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Predict",
+      "type": "ml-predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "406px",
+      "y": "322.641px",
+      "fields": []
+    },
+    {
+      "id": "11",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "402px",
+      "y": "508.641px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "5",
+      "target": "6",
+      "id": 1
+    },
+    {
+      "source": "6",
+      "target": "8",
+      "id": 2
+    },
+    {
+      "source": "8",
+      "target": "7",
+      "id": 3
+    },
+    {
+      "source": "2",
+      "target": "9",
+      "id": 4
+    },
+    {
+      "source": "9",
+      "target": "5",
+      "id": 5
+    },
+    {
+      "source": "9",
+      "target": "10",
+      "id": 6
+    },
+    {
+      "source": "7",
+      "target": "10",
+      "id": 7
+    },
+    {
+      "source": "10",
+      "target": "11",
+      "id": 8
+    }
+  ]
+}
+    

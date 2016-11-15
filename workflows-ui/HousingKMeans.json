@@ -1,0 +1,302 @@
+{
+  "name": "HousingKmeans",
+  "category": "Machine Learning",
+  "description": "KMeans clustering on housing dataset",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "168.984375px",
+      "y": "320.96875px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "ecf80851-4d96-4d7a-91ef-dfa8fe8937ee",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "553.9829711914063px",
+      "y": "400.9830017089844px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "VectorAssembler",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "354px",
+      "y": "148px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"lotsize\",\"price\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "features",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "KMeans",
+      "description": "",
+      "type": "ml-estimator",
+      "nodeClass": "fire.nodes.ml.NodeKMeans",
+      "x": "586px",
+      "y": "33.65629959106445px",
+      "fields": [
+        {
+          "name": "featuresCol",
+          "value": "features",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Features column of type vectorUDT for model fitting.",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "k",
+          "value": "5",
+          "widget": "textfield",
+          "title": "K",
+          "description": "The number of clusters to create.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxIter",
+          "value": "25",
+          "widget": "textfield",
+          "title": "Max Iterations",
+          "description": "The maximum number of iterations.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "price",
+          "widget": "variable",
+          "title": "Prediction Column",
+          "description": "The prediction column created during model scoring.",
+          "required": false
+        },
+        {
+          "name": "seed",
+          "value": "",
+          "widget": "textfield",
+          "title": "Seed",
+          "description": "Random Seed.",
+          "datatypes": [
+            "long"
+          ],
+          "required": false
+        },
+        {
+          "name": "tol",
+          "value": "0.01",
+          "widget": "textfield",
+          "title": "Tolerence",
+          "description": "The convergence tolerance for iterative algorithms.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "initMode",
+          "value": "k-means||",
+          "widget": "array",
+          "title": "initMode",
+          "description": "The initialization algorithm mode.",
+          "optionsArray": [
+            "k-means||",
+            "random"
+          ],
+          "required": false
+        },
+        {
+          "name": "initSteps",
+          "value": "5",
+          "widget": "textfield",
+          "title": "initSteps",
+          "description": "The number of steps for the k-means|| initialization mode. It will be ignored when other initialization modes are chosen.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "239.5px",
+      "y": "434.65625px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select avg(price) as avgPrice, avg(lotsize) as avgLotSize, bedrooms from fire_temp_table group by bedrooms order by bedrooms asc",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "columns",
+          "value": "avgPrice avgLotSize bedrooms",
+          "widget": "textarea_small",
+          "title": "SQL Output Column Names separated by space",
+          "description": "New Output Columns of the SQL",
+          "required": false
+        },
+        {
+          "name": "columnTypes",
+          "value": "Double Double Integer",
+          "widget": "textarea_small",
+          "title": "SQL Output Column Types separated by space",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "GraphValues",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeGraphValues",
+      "x": "381.5px",
+      "y": "539.65625px",
+      "fields": [
+        {
+          "name": "title",
+          "value": "Graph",
+          "widget": "textfield",
+          "title": "Title",
+          "required": false
+        },
+        {
+          "name": "xlabel",
+          "value": "X axis",
+          "widget": "textfield",
+          "title": "X Label",
+          "required": false
+        },
+        {
+          "name": "ylabel",
+          "value": "Y axis",
+          "widget": "textfield",
+          "title": "Y Label",
+          "required": false
+        },
+        {
+          "name": "graphType",
+          "value": "1",
+          "widget": "enum",
+          "title": "Chart Type",
+          "optionsMap": {
+            "LINECHART": "Line Chart",
+            "COLUMNCHART": "Side by Side Bar Chart",
+            "BARCHART": "Stacked Bar Chart",
+            "PIE": "Pie Chart"
+          },
+          "required": false
+        },
+        {
+          "name": "xCol",
+          "value": "bedrooms",
+          "widget": "variable",
+          "title": "X Column",
+          "required": false
+        },
+        {
+          "name": "yCols",
+          "value": "[\"avgPrice\",\"avgLotSize\"]",
+          "widget": "variables",
+          "title": "Y Columns",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "1",
+      "target": "5",
+      "id": 2
+    },
+    {
+      "source": "5",
+      "target": "6",
+      "id": 3
+    },
+    {
+      "source": "1",
+      "target": "14",
+      "id": 4
+    },
+    {
+      "source": "14",
+      "target": "15",
+      "id": 5
+    }
+  ]
+}
+    

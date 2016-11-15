@@ -1,0 +1,101 @@
+{
+  "name": "HBase",
+  "category": "-",
+  "description": "Loads data into an HBase table",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "188px",
+      "y": "120.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "ecf80851-4d96-4d7a-91ef-dfa8fe8937ee",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "HBaseLoad",
+      "description": "Loads all the rows in the incoming DataFrame onto HBase using the specific field mapping",
+      "type": "transform",
+      "nodeClass": "fire.nodes.hbase.NodeHBaseLoad",
+      "x": "486px",
+      "y": "111.656px",
+      "fields": [
+        {
+          "name": "hbaseTableName",
+          "value": "customer",
+          "widget": "textfield",
+          "title": "HBase Table Name",
+          "description": "HBase Table into which data gets loaded",
+          "required": false
+        },
+        {
+          "name": "rowKeyColumn",
+          "value": "id",
+          "widget": "variable",
+          "title": "Row Key Column",
+          "description": "DataFrame column which is used as the row keys of HBase",
+          "required": false
+        },
+        {
+          "name": "dfCols",
+          "value": "[\"id\",\"price\",\"lotsize\",\"bedrooms\",\"bathrms\",\"stories\",\"driveway\",\"recroom\",\"fullbase\",\"gashw\",\"airco\",\"garagepl\",\"prefarea\"]",
+          "widget": "variables_map",
+          "title": "Variable",
+          "required": false
+        },
+        {
+          "name": "hbaseColumnFamily",
+          "value": "[\"cf\",\"cf\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]",
+          "widget": "variables_map_edit",
+          "title": "HBase Column Family",
+          "description": "HBase Column Family for the variable",
+          "required": false
+        },
+        {
+          "name": "hbaseCols",
+          "value": "[\"id\",\"p\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]",
+          "widget": "variables_map_edit",
+          "title": "HBase Columns",
+          "description": "HBase Column Name into which the variable is loaded",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Documentation Large",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "227px",
+      "y": "368.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "This workflow reads in the Housing dataset and then loads the records into HBase.\n\nThe records are loaded into the HBase table 'customer'\n\n\nHBase commands:\n\nhbase shell : to invoke the hbase shell\n\ncreate 'customer', 'cf'  :  to create the hbase table 'customer' with one column family 'cf'\n\n\nAfter the workflow runs, the data in hbase in the 'customer' table can be scanned with:\n\nscan 'customer'",
+          "widget": "textarea_large",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}

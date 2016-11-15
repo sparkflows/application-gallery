@@ -1,0 +1,79 @@
+{
+  "name": "Dedup",
+  "category": "Machine Learning",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "204.326px",
+      "y": "102.094px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "6be87dab-55ab-4738-9fa6-97d8de4bd5f3",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Dedup",
+      "description": "Performs Dedup",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeDedup",
+      "x": "487px",
+      "y": "125.764px",
+      "fields": [
+        {
+          "name": "lhs",
+          "value": "[\"label\",\"message\",\"id\"]",
+          "widget": "variables_map",
+          "title": "LHS Variables",
+          "description": "LHS column for matching",
+          "required": false
+        },
+        {
+          "name": "rhs",
+          "value": "[]",
+          "widget": "variables_map_select",
+          "title": "RHS Variables",
+          "description": "RHS column for matching",
+          "required": false
+        },
+        {
+          "name": "usingType",
+          "value": "[]",
+          "widget": "variables_map_array",
+          "title": "Algorithm to use",
+          "description": "Algorithm to use for matching",
+          "optionsArray": [
+            "levenshtein",
+            "jarowinkler"
+          ],
+          "required": false
+        },
+        {
+          "name": "output",
+          "value": "[null,null,null]",
+          "widget": "variables_map_edit",
+          "title": "Output Column",
+          "description": "Output Column",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}

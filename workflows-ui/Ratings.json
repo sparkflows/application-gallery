@@ -1,0 +1,419 @@
+{
+  "name": "Ratings",
+  "category": "Recommendations",
+  "description": "Movie Lens Recommendations",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "139.953px",
+      "y": "256.969px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "d8a1a0b1-93b8-4096-ab95-8e3a02d65263",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+            "3d045ee1-7125-48b6-afeb-b26bae9cc47d": "KidneyLabResults",
+            "ecf80851-4d96-4d7a-91ef-dfa8fe8937ee": "Housing",
+            "429086c5-3e60-4fa1-9b6d-93c9d093ee48": "KindeyEgfrDerived",
+            "b57c52b1-064a-4899-a075-20286ae7dde6": "ParquetFile",
+            "4e9387d5-6a14-4961-858e-15ec72787dfa": "Churn Prediction",
+            "697b0419-9fd2-485b-b999-b8125c63e773": "KidneyCdrFinding",
+            "6fe6f5ec-5dca-453f-8f51-af31a96ebf63": "titanic_dat_train",
+            "663c2be6-d2c0-4461-b20e-13d8353d0b9e": "PeopleParquet",
+            "d8a1a0b1-93b8-4096-ab95-8e3a02d65263": "Ratings",
+            "a610f2d8-59f9-471f-8576-e3a2b49ab369": "HIVE sample_07",
+            "7fff0810-eb50-4b7e-8c9a-a55dcc2578f3": "Avazu",
+            "a4ca862a-4127-449d-a7e0-c2fffd69fc14": "Cars",
+            "b4a7dc88-5ce0-41d9-bac0-93caa08b98e7": "datetimesample",
+            "033a08ff-fc0c-44cf-b713-1f4be7465834": "Omniture Products",
+            "3c32dd3c-2464-4c60-8f1a-7bf3552aef04": "Omniture",
+            "883dd363-f832-4c6a-8681-0dffc8ab638a": "Transaction dataset",
+            "6fe6f5ec-5dca-453f-8f51-af33a96ebf63": "titanic_dat_train",
+            "51273c4b-a101-43b5-94ca-06a928a0ea97": "Omniture Users",
+            "6be87dab-55ab-4738-9fa6-97d8de4bd5r3": "spam1",
+            "6be87dab-55ab-4738-9fa6-97d8de4bd5f3": "spam"
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "781.972px",
+      "y": "357.972px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "GraphGroupByColumn",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeGraphGroupByColumn",
+      "x": "448px",
+      "y": "361px",
+      "fields": [
+        {
+          "name": "title",
+          "value": "Histogram",
+          "widget": "textfield",
+          "title": "Title",
+          "required": false
+        },
+        {
+          "name": "xlabel",
+          "value": "X axis",
+          "widget": "textfield",
+          "title": "X Label",
+          "required": false
+        },
+        {
+          "name": "ylabel",
+          "value": "Y axis",
+          "widget": "textfield",
+          "title": "Y Label",
+          "required": false
+        },
+        {
+          "name": "groupByColumn",
+          "value": "rating",
+          "widget": "variable",
+          "title": "Group By Column",
+          "optionsMap": {},
+          "required": false
+        },
+        {
+          "name": "graphType",
+          "value": "LINECHART",
+          "widget": "enum",
+          "title": "Chart Type",
+          "optionsMap": {
+            "0": "Column Chart",
+            "1": "Bar Chart",
+            "2": "Line Chart",
+            "3": "Histogram Chart"
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "ALS",
+      "description": "",
+      "type": "ml-estimator",
+      "nodeClass": "fire.nodes.ml.NodeALS",
+      "x": "650px",
+      "y": "34.6562px",
+      "fields": [
+        {
+          "name": "alpha",
+          "value": "1.0",
+          "widget": "textfield",
+          "title": "Alpha",
+          "description": "The alpha parameter in the implicit preference formulation.(>=0)",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "checkpointInterval",
+          "value": "10",
+          "widget": "textfield",
+          "title": "CheckpointInterval",
+          "description": "The checkpoint interval.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "implicitPrefs",
+          "value": "false",
+          "widget": "array",
+          "title": "ImplicitPrefs",
+          "description": "whether to use implicit preference",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        },
+        {
+          "name": "itemCol",
+          "value": "movie",
+          "widget": "variable",
+          "title": "Item Column",
+          "description": "The column name for item ids.",
+          "optionsMap": {
+            "0": "user",
+            "1": "movie",
+            "2": "rating",
+            "3": "ts"
+          },
+          "required": false
+        },
+        {
+          "name": "maxIter",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Max iterations",
+          "description": "The maximum number of iterations.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "nonnegative",
+          "value": "false",
+          "widget": "array",
+          "title": "Nonnegative",
+          "description": "Whether to apply nonnegativity constraints.",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        },
+        {
+          "name": "numItemBlocks",
+          "value": "10",
+          "widget": "textfield",
+          "title": "numItemBlocks",
+          "description": "The number of item blocks.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "numUserBlocks",
+          "value": "10",
+          "widget": "textfield",
+          "title": "numUserBlocks",
+          "description": "The number of user blocks.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Predictor Columns",
+          "description": "The prediction column created during model scoring",
+          "required": false
+        },
+        {
+          "name": "rank",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Rank",
+          "description": "The rank of the matrix factorization.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "ratingCol",
+          "value": "rating",
+          "widget": "variable",
+          "title": "Rating Column",
+          "description": "The column name for ratings.",
+          "optionsMap": {
+            "0": "user",
+            "1": "movie",
+            "2": "rating",
+            "3": "ts"
+          },
+          "required": false
+        },
+        {
+          "name": "regParam",
+          "value": "0.1",
+          "widget": "textfield",
+          "title": "Regularization Param",
+          "description": "The regularization parameter.(>=0)",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "seed",
+          "value": "",
+          "widget": "textfield",
+          "title": "Seed",
+          "description": "Random Seed.",
+          "datatypes": [
+            "long"
+          ],
+          "required": false
+        },
+        {
+          "name": "userCol",
+          "value": "user",
+          "widget": "variable",
+          "title": "User Column",
+          "description": "The column name for user ids.",
+          "optionsMap": {
+            "0": "user",
+            "1": "movie",
+            "2": "rating",
+            "3": "ts"
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Split",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSplit",
+      "x": "418px",
+      "y": "145.656px",
+      "fields": [
+        {
+          "name": "fraction1",
+          "value": ".5",
+          "widget": "textfield",
+          "title": "Fraction 1",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Predict",
+      "type": "ml-predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "672px",
+      "y": "165.656px",
+      "fields": []
+    },
+    {
+      "id": "8",
+      "name": "RegressionEvaluator",
+      "description": "Evaluator for regression, which expects two input columns: prediction and label.",
+      "type": "ml-evaluator",
+      "nodeClass": "fire.nodes.ml.NodeRegressionEvaluator",
+      "x": "849px",
+      "y": "125.656px",
+      "fields": [
+        {
+          "name": "metricName",
+          "value": "rmse",
+          "widget": "array",
+          "title": "Metric Name",
+          "description": "The metric used in evaluation.",
+          "optionsArray": [
+            "rmse",
+            "mse",
+            "r2",
+            "mae"
+          ],
+          "required": false
+        },
+        {
+          "name": "labelCol",
+          "value": "rating",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting.",
+          "optionsMap": {
+            "0": "user",
+            "1": "movie",
+            "2": "rating",
+            "3": "prediction"
+          },
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "prediction",
+          "widget": "variable",
+          "title": "PredictionCol Column",
+          "description": "The prediction column.",
+          "optionsMap": {
+            "0": "user",
+            "1": "movie",
+            "2": "rating",
+            "3": "prediction"
+          },
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "4",
+      "id": 1
+    },
+    {
+      "source": "4",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "1",
+      "target": "6",
+      "id": 3
+    },
+    {
+      "source": "6",
+      "target": "5",
+      "id": 4
+    },
+    {
+      "source": "5",
+      "target": "7",
+      "id": 5
+    },
+    {
+      "source": "6",
+      "target": "7",
+      "id": 6
+    },
+    {
+      "source": "7",
+      "target": "8",
+      "id": 7
+    }
+  ]
+}
+    

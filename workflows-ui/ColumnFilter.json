@@ -1,0 +1,75 @@
+{
+  "name": "Column Filter",
+  "category": "ETL",
+  "description": "This filters the specified columns from the incoming DataFrame",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "67px",
+      "y": "202.65625px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "ColumnFilter",
+      "description": "This node filters the specified columns from the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeColumnFilter",
+      "x": "319px",
+      "y": "108.65625px",
+      "fields": [
+        {
+          "name": "columns",
+          "value": "[\"c1\",\"c2\"]",
+          "widget": "variables",
+          "title": "Input Filter Columns",
+          "description": "Output will contain only the columns selected as input",
+          "optionsMap": {}
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "533px",
+      "y": "204.65625px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}
+    

@@ -1,0 +1,52 @@
+{
+  "name": "Jython",
+  "uuid": "435fe604-6867-42f1-b339-3f0a5d652c95",
+  "category": "ETL",
+  "description": "Jython code example",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "122.267px",
+      "y": "141.841px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "JYthon",
+      "description": "This node runs any given Python code",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeJython",
+      "x": "392.273px",
+      "y": "110.848px",
+      "fields": [
+        {
+          "name": "code",
+          "value": "def map_function(x):\n    return x.c2\n\ninDF.javaRDD().map(lambda p: p.c1)\n\ninDF.javaRDD().map(map_function)\n\nfor r in inDF.collect():\n  print(r)\n\ninDF.groupBy(\"c2\")\n\nfor t in inDF.collect():\n  print(t)\n\noutDF = inDF",
+          "widget": "textarea_large",
+          "title": "Jython",
+          "description": "Python code to be run",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}
