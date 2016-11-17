@@ -24,4 +24,17 @@ Datasets are represented as JSON files. Using the JSON, new datasets can be impo
 
 Workflows are also represented as JSON files. These JSON files can be imported into Sparkflows to create new workflows.
 
+## Workflows
+
+### Movie Ratings
+
+Uses ALS to recommend movies to users
+
+#### Dataset
+
+
+
+#### Workflow
+
+https://github.com/sparkflows/sample-workflows/blob/master/workflows-ui/Ratings.json
 
