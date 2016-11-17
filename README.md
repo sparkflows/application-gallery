@@ -38,3 +38,26 @@ Uses ALS to recommend movies to users
 
 https://github.com/sparkflows/sample-workflows/blob/master/workflows-ui/Ratings.json
 
+
+### Bike Sharing Data-Set Analysis
+
+Predicts "bike rental counts per hour" from past data
+
+#### Dataset
+
+http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset
+
+#### Workflow
+
+https://github.com/sparkflows/sample-workflows/blob/master/workflows-ui/BikeSharingAnalysis.json
+
+
+
+
+#### Workflow
+
+https://github.com/sparkflows/sample-workflows/blob/master/workflows-ui/Ratings.json
+
+
+
+
