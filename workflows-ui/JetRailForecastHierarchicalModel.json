@@ -1,0 +1,864 @@
+{
+  "name": "Jetrail_Hierarchical",
+  "category": "Machine Learning",
+  "description": "Jetrail Forecast - hierarchical model",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "19px",
+      "y": "12.6563px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "735ee5eb-b634-42f2-8b4e-386883be019f",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "DateTimeFieldExtract",
+      "description": "creates a new DataFrame by extracting Date and Time fields.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeDateTimeFieldExtract",
+      "x": "18px",
+      "y": "202.641px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "Datetime",
+          "widget": "variable",
+          "title": "Column",
+          "description": "The input column name",
+          "datatypes": [
+            "timestamp"
+          ],
+          "required": false
+        },
+        {
+          "name": "extractYear",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Year",
+          "required": false
+        },
+        {
+          "name": "extractMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Month",
+          "required": false
+        },
+        {
+          "name": "extractDayOfMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Day of Month",
+          "required": false
+        },
+        {
+          "name": "extractHour",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Hour",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "196px",
+      "y": "33.6563px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select Datetime, Count, Datetime_year, Datetime_month, Datetime_dayofmonth, Datetime_hour, cast(from_unixtime(unix_timestamp(Datetime,'dd-MM-yyyy'),'u') as int) as day_of_week from fire_temp_table",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"Datetime\",\"Count\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "schema_col_names",
+          "title": "Column Names for the CSV",
+          "description": "New Output Columns of the SQL",
+          "required": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"TIMESTAMP\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\"]",
+          "widget": "schema_col_types",
+          "title": "Column Types for the CSV",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\",\"\",\"\",\"\",\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Column Formats for the CSV",
+          "description": "Format of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "CastColumnType",
+      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "236px",
+      "y": "199.641px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Count\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be casted to new data type",
+          "required": false
+        },
+        {
+          "name": "outputColType",
+          "value": "DOUBLE",
+          "widget": "textfield",
+          "title": "New Data Types",
+          "description": "New data type (integer, double, string, long, short)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "StringIndexer",
+      "description": "StringIndexer encodes a string column of labels to a column of label indices",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeStringIndexer",
+      "x": "331px",
+      "y": "26.6563px",
+      "fields": [
+        {
+          "name": "handleInvalid",
+          "value": "error",
+          "widget": "array",
+          "title": "Handle Invalid",
+          "description": "Invalid entries to be skipped or thrown error",
+          "optionsArray": [
+            "skip",
+            "error"
+          ],
+          "required": false
+        },
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime\",\"Count\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Column containing labels",
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"\",\"\",\"\",\"\",\"\",\"Datetime_hour_index\",\"day_of_week_index\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output  columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "VectorAssembler",
+      "description": "Merges multiple columns into a vector column",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "541px",
+      "y": "53.6563px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour_index\",\"day_of_week_index\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "feature_vector",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "GBTRegression",
+      "description": "It supports both continuous and categorical features.",
+      "type": "ml-estimator",
+      "nodeClass": "fire.nodes.ml.NodeGBTRegression",
+      "x": "437px",
+      "y": "219.641px",
+      "fields": [
+        {
+          "name": "featuresCol",
+          "value": "feature_vector",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Features column of type vectorUDT for model fitting",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "labelCol",
+          "value": "Count",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Predictor Columns",
+          "description": "The prediction column created during model scoring.",
+          "required": false
+        },
+        {
+          "name": "impurity",
+          "value": "variance",
+          "widget": "array",
+          "title": "Impurity",
+          "description": "The Criterion used for information gain calculation",
+          "optionsArray": [
+            "variance"
+          ],
+          "required": false
+        },
+        {
+          "name": "lossType",
+          "value": "squared",
+          "widget": "array",
+          "title": "Loss Function",
+          "description": "The Loss function which GBT tries to minimize",
+          "optionsArray": [
+            "squared",
+            "absolute"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxBins",
+          "value": "25",
+          "widget": "textfield",
+          "title": "Max Bins",
+          "description": "The maximum number of bins used for discretizing continuous features.Must be &gt;= 2 and &gt;= number of categories in any categorical feature.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxDepth",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Max Depth",
+          "description": "The Maximum depth of a tree",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxIter",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Max Iterations",
+          "description": "The maximum number of iterations(&gt;=0)(a.k.a numtrees)",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "minInfoGain",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "Min Information Gain",
+          "description": "The Minimum information gain for a split to be considered at a tree node",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "minInstancesPerNode",
+          "value": "1",
+          "widget": "textfield",
+          "title": "Min Instances Per Node",
+          "description": "The Minimum number of instances each child must have after split",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "subsamplingRate",
+          "value": "1.0",
+          "widget": "textfield",
+          "title": "Subsampling Rate",
+          "description": "The fraction of the training data used for learning each decision tree.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "seed",
+          "value": "",
+          "widget": "textfield",
+          "title": "Seed",
+          "description": "The random seed",
+          "datatypes": [
+            "long"
+          ],
+          "required": false
+        },
+        {
+          "name": "stepSize",
+          "value": "0.1",
+          "widget": "textfield",
+          "title": "Step Size",
+          "description": "Step size (a.k.a. learning rate), The step size to be used for each iteration of optimization.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "cacheNodeIds",
+          "value": "false",
+          "widget": "array",
+          "title": "Cache Node Ids",
+          "description": "The caching nodes IDs. Can speed up training of deeper trees.",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "false",
+            "true"
+          ],
+          "required": false
+        },
+        {
+          "name": "checkpointInterval",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Checkpoint Interval",
+          "description": "The checkpoint interval. E.g. 10 means that the cache will get checkpointed every 10 iterations.Set checkpoint interval (&gt;= 1) or disable checkpoint (-1)",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxMemoryInMB",
+          "value": "256",
+          "widget": "textfield",
+          "title": "Max memory",
+          "description": "Maximum memory in MB allocated to histogram aggregation.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "gridSearch",
+          "value": "",
+          "widget": "tab",
+          "title": "Grid Search",
+          "required": false
+        },
+        {
+          "name": "minInfoGainGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Min Info Gain Grid Search",
+          "description": "Min Info Gain Grid Search",
+          "required": false
+        },
+        {
+          "name": "maxBinsGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Max Bins Grid Search",
+          "description": "Max Bins for Grid Search",
+          "required": false
+        },
+        {
+          "name": "maxDepthGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Max Depth Grid Search",
+          "description": "Regularization Parameters for Grid Search",
+          "required": false
+        },
+        {
+          "name": "maxIterGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Max Iterations Grid Search",
+          "description": "Max Iterations for Grid Search",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Predict",
+      "type": "ml-predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "327px",
+      "y": "334.641px",
+      "fields": []
+    },
+    {
+      "id": "12",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "18px",
+      "y": "732.641px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "cc1aec58-3c26-4e7f-adab-10e2458ec185",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "name": "DateTimeFieldExtract",
+      "description": "creates a new DataFrame by extracting Date and Time fields.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeDateTimeFieldExtract",
+      "x": "18px",
+      "y": "553.641px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "Datetime",
+          "widget": "variable",
+          "title": "Column",
+          "description": "The input column name",
+          "datatypes": [
+            "timestamp"
+          ],
+          "required": false
+        },
+        {
+          "name": "extractYear",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Year",
+          "required": false
+        },
+        {
+          "name": "extractMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Month",
+          "required": false
+        },
+        {
+          "name": "extractDayOfMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Day of Month",
+          "required": false
+        },
+        {
+          "name": "extractHour",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Hour",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "227px",
+      "y": "482.656px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select Datetime, Datetime_year, Datetime_month, Datetime_dayofmonth, Datetime_hour, cast(from_unixtime(unix_timestamp(Datetime,'dd-MM-yyyy'),'u') as int) as day_of_week from fire_temp_table",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"Datetime\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "schema_col_names",
+          "title": "Column Names for the CSV",
+          "description": "New Output Columns of the SQL",
+          "required": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"TIMESTAMP\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\"]",
+          "widget": "schema_col_types",
+          "title": "Column Types for the CSV",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\",\"\",\"\",\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Column Formats for the CSV",
+          "description": "Format of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "name": "CastColumnType",
+      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "136px",
+      "y": "642px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be casted to new data type",
+          "required": false
+        },
+        {
+          "name": "outputColType",
+          "value": "DOUBLE",
+          "widget": "textfield",
+          "title": "New Data Types",
+          "description": "New data type (integer, double, string, long, short)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "name": "StringIndexer",
+      "description": "StringIndexer encodes a string column of labels to a column of label indices",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeStringIndexer",
+      "x": "273px",
+      "y": "742px",
+      "fields": [
+        {
+          "name": "handleInvalid",
+          "value": "error",
+          "widget": "array",
+          "title": "Handle Invalid",
+          "description": "Invalid entries to be skipped or thrown error",
+          "optionsArray": [
+            "skip",
+            "error"
+          ],
+          "required": false
+        },
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Column containing labels",
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"\",\"\",\"\",\"\",\"Datetime_hour_index\",\"day_of_week_index\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output  columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "name": "VectorAssembler",
+      "description": "Merges multiple columns into a vector column",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "321px",
+      "y": "633px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour_index\",\"day_of_week_index\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "feature_vector",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Split",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSplit",
+      "x": "366px",
+      "y": "486.656px",
+      "fields": [
+        {
+          "name": "fraction1",
+          "value": "1.0",
+          "widget": "textfield",
+          "title": "Fraction 1",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "511px",
+      "y": "365.656px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select Datetime, prediction from fire_temp_table order by Datetime",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[]",
+          "widget": "schema_col_names",
+          "title": "Column Names for the CSV",
+          "description": "New Output Columns of the SQL",
+          "required": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[]",
+          "widget": "schema_col_types",
+          "title": "Column Types for the CSV",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[]",
+          "widget": "schema_col_formats",
+          "title": "Column Formats for the CSV",
+          "description": "Format of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "name": "SaveParquet",
+      "description": "Saves the DataFrame into the specified location in Parquet Format",
+      "type": "transform",
+      "nodeClass": "fire.nodes.save.NodeSaveParquet",
+      "x": "752px",
+      "y": "375.656px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "data/jetrailHierarcModelOutput",
+          "widget": "textfield",
+          "title": "Path",
+          "required": false
+        },
+        {
+          "name": "overwrite",
+          "value": "false",
+          "widget": "array",
+          "title": "Overwrite Output",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 3
+    },
+    {
+      "source": "4",
+      "target": "5",
+      "id": 4
+    },
+    {
+      "source": "5",
+      "target": "6",
+      "id": 5
+    },
+    {
+      "source": "10",
+      "target": "11",
+      "id": 6
+    },
+    {
+      "source": "6",
+      "target": "10",
+      "id": 7
+    },
+    {
+      "source": "12",
+      "target": "13",
+      "id": 8
+    },
+    {
+      "source": "13",
+      "target": "17",
+      "id": 9
+    },
+    {
+      "source": "17",
+      "target": "18",
+      "id": 10
+    },
+    {
+      "source": "18",
+      "target": "19",
+      "id": 11
+    },
+    {
+      "source": "19",
+      "target": "20",
+      "id": 12
+    },
+    {
+      "source": "20",
+      "target": "21",
+      "id": 13
+    },
+    {
+      "source": "21",
+      "target": "11",
+      "id": 14
+    },
+    {
+      "source": "11",
+      "target": "22",
+      "id": 15
+    },
+    {
+      "source": "22",
+      "target": "23",
+      "id": 16
+    }
+  ]
+}

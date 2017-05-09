@@ -1,0 +1,107 @@
+{
+  "name": "String Indexer",
+  "category": "Machine Learning",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "112.994px",
+      "y": "220px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "3d045ee1-7125-48b6-afeb-b26bae9cc47d",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "StringIndexer",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeStringIndexer",
+      "x": "509.974px",
+      "y": "168.972px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"idlab_result\",\"iddatasrcdtl\",\"idperson\",\"valuename\",\"idstatus\",\"idlaborder\",\"srcvaluestr\",\"idencounter\",\"resultdate\",\"fasting\",\"resultvaluenum\",\"resultvaluestr\",\"resultvalueum\",\"resultvaluenormalrangelab\",\"resultvalueabncode\",\"labperformedby\",\"labtype\",\"labreasoncode\",\"labreasonrelated\",\"dateadded\",\"dateupdated\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Column containing labels"
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"\",\"\",\"\",\"\",\"\",\"\",\"srcvaluestr_a\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output  columns"
+        },
+        {
+          "name": "handleInvalid",
+          "value": "skip",
+          "widget": "enum",
+          "title": "Handle Invalid",
+          "description": "Invalid entries to be skipped or thrown error",
+          "optionsMap": {
+            "skip": "skip",
+            "error": "error"
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "757px",
+      "y": "189px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "5",
+          "widget": "textfield",
+          "title": "Num Rows to Print"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "PrintNRows",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "417px",
+      "y": "270px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "2",
+      "target": "3"
+    },
+    {
+      "source": "1",
+      "target": "4"
+    },
+    {
+      "source": "4",
+      "target": "2"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": 20,
+  "userId": 1,
+  "uuid": "b4a7dc88-5ce0-41d9-bac0-93caa08b98e7",
+  "version": 1,
+  "name": "datetimesample",
+  "path": "data/datetimesample.csv",
+  "delimiter": "\\t",
+  "datasetType": "CSV",
+  "datasetSchema": "{colNames:[\"id\",\"trans_dt\",\"val\"],colTypes:[\"INTEGER\",\"STRING\",\"DOUBLE\"],colFormats:[\"\",\"\",\"\"],colMLTypes:[\"NUMERIC\",\"TEXT\",\"NUMERIC\"]}",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "id",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "trans_dt",
+        "colType": "STRING",
+        "colFormat": "yyyy-MM-dd",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "val",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      }
+    ]
+  }
+}

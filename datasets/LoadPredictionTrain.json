@@ -1,0 +1,97 @@
+{
+  "id": 20,
+  "userId": 1,
+  "uuid": "6fe6f5ec-5dca-453f-8f51-af33a96ebf63",
+  "version": 2,
+  "name": "Load Prediction Train",
+  "header": true,
+  "path": "data/loan_prediction/train_u6lujuX.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "filterLinesContaining": "PassengerId",
+  "datasetSchema": "{colNames:[\"Loan_ID\",\"Gender\",\"Married\",\"Dependents\",\"Education\",\"Self_Employed\",\"ApplicantIncome\",\"CoapplicantIncome\",\"LoanAmount\",\"Loan_Amount_Term\",\"Credit_History\",\"Property_Area\",\"Loan_Status\"],colTypes:[\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"STRING\",\"STRING\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"STRING\",\"STRING\"],colFormats:[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],colMLTypes:[\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\"]}",
+  "dateCreated": "Feb 24, 2017 12:37:13 AM",
+  "dateLastUpdated": "Feb 24, 2017 12:37:13 AM",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "Loan_ID",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "Gender",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "Married",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "Dependents",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "Education",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "Self_Employed",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "ApplicantIncome",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "CoapplicantIncome",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "LoanAmount",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "Loan_Amount_Term",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "Credit_History",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "Property_Area",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "Loan_Status",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      }
+    ]
+  }
+}

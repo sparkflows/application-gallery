@@ -1,0 +1,54 @@
+{
+  "name": "fpg",
+  "category": "Machine Learning",
+  "description": "frequent parallel growth",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "TextFiles",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetTextFiles",
+      "x": "560.98px",
+      "y": "358.986px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "data/fpg/fpg.txt",
+          "widget": "textfield",
+          "title": "Path",
+          "description": "Path of the Text Files. Can be a file or directory."
+        },
+        {
+          "name": "outputCol",
+          "value": "cart",
+          "widget": "textfield",
+          "title": "Column Name",
+          "description": "Column Name into which each line is stored."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "853.983px",
+      "y": "337.986px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2"
+    }
+  ]
+}
+    

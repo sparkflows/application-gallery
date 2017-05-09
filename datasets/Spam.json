@@ -1,0 +1,30 @@
+{
+  "id": 14,
+  "userId": 2,
+  "uuid": "6be87dab-55ab-4738-9fa6-97d8de4bd5f3",
+  "version": 0,
+  "name": "spam",
+  "path": "data/spam.csv",
+  "delimiter": ",",
+  "datasetType":"CSV",
+  "datasetSchema": "{colNames:[\"label\",\"message\",\"id\"],colTypes:[\"DOUBLE\",\"STRING\",\"DOUBLE\"],colMLTypes:[\"NUMERIC\",\"TEXT\",\"NUMERIC\"]}",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "label",
+        "colType": "DOUBLE",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "message",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "id",
+        "colType": "DOUBLE",
+        "colMLType": "NUMERIC"
+      }
+    ]
+  }
+}

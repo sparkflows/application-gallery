@@ -1,0 +1,87 @@
+{
+  "name": "PDF Image OCR",
+  "category": "Unstructured",
+  "description": "Reads in PDF Files from a given path, extracts the images from them and converts them to text with Tesseract",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "PDFImageOCR",
+      "description": "Reads in PDF Files from a given path, extracts the images from them and converts them to text with Tesseract",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetPDFImageOCR",
+      "x": "242.99px",
+      "y": "141.771px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "data/scansmpl.pdf",
+          "widget": "textfield",
+          "title": "Path of the PDF files",
+          "description": "Path of the PDF file/directory",
+          "required": false
+        },
+        {
+          "name": "fileNameCol",
+          "value": "fileName",
+          "widget": "textfield",
+          "title": "File Name Column",
+          "description": "File Name Column in the Output DataFrame",
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "ocrCol",
+          "widget": "textfield",
+          "title": "Column Name which contains the result of OCR",
+          "description": "OCR output Column in the Output DataFrame",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "526.997px",
+      "y": "145.774px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Documentation Large",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "383.306px",
+      "y": "338.108px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "This workflow reads in a PDF file data/scansmpl.pdf containing an image.\n\nIt extracts the image from the PDF and performs OCR on it with Tesseract.",
+          "widget": "textarea_large",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}
+                        

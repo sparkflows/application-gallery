@@ -1,0 +1,99 @@
+{
+  "name": "Drop Columns",
+  "category": "ETL",
+  "description": "This node creates a new DataFrame by deleting columns specified as an input",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "102px",
+      "y": "213.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "883dd363-f832-4c6a-8681-0dffc8ab638a",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "DropColumns",
+      "description": "This node creates a new DataFrame by deleting columns specified as an input",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeDropColumns",
+      "x": "444px",
+      "y": "160.656px",
+      "fields": [
+        {
+          "name": "dropCols",
+          "value": "[\"date\",\"productmeasure\",\"purchasequantity\",\"purchaseamount\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "The columns to be excluded from the output DataFrame",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "734px",
+      "y": "213.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "400px",
+      "y": "324.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p>It demonstrate the creating ETL workflow to drop the selected columns in input dataframe.<br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}
+                        

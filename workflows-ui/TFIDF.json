@@ -1,0 +1,196 @@
+{
+  "name": "TFIDF",
+  "category": "Machine Learning",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "61.9943px",
+      "y": "225.989px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "6be87dab-55ab-4738-9fa6-97d8de4bd5f3",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Tokenizer",
+      "description": "A tokenizer that converts the input string to lowercase and then splits it by white spaces.",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeTokenizer",
+      "x": "256.977px",
+      "y": "304.977px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "message",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "Column containing text (such as sentence)",
+          "datatypes": [
+            "string"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputCol",
+          "value": "words",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "732.963px",
+      "y": "112.974px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "HashingTF",
+      "description": "Maps a sequence of terms to term frequencies using the hashing trick.",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeHashingTF",
+      "x": "481.986px",
+      "y": "315.977px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "words",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "Contains sets of terms. In text processing, a 'set of terms' might be a bag of words",
+          "datatypes": [
+            "array"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputCol",
+          "value": "rawFeatures",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Documentation Large",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "157.997px",
+      "y": "465px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p>https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/ml/TfIdfExample.scala</p><p>This workflow:</p><p><br/></p><ul><li>​Reads in a spam dataset</li><li>Tokenizes the message column</li><li>Performs TF/IDF on the tokens generated</li></ul><p><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "IDF",
+      "description": "Compute the Inverse Document Frequency (IDF) given a collection of documents.",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeIDF",
+      "x": "668.986px",
+      "y": "246.986px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "rawFeatures",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "Input Column Name",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputCol",
+          "value": "features",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "minDocFreq",
+          "value": "0",
+          "widget": "textfield",
+          "title": "MinDocFreq",
+          "description": "The minimum of documents in which a term should appear.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "4",
+      "id": 2
+    },
+    {
+      "source": "4",
+      "target": "6",
+      "id": 3
+    },
+    {
+      "source": "6",
+      "target": "3",
+      "id": 4
+    }
+  ]
+}

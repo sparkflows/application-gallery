@@ -1,0 +1,27 @@
+{
+  "id": 13,
+  "userId": 1,
+  "uuid": "cc1aec58-3c26-4e7f-adab-10e2458ec185",
+  "version": 1,
+  "name": "JetRail Test",
+  "description": "JetRail_Test",
+  "header": true,
+  "path": "data/jetrail/Test_mvj827l.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "filterLinesContaining": "Datetime",
+  "datasetSchema": "{colNames:[\"Datetime\"],colTypes:[\"TIMESTAMP\"],colFormats:[\"dd-MM-yyyy HH:mm\"],colMLTypes:[\"TEXT\"]}",
+  "dateCreated": "Jul 12, 2016 12:28:39 AM",
+  "dateLastUpdated": "Jul 12, 2016 12:28:39 AM",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "Datetime",
+        "colType": "TIMESTAMP",
+        "colFormat": "dd-MM-yyyy HH:mm",
+        "colMLType": "TEXT"
+      }
+    ]
+  }
+}
+                

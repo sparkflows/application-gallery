@@ -1,0 +1,10 @@
+"economy (mpg)","name","cylinders","displacement (cc)","power (hp)","weight (lb)","0-60 mph (s)","year"
+13.0,"AMC Ambassador Brougham",8,360.0,175,3821,11.0,73
+15.0,"AMC Ambassador DPL",8,390.0,190,3850,8.5,70
+20.200000000000003,"AMC Concord DL 6",6,232.0,90,3265,18.2,79
+23.0,"AMC Concord DL",4,151.0,90,3035,20.5,82
+19.400000000000002,"AMC Concord",6,232.0,90,3210,17.2,78
+24.3,"AMC Concord",4,151.0,90,3003,20.1,80
+19.0,"AMC Gremlin",6,232.0,100,2634,13.0,71
+20.0,"AMC Gremlin",6,232.0,100,2914,16.0,75
+21.0,"AMC Gremlin",6,199.0,90,2648,15.0,70

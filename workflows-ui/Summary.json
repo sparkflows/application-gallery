@@ -1,0 +1,104 @@
+{
+  "name": "Summary",
+  "category": "Machine Learning",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "183.77px",
+      "y": "134.844px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "ecf80851-4d96-4d7a-91ef-dfa8fe8937ee",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Summary",
+      "description": "Summary statistics provide useful information about sample data. eg: measures of spread.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSummary",
+      "x": "454.773px",
+      "y": "145.838px",
+      "fields": [
+        {
+          "name": "colNames",
+          "value": "[\"price\",\"lotsize\",\"bedrooms\",\"bathrms\",\"stories\"]",
+          "widget": "variables",
+          "title": "Column Names",
+          "description": "Column Names for Summary",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "755.764px",
+      "y": "152.838px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Documentation Large",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "310.49px",
+      "y": "397.778px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p>This workflow:</p><p><br/></p><ul><li>​Reads in a Housing Dataset</li><li>Performs Summary Calculations on some of the columns. </li><li>Summary calculations include calculating the following for the columns chosen:</li><ul><li>count </li><li>mean </li><li>min </li><li>25% </li><li>50% </li><li>75% </li><li>max </li><li>stdev </li><li>variance</li><br/><br/><br/></ul></ul>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}

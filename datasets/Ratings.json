@@ -1,0 +1,44 @@
+{
+  "id": 21,
+  "userId": 1,
+  "uuid": "d8a1a0b1-93b8-4096-ab95-8e3a02d65263",
+  "version": 2,
+  "name": "Ratings",
+  "description": "Movie Lens Ratings Dataset",
+  "header": true,
+  "path": "data/ratings.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "datasetSchema": "{colNames:[\"user\",\"movie\",\"rating\",\"ts\"],colTypes:[\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"STRING\"],colFormats:[\"\",\"\",\"\",\"\"],colMLTypes:[\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\"]}",
+  "dateCreated": "Jun 14, 2016 9:23:34 PM",
+  "dateLastUpdated": "Jun 14, 2016 9:23:34 PM",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "user",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "movie",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "rating",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "ts",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      }
+    ]
+  }
+}
+                

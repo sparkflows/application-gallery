@@ -1,0 +1,65 @@
+{
+  "name": "SaveJSON",
+  "category": "JSON",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "145px",
+      "y": "145.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "ecf80851-4d96-4d7a-91ef-dfa8fe8937ee",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "SaveJSON",
+      "description": "Saves the DataFrame into the specified location in JSON Format",
+      "type": "transform",
+      "nodeClass": "fire.nodes.save.NodeSaveJSON",
+      "x": "544px",
+      "y": "143.667px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "json",
+          "widget": "textfield",
+          "title": "Path",
+          "required": false
+        },
+        {
+          "name": "overwrite",
+          "value": "false",
+          "widget": "array",
+          "title": "OverWrite Output",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}
+    

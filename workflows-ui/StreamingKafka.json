@@ -1,0 +1,397 @@
+{
+  "name": "Kafka Streaming",
+  "category": "Streaming",
+  "description": "Kafka Streaming",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Streaming Kafka",
+      "description": "Reads in streaming text from topics in Kafka",
+      "type": "sparkstreaming",
+      "nodeClass": "fire.nodes.streaming.NodeStreamingKafka",
+      "x": "62.4688px",
+      "y": "69.6215px",
+      "fields": [
+        {
+          "name": "batchDuration",
+          "value": "30",
+          "widget": "textfield",
+          "title": "Batch Duration in Seconds",
+          "description": "Batch Duration in Seconds",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "brokers",
+          "value": "localhost:9092",
+          "widget": "textfield",
+          "title": "Kafka Brokers",
+          "description": "Kafka Brokers",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "group",
+          "value": "21",
+          "widget": "textfield",
+          "title": "Consumer Group",
+          "description": "Consumer Group",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "topics",
+          "value": "bike-sharing",
+          "widget": "textfield",
+          "title": "Kafka Topics",
+          "description": "List of Topics separated by , (comma)",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "numThreads",
+          "value": "1",
+          "widget": "textfield",
+          "title": "Number of Threads",
+          "description": "Number of Threads",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "810.462px",
+      "y": "307.587px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "315.333px",
+      "y": "412.323px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<h2>Kafka Streaming Workflow</h2><p><br/></p><p>This workflow reads in events from the Kafka topic '<b>bike_sharing</b>'</p><ul><li>The Mini Batch Duration for spark streaming is 30 seconds</li><li>​It prints the first 10 lines of the incoming events</li></ul><div><br/></div><h3>Start Kafka and create Topic 'bike-sharing'</h3><p><br/></p><ul><li>​The quick start guide of Kafka is at : <b>https://kafka.apache.org/quickstart</b></li><li>The steps for Kafka are:</li><ul><li>Download Kafka</li><li>Start the server</li><ul><li><b>bin/zookeeper-server-start.sh config/zookeeper.properties</b></li><li><b>bin/kafka-server-start.sh config/server.properties</b></li></ul><li>Create the topic '<b>bike-sharing</b>'</li><ul><li><b>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic <b style=\"font-size: 14px;\">bike-sharing</b></b></li></ul></ul></ul><h3>Send the data file 'bike_sharing_noheader.csv' to the Kafka Topic</h3><p><br/></p><ul><li><b>bike_sharing_noheader.csv</b> is in the data directory of the Fire Install</li><li><b>cat bike_sharing_noheader.csv | b</b><b>in/kafka-console-producer.sh --broker-list localhost:9092 --topic bike-sharing</b></li></ul><div><b><br/></b></div><h3><b>Run the workflows on the Spark Cluster</b></h3><div><b><br/></b></div><div><ul><li><b>This would start a spark streaming job on the Spark Cluster</b></li><li><b>You can keep pushing the data file to the Kafka topic for processing</b></li></ul><div><b><br/></b></div></div><p><br/></p><p><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "FieldSplitter",
+      "description": "This node splits the string at specified delimiter",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeFieldSplitter",
+      "x": "71.1181px",
+      "y": "267.396px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "line",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "input column name",
+          "datatypes": [
+            "string"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputCols",
+          "value": "datetime,season,holiday,workingday,weather,temp,atemp,humidity,windspeed,casual,registered,count",
+          "widget": "textfield",
+          "title": "Column Names",
+          "description": "new column names separed by comma','.(eg: col1,co2,col3)",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "sep",
+          "value": ",",
+          "widget": "textfield",
+          "title": "Separator",
+          "description": "separator to split the input column value(default: space)",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "GraphGroupByColumn",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeGraphGroupByColumn",
+      "x": "782.129px",
+      "y": "79.4028px",
+      "fields": [
+        {
+          "name": "title",
+          "value": "Graph Grouped by Column",
+          "widget": "textfield",
+          "title": "Title",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "xlabel",
+          "value": "X axis",
+          "widget": "textfield",
+          "title": "X Label",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "ylabel",
+          "value": "Y axis",
+          "widget": "textfield",
+          "title": "Y Label",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "groupByColumn",
+          "value": "datetime_dt_hour",
+          "widget": "variable",
+          "title": "Group By Column",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "graphType",
+          "value": "COLUMNCHART",
+          "widget": "enum",
+          "title": "Chart Type",
+          "optionsMap": {
+            "COLUMNCHART": "Column Chart",
+            "BARCHART": "Bar Chart",
+            "LINECHART": "Line Chart",
+            "HISTOGRAM": "Histogram Chart"
+          },
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "DateTimeFieldExtract",
+      "description": "creates a new DataFrame by extracting Date and Time fields.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeDateTimeFieldExtract",
+      "x": "400.806px",
+      "y": "84.066px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "datetime_dt",
+          "widget": "variable",
+          "title": "Column",
+          "description": "The input column name",
+          "datatypes": [
+            "timestamp"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractYear",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Year",
+          "description": "Extract Year",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Month",
+          "description": "Extract Month",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractDayOfMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Day of Month",
+          "description": "Extract Day of Month",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractHour",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Hour",
+          "description": "Extract Hour",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractMinute",
+          "value": "false",
+          "widget": "array",
+          "title": "Extract Minute",
+          "description": "Extract Minute",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractSecond",
+          "value": "false",
+          "widget": "array",
+          "title": "Extract Second",
+          "description": "Extract Second",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "StringToDate",
+      "description": "This node converts a string column to date using the given date/time format",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeStringToDate",
+      "x": "405.472px",
+      "y": "269.743px",
+      "fields": [
+        {
+          "name": "inputColName",
+          "value": "datetime",
+          "widget": "variable",
+          "title": "Input Column Name",
+          "description": "Input Column Name",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "inputColFormat",
+          "value": "dd/MM/yyyy HH:mm",
+          "widget": "textfield",
+          "title": "Input Column Format",
+          "description": "Input Column Format",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColName",
+          "value": "datetime_dt",
+          "widget": "textfield",
+          "title": "Output Column Name",
+          "description": "Output Column Name",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColType",
+          "value": "TIMESTAMP",
+          "widget": "array",
+          "title": "Output Column Type",
+          "description": "Output Column Type",
+          "optionsArray": [
+            "DATE",
+            "TIMESTAMP"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "4",
+      "id": 1
+    },
+    {
+      "source": "5",
+      "target": "2",
+      "id": 4
+    },
+    {
+      "source": "6",
+      "target": "5",
+      "id": 6
+    },
+    {
+      "source": "4",
+      "target": "8",
+      "id": 7
+    },
+    {
+      "source": "8",
+      "target": "6",
+      "id": 8
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+locId	country	region	city	            latitude	longitude
+244	    ZA	    11	    Cape Town		    -33.9258	18.4232
+245	    ZA	    6	    Pretoria		    -25.7069	28.2294
+246	    ZA	    2	    Pietermaritzburg	-29.6168	30.3928
+247	    ZA	    10	    Potchefstroom		-26.7167	27.1
+248	    ZA	    3	    Bloemfontein		-29.1211	26.214
+249	    ZA	    2	    Durban		        -29.8579	31.0292
+250	    ZA	    5	    Grahamstown		    -33.3042	26.5328
+251	    ZA	    11	    Stellenbosch		-33.9346	18.8668
+252	    ZA	    6	    Sandton		        -26.05	    27.9667
+253	    ZA	    6	    Johannesburg		-26.2052	28.0498
+254	    ZA	    5	    Uitenhage		    -33.7576	25.3971
+255	    ZA	    6	    Parkview		    -26.1653	28.0244
+256	    ZA	    11	    Wynberg		        -33.9833	18.4
+257	    ZA	    6	    Bedfordview		    -26.1767	28.1422
+258	    ZA	    11	    Parow	        	-33.8972	18.5999
+259	    ZA	    6	    Vanderbijlpark		-26.7117	27.8379
+260	    ZA	    7	    Middelburg		    -25.7751	29.4648
+261	    ZA	    6	    Marshalltown		-26.2	    28.0833
+262	    ZA	    5	    East London		    -33.0111	27.91
+263	    ZA	    6	    Olifantsfontein		-25.9493	28.2295
+
+
+//https://db-ip.com/db/download/city
+2.16.1.0	2.16.1.255	US	District of Columbia	Washington
+2.16.10.0	2.16.10.255	US	Massachusetts	Boston
+2.16.11.0	2.16.11.255	US	New York	New York
+2.16.12.0	2.16.13.255	US	Massachusetts	Boston
+1.21.176.0	1.21.176.255	JP	Aichi-ken	Naka-ku
+1.21.177.0	1.21.177.255	JP	Tokyo	Chiyoda
+1.21.178.0	1.21.178.255	JP	Aichi-ken	Naka-ku
+1.21.179.0	1.21.255.255	JP	Tokyo	Chiyoda
+1.22.0.0	1.22.2.255	IN	Karnataka	Bangalore
+1.22.3.0	1.22.3.255	IN	Maharashtra	Mumbai
+1.22.4.0	1.22.4.255	IN	Tamil Nadu	Chennai
+1.22.5.0	1.22.9.255	IN	Maharashtra	Mumbai
+1.22.10.0	1.22.10.255	IN	Delhi	New Delhi
+1.22.11.0	1.22.11.255	IN	Maharashtra	Mumbai
+1.22.12.0	1.22.12.255	IN	Gujarat	Ahmedabad
+1.22.13.0	1.22.15.255	IN	Maharashtra	Mumbai
+1.22.16.0	1.22.19.255	IN	Andhra Pradesh	Hyderabad
+1.22.20.0	1.22.23.255	IN	Karnataka	Bangalore
+
+Latitude:12.9833 (12°58'59.88" N)Longitude:77.5833 (77°34'59.88" N)
+Latitude:12.9833 (12°58'59.88" N)Longitude:77.5833 (77°34'59.88" N)

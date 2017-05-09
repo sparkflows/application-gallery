@@ -1,0 +1,213 @@
+{
+  "name": "DistributionGraphs",
+  "category": "Analytics",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "CSV",
+      "description": "Dataset Node for CSV",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetCSV",
+      "x": "105px",
+      "y": "271.641px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "\\mockaroo\\YearSample.csv",
+          "widget": "textfield",
+          "title": "Path",
+          "description": "Path of the Text file/directory",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "separator",
+          "value": ",",
+          "widget": "textfield",
+          "title": "Separator",
+          "description": "CSV Separator",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "header",
+          "value": "true",
+          "widget": "array",
+          "title": "Header",
+          "description": "Does the file have a header row",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"id\",\"dt1\",\"dt2\"]",
+          "widget": "schema_col_names",
+          "title": "Column Names for the CSV",
+          "description": "New Output Columns of the SQL",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"INTEGER\",\"DATE\",\"DATE\"]",
+          "widget": "schema_col_types",
+          "title": "Column Types for the CSV",
+          "description": "Data Type of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Column Formats for the CSV",
+          "description": "Format of the Output Columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "MonthDistribution",
+      "description": "This node Finds the distribution of months from Date values",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeMonthDistribution",
+      "x": "509px",
+      "y": "117.656px",
+      "fields": [
+        {
+          "name": "graphType",
+          "value": "LINECHART",
+          "widget": "enum",
+          "title": "Chart Type",
+          "description": "input graph type",
+          "optionsMap": {
+            "LINECHART": "Line Chart",
+            "COLUMNCHART": "Side by Side Bar Chart",
+            "BARCHART": "Stacked Bar Chart",
+            "PIE": "Pie Chart"
+          },
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "yCols",
+          "value": "[\"dt1\",\"dt2\"]",
+          "widget": "variables",
+          "title": "Y Columns",
+          "description": "input to y axis",
+          "datatypes": [
+            "date",
+            "timestamp"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "WeekDayDistribution",
+      "description": "This node Finds the distribution of Week Days from Date values",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeWeekDayDistribution",
+      "x": "492px",
+      "y": "272.641px",
+      "fields": [
+        {
+          "name": "graphType",
+          "value": "LINECHART",
+          "widget": "enum",
+          "title": "Chart Type",
+          "description": "input graph type",
+          "optionsMap": {
+            "LINECHART": "Line Chart",
+            "COLUMNCHART": "Side by Side Bar Chart",
+            "BARCHART": "Stacked Bar Chart",
+            "PIE": "Pie Chart"
+          },
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "yCols",
+          "value": "[\"dt1\",\"dt2\"]",
+          "widget": "variables",
+          "title": "Y Columns",
+          "description": "input to y axis",
+          "datatypes": [
+            "date",
+            "timestamp"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "YearDistribution",
+      "description": "This node Finds the distribution of Years from Date values",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeYearDistribution",
+      "x": "408px",
+      "y": "453.641px",
+      "fields": [
+        {
+          "name": "graphType",
+          "value": "LINECHART",
+          "widget": "enum",
+          "title": "Chart Type",
+          "description": "input graph type",
+          "optionsMap": {
+            "LINECHART": "Line Chart",
+            "COLUMNCHART": "Side by Side Bar Chart",
+            "BARCHART": "Stacked Bar Chart",
+            "PIE": "Pie Chart"
+          },
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "yCols",
+          "value": "[\"dt1\",\"dt2\"]",
+          "widget": "variables",
+          "title": "Y Columns",
+          "description": "input to y axis",
+          "datatypes": [
+            "date",
+            "timestamp"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "1",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "1",
+      "target": "4",
+      "id": 3
+    }
+  ]
+}

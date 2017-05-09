@@ -1,0 +1,342 @@
+{
+  "name": "kmeans",
+  "category": "Machine Learning",
+  "description": "KMeans",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "63.9844px",
+      "y": "293.969px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "ecf80851-4d96-4d7a-91ef-dfa8fe8937ee",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "398.969px",
+      "y": "411.969px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "VectorAssembler",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "342px",
+      "y": "182px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"lotsize\",\"bedrooms\",\"bathrms\",\"stories\",\"garagepl\",\"price\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "features",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "KMeans",
+      "description": "",
+      "type": "ml-estimator",
+      "nodeClass": "fire.nodes.ml.NodeKMeans",
+      "x": "869px",
+      "y": "40.6406px",
+      "fields": [
+        {
+          "name": "featuresCol",
+          "value": "features",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Features column of type vectorUDT for model fitting.",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "k",
+          "value": "3",
+          "widget": "textfield",
+          "title": "K",
+          "description": "The number of clusters to create.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxIter",
+          "value": "20",
+          "widget": "textfield",
+          "title": "Max Iterations",
+          "description": "The maximum number of iterations.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "widget": "variable",
+          "title": "Prediction Column",
+          "description": "The prediction column created during model scoring.",
+          "required": false
+        },
+        {
+          "name": "seed",
+          "value": "",
+          "widget": "textfield",
+          "title": "Seed",
+          "description": "Random Seed.",
+          "datatypes": [
+            "long"
+          ],
+          "required": false
+        },
+        {
+          "name": "tol",
+          "value": "0.0001",
+          "widget": "textfield",
+          "title": "Tolerence",
+          "description": "The convergence tolerance for iterative algorithms.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "initMode",
+          "value": "k-means||",
+          "widget": "array",
+          "title": "initMode",
+          "description": "The initialization algorithm mode.",
+          "optionsArray": [
+            "k-means||",
+            "random"
+          ],
+          "required": false
+        },
+        {
+          "name": "initSteps",
+          "value": "5",
+          "widget": "textfield",
+          "title": "initSteps",
+          "description": "The number of steps for the k-means|| initialization mode. It will be ignored when other initialization modes are chosen.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Split",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSplit",
+      "x": "596px",
+      "y": "145.641px",
+      "fields": [
+        {
+          "name": "fraction1",
+          "value": ".5",
+          "widget": "textfield",
+          "title": "Fraction 1",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "ML Model Save",
+      "type": "ml-modelsave",
+      "nodeClass": "fire.nodes.ml.NodeModelSave",
+      "x": "910px",
+      "y": "191.641px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "modelsavepath",
+          "widget": "textfield",
+          "title": "Path to save the ML Model",
+          "required": false
+        },
+        {
+          "name": "overwrite",
+          "value": "true",
+          "widget": "array",
+          "title": "Overwrite Output",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "ML Model Load",
+      "type": "ml-modelload",
+      "nodeClass": "fire.nodes.ml.NodeModelLoad",
+      "x": "947px",
+      "y": "380.656px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "modelsavepath",
+          "widget": "textfield",
+          "title": "Path to load the ML Model from",
+          "required": false
+        },
+        {
+          "name": "modelType",
+          "value": "KMEANS",
+          "widget": "array",
+          "title": "Model Type",
+          "description": "Type of ML model to load",
+          "optionsArray": [
+            "AFTSURVIVALREGRESSION",
+            "ALS",
+            "CHISQSELECTOR",
+            "COUNTVECTORIZER",
+            "CROSSVALIDATOR",
+            "DISTRIBUTEDLDA",
+            "IDF",
+            "ISOTONICREGRESSION",
+            "KMEANS",
+            "LDA",
+            "LINEARREGRESSION",
+            "LOGISTICREGRESSION",
+            "MINMAXSCALER",
+            "NAIVEBAYES",
+            "PCA",
+            "PIPELINE",
+            "STANDARDSCALER",
+            "STRINGINDEXER",
+            "VECTORINDEXER",
+            "WORD2VEC"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Predict",
+      "type": "ml-predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "685px",
+      "y": "392.656px",
+      "fields": []
+    },
+    {
+      "id": "11",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "742px",
+      "y": "548.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "1",
+      "target": "5",
+      "id": 2
+    },
+    {
+      "source": "5",
+      "target": "7",
+      "id": 3
+    },
+    {
+      "source": "7",
+      "target": "6",
+      "id": 4
+    },
+    {
+      "source": "6",
+      "target": "8",
+      "id": 5
+    },
+    {
+      "source": "8",
+      "target": "9",
+      "id": 6
+    },
+    {
+      "source": "9",
+      "target": "10",
+      "id": 7
+    },
+    {
+      "source": "7",
+      "target": "10",
+      "id": 8
+    },
+    {
+      "source": "10",
+      "target": "11",
+      "id": 9
+    }
+  ]
+}
+    

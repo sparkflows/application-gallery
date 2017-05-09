@@ -1,0 +1,120 @@
+{
+  "name": "Cast Column Type",
+  "category": "ETL",
+  "description": "Casts the data type of columns",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "53px",
+      "y": "337.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "d8a1a0b1-93b8-4096-ab95-8e3a02d65263",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "CastColumnType",
+      "description": "This node creates a new DataFrame by casting input columns with a new data type",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "437px",
+      "y": "373.656px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"user\",\"movie\",\"rating\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be cast to new data type",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColType",
+          "value": "INTEGER",
+          "widget": "array",
+          "title": "New Data Type",
+          "description": "New data type(INTEGER, DOUBLE, STRING, LONG, SHORT)",
+          "optionsArray": [
+            "BOOLEAN",
+            "BYTE",
+            "DATE",
+            "DOUBLE",
+            "FLOAT",
+            "INTEGER",
+            "LONG",
+            "SHORT",
+            "STRING",
+            "TIMESTAMP"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "688px",
+      "y": "252.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "409px",
+      "y": "479.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p><br/><br/><!--StartFragment--><span style=\"font-size: 14px;float: none;\">It demonstrate the creating ETL workflow to cast selected input fields to &#34;New Data type&#34;.</span><br/><br/><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}
+                        

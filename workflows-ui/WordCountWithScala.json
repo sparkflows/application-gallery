@@ -1,0 +1,202 @@
+{
+  "name": "WordCount - ScalaNode",
+  "category": "Scala",
+  "description": "Word Count with Scala",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "44px",
+      "y": "165.641px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "6be87dab-55ab-4738-9fa6-97d8de4bd5f3",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "612px",
+      "y": "88.6406px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Scala",
+      "description": "This node runs any given Scala code. The input dataframe is passed in the variable inDF. The output dataframe is passed back by registering it as a temporary table.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeScala",
+      "x": "333px",
+      "y": "49.6406px",
+      "fields": [
+        {
+          "name": "code",
+          "value": "import org.apache.spark.sql.types.{StructType,StructField,StringType,IntegerType};\nimport org.apache.spark.sql.Row;\n\n\nval inDFMessage = inDF.select(\"message\")\n\nval wordRDD = inDFMessage.rdd.flatMap(row => row.getString(0).split(\" \"))\nval countRDD = wordRDD.map(word => (word, 1)).reduceByKey{case(x, y) => x + y}\n\n\nval schema = new StructType(Array(StructField(\"word\", StringType, nullable = true),StructField(\"count\", IntegerType, nullable = true)))\n//val sqlContext = new org.apache.spark.sql.SQLContext(sc)\n\nval rowRDD = countRDD.map{case(word, count) => Row(word, count)}\nval outDF = sqlContext.createDataFrame(rowRDD, schema)\n\noutDF.registerTempTable(\"outDF\")\n\n",
+          "widget": "textarea_large",
+          "title": "Scala",
+          "description": "Scala code to be run. Input dataframe is in \"inDF\". Output/Result dataframe should be registered as a temporary table - df.registerTempTable(\"outDF\")",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"word\",\"count\"]",
+          "widget": "schema_col_names",
+          "title": "Column Names for the CSV",
+          "description": "New Output Columns of the SQL",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"STRING\",\"INTEGER\"]",
+          "widget": "schema_col_types",
+          "title": "Column Types for the CSV",
+          "description": "Data Type of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Column Formats for the CSV",
+          "description": "Format of the Output Columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Scala",
+      "description": "This node runs any given Scala code. The input dataframe is passed in the variable inDF. The output dataframe is passed back by registering it as a temporary table.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeScala",
+      "x": "285px",
+      "y": "358.656px",
+      "fields": [
+        {
+          "name": "code",
+          "value": "import org.apache.spark.sql.functions.col\nimport org.apache.spark.sql.functions.trim\n\nval inDFMessage = inDF.select(\"message\")\n\nval words = inDFMessage.explode(\"message\", \"word\")((message:String) => message.split(\" \")).drop(col(\"message\"))\n\nval outDF = words.where((col(\"word\").isNotNull) && (trim(col(\"word\")) !== \"\")).groupBy(\"word\").count().as(\"count\")\n\noutDF.registerTempTable(\"outDF\")\n",
+          "widget": "textarea_large",
+          "title": "Scala",
+          "description": "Scala code to be run. Input dataframe is in \"inDF\". Output/Result dataframe should be registered as a temporary table - df.registerTempTable(\"outDF\")",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"word\",\"count\"]",
+          "widget": "schema_col_names",
+          "title": "Column Names for the CSV",
+          "description": "New Output Columns of the SQL",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"STRING\",\"INTEGER\"]",
+          "widget": "schema_col_types",
+          "title": "Column Types for the CSV",
+          "description": "Data Type of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Column Formats for the CSV",
+          "description": "Format of the Output Columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "581px",
+      "y": "352.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "349.493px",
+      "y": "481.771px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p>This workflow counts words in the 'message' column of the given dataset.</p><p>It uses Spark/Scala code for the counting. It uses 2 different kinds of logic for the word count.</p><p><br/></p><ul><li>​val inDFMessage = inDF.select(&#34;message&#34;)</li></ul><p>The Scala Node, received the incoming data frame in the variable inDF.</p><ul><li>outDF.registerTempTable(&#34;outDF&#34;)<br/></li></ul><p>The result DataFrame is registered as a Temporary Table.</p><p><br/></p><p><br/></p><p><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "3",
+      "target": "2",
+      "id": 2
+    },
+    {
+      "source": "1",
+      "target": "4",
+      "id": 3
+    },
+    {
+      "source": "4",
+      "target": "5",
+      "id": 4
+    }
+  ]
+}

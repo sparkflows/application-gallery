@@ -1,0 +1,189 @@
+{
+  "name": "wordToscoreMapping",
+  "category": "ETL",
+  "description": "wordToscoreMapping",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "80.3195px",
+      "y": "150.979px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "6be87dab-55ab-4738-9fa6-97d8de4bd5f3",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Tokenizer",
+      "description": "A tokenizer that converts the input string to lowercase and then splits it by white spaces.",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeTokenizer",
+      "x": "314.649px",
+      "y": "55.309px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "message",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "Column containing text (such as sentence)",
+          "datatypes": [
+            "string"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "tok",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "HashingTF",
+      "description": "Maps a sequence of terms to term frequencies using the hashing trick.",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeHashingTF",
+      "x": "324.632px",
+      "y": "280.292px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "tok",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "Contains sets of terms. In text processing, a 'set of terms' might be a bag of words",
+          "datatypes": [
+            "array"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "ner",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "IDF",
+      "description": "Compute the Inverse Document Frequency (IDF) given a collection of documents.",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeIDF",
+      "x": "559.965px",
+      "y": "152.642px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "ner",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "Input Column Name",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "nerFeat",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        },
+        {
+          "name": "minDocFreq",
+          "value": "0",
+          "widget": "textfield",
+          "title": "MinDocFreq",
+          "description": "The minimum of documents in which a term should appear.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "WordToScoreMapping",
+      "description": "Map the original word of hashValue to score.",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeWordToScoreMapping",
+      "x": "784.306px",
+      "y": "151.326px",
+      "fields": [
+        {
+          "name": "words",
+          "value": "tok",
+          "widget": "variable",
+          "title": "Words",
+          "description": "Array of words",
+          "datatypes": [
+            "array"
+          ],
+          "required": false
+        },
+        {
+          "name": "features",
+          "value": "ner",
+          "widget": "variable",
+          "title": "Features",
+          "description": "Vector with hash value of words",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "output",
+          "value": "wordToScore",
+          "widget": "textfield",
+          "title": "Output",
+          "description": "",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 3
+    },
+    {
+      "source": "4",
+      "target": "7",
+      "id": 4
+    }
+  ]
+}

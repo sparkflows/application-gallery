@@ -1,0 +1,35 @@
+{
+  "id": 33,
+  "userId": 1,
+  "uuid": "a610f2d8-59f9-471f-8576-e3a2b49ab369",
+  "version": 0,
+  "name": "HIVE sample_07",
+  "description": "HIVE sample_07 table",
+  "path": "hive:sample_07",
+  "datasetType":"HIVE",
+  "datasetSchema": "{colNames:[\"code\",\"description\",\"total_emp\",\"salary\"],colTypes:[\"STRING\",\"STRING\",\"INTEGER\",\"INTEGER\"],colMLTypes:[\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\"]}",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "code",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "description",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "total_emp",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "salary",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      }
+    ]
+  }
+}

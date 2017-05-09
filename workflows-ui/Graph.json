@@ -1,0 +1,83 @@
+{
+  "name": "Graph",
+  "category": "Analytics",
+  "description": "Display a Graph of Values from the Car dataset",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "93.7699px",
+      "y": "143.847px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "GraphValues",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeGraphValues",
+      "x": "435.773px",
+      "y": "131.848px",
+      "fields": [
+        {
+          "name": "title",
+          "value": "Graph",
+          "widget": "textfield",
+          "title": "Title",
+          "required": false
+        },
+        {
+          "name": "xlabel",
+          "value": "X axis",
+          "widget": "textfield",
+          "title": "X Label",
+          "required": false
+        },
+        {
+          "name": "ylabel",
+          "value": "Y axis",
+          "widget": "textfield",
+          "title": "Y Label",
+          "required": false
+        },
+        {
+          "name": "graphType",
+          "value": "LINECHART",
+          "widget": "enum",
+          "title": "Chart Type",
+          "optionsMap": {
+            "LINECHART": "Line Chart",
+            "COLUMNCHART": "Side by Side Bar Chart",
+            "BARCHART": "Stacked Bar Chart",
+            "PIE": "Pie Chart"
+          },
+          "required": false
+        },
+        {
+          "name": "yCols",
+          "value": "[\"c1\",\"c2\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}

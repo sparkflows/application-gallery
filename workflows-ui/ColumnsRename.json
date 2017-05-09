@@ -1,0 +1,108 @@
+{
+  "name": "Columns Rename",
+  "category": "ETL",
+  "description": "Renames existing columns with new column names",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "67px",
+      "y": "210.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "578px",
+      "y": "249.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "ColumnsRename",
+      "description": "This node creates a new DataFrame by renaming existing columns with new name",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeColumnsRename",
+      "x": "298px",
+      "y": "127.656px",
+      "fields": [
+        {
+          "name": "currentColNames",
+          "value": "[\"c1\",\"c2\",\"c3\",\"c4\"]",
+          "widget": "variables_map",
+          "title": "Current Column Names",
+          "description": "Current Column Names",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "newColNames",
+          "value": "[\"a\",\"b\",\"c\",\"d\"]",
+          "widget": "variables_map_edit",
+          "title": "Columns New Name",
+          "description": "New name for existing columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "265px",
+      "y": "355.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p><br/><br/><!--StartFragment--><span style=\"font-size: 14px;float: none;\">It demonstrate the creating ETL workflow to rename the input column fields.</span><!--EndFragment--><br/><br/><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "6",
+      "id": 1
+    },
+    {
+      "source": "6",
+      "target": "5",
+      "id": 2
+    }
+  ]
+}
+                        

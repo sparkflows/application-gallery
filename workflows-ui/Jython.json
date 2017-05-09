@@ -1,0 +1,75 @@
+{
+  "name": "Jython",
+  "category": "ETL",
+  "description": "Jython code example",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "122.267px",
+      "y": "141.841px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Jython",
+      "description": "This node runs any given Python code. The input dataframe is passed in the variable inDF. The output dataframe should be placed in the variable outDF",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeJython",
+      "x": "392.273px",
+      "y": "110.848px",
+      "fields": [
+        {
+          "name": "code",
+          "value": "def map_function(x):\n    return x.c2\n\ninDF.javaRDD().map(lambda p: p.c1)\n\ninDF.javaRDD().map(map_function)\n\nfor r in inDF.collect():\n  print(r)\n\ninDF.groupBy(\"c2\")\n\nfor t in inDF.collect():\n  print(t)\n\noutDF = inDF",
+          "widget": "textarea_large",
+          "title": "Jython",
+          "description": "Python code to be run. Input dataframe is in inDF. Output dataframe is in outDF.",
+          "required": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"c1\",\"c2\",\"c3\",\"c4\"]",
+          "widget": "schema_col_names",
+          "title": "Column Names for the CSV",
+          "description": "New Output Columns of the SQL",
+          "required": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\"]",
+          "widget": "schema_col_types",
+          "title": "Column Types for the CSV",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\",\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Column Formats for the CSV",
+          "description": "Format of the Output Columns",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}

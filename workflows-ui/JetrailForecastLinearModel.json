@@ -1,0 +1,867 @@
+{
+  "name": "Jetrail_linerModel",
+  "category": "Machine Learning",
+  "description": "Jetrail Forecast - Linear model",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "37px",
+      "y": "30.6406px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "735ee5eb-b634-42f2-8b4e-386883be019f",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "DateTimeFieldExtract",
+      "description": "creates a new DataFrame by extracting Date and Time fields.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeDateTimeFieldExtract",
+      "x": "18px",
+      "y": "190.641px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "Datetime",
+          "widget": "variable",
+          "title": "Column",
+          "description": "The input column name",
+          "datatypes": [
+            "timestamp"
+          ],
+          "required": false
+        },
+        {
+          "name": "extractYear",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Year",
+          "required": false
+        },
+        {
+          "name": "extractMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Month",
+          "required": false
+        },
+        {
+          "name": "extractDayOfMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Day of Month",
+          "required": false
+        },
+        {
+          "name": "extractHour",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Hour",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "235px",
+      "y": "29.625px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select Datetime, Count, Datetime_year, Datetime_month, Datetime_dayofmonth, Datetime_hour, cast(from_unixtime(unix_timestamp(Datetime,'dd-MM-yyyy'),'u') as int) as day_of_week from fire_temp_table",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"Datetime\",\"Count\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "schema_col_names",
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"TIMESTAMP\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\"]",
+          "widget": "schema_col_types",
+          "title": "Output Column Types",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\",\"\",\"\",\"\",\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Output Column Formats",
+          "description": "Format of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "CastColumnType",
+      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "148px",
+      "y": "285.641px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Count\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be casted to new data type",
+          "required": false
+        },
+        {
+          "name": "outputColType",
+          "value": "DOUBLE",
+          "widget": "textfield",
+          "title": "New Data Type",
+          "description": "New data type (integer, double, string, long, short)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "VectorAssembler",
+      "description": "Merges multiple columns into a vector column",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "609px",
+      "y": "50.625px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime_month\",\"Datetime_dayofmonth\",\"datetime_hour_index_encode\",\"day_of_week_index_encode\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "feature_vector",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "OneHotEncoder",
+      "description": "Maps a column of label indices to a column of binary vectors, with at most a single one-value",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeOneHotEncoder",
+      "x": "366px",
+      "y": "40.6563px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime\",\"Count\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\",\"datetime_hour_index\",\"day_of_week_index\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Input columns for encoding",
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"datetime_hour_index_encode\",\"day_of_week_index_encode\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "StringIndexer",
+      "description": "StringIndexer encodes a string column of labels to a column of label indices",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeStringIndexer",
+      "x": "297px",
+      "y": "177.641px",
+      "fields": [
+        {
+          "name": "handleInvalid",
+          "value": "error",
+          "widget": "array",
+          "title": "Handle Invalid",
+          "description": "Invalid entries to be skipped or thrown error",
+          "optionsArray": [
+            "skip",
+            "error"
+          ],
+          "required": false
+        },
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime\",\"Count\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Column containing labels",
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"\",\"\",\"\",\"\",\"\",\"datetime_hour_index\",\"day_of_week_index\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output  columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "name": "LinearRegression",
+      "description": "",
+      "type": "ml-estimator",
+      "nodeClass": "fire.nodes.ml.NodeLinearRegression",
+      "x": "596px",
+      "y": "186.641px",
+      "fields": [
+        {
+          "name": "featuresCol",
+          "value": "feature_vector",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Features column of type vectorUDT for model fitting",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "labelCol",
+          "value": "Count",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Prediction Columns",
+          "description": "The prediction column created during model scoring",
+          "required": false
+        },
+        {
+          "name": "fitIntercept",
+          "value": "true",
+          "widget": "array",
+          "title": "Fit Intercept",
+          "description": "Whether to fit an intercept term",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxIter",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Maximum Iterations",
+          "description": "Maximum number of iterations (&gt;= 0)",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "regParam",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "Regularization Param",
+          "description": "The regularization parameter",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "elasticNetParam",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "ElasticNet Param",
+          "description": "The ElasticNet mixing parameter. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "solver",
+          "value": "auto",
+          "widget": "array",
+          "title": "Solver",
+          "description": "The solver algorithm for optimization",
+          "optionsArray": [
+            "auto",
+            "l-bfgs",
+            "normal"
+          ],
+          "required": false
+        },
+        {
+          "name": "standardization",
+          "value": "true",
+          "widget": "array",
+          "title": "Standardization",
+          "description": "Whether to standardize the training features before fitting the model",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        },
+        {
+          "name": "tol",
+          "value": "1E-6",
+          "widget": "textfield",
+          "title": "Tolerance",
+          "description": "The convergence tolerance for iterative algorithms",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "weightCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Weight Column",
+          "description": "If the 'weight column' is not specified, all instances are treated equally with a weight 1.0",
+          "required": false
+        },
+        {
+          "name": "gridSearch",
+          "value": "",
+          "widget": "tab",
+          "title": "Grid Search",
+          "required": false
+        },
+        {
+          "name": "regParamGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Regularization Param Grid Search",
+          "description": "Regularization Parameters for Grid Search",
+          "required": false
+        },
+        {
+          "name": "elasticNetGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "ElasticNet Param Grid Search",
+          "description": "ElasticNet Parameters for Grid Search",
+          "required": false
+        },
+        {
+          "name": "maxIterGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "MaxIter Param Grid Search",
+          "description": "Maximum iteration Parameters for Grid Search",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "name": "Predict",
+      "type": "ml-predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "234px",
+      "y": "387.641px",
+      "fields": []
+    },
+    {
+      "id": "19",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "33px",
+      "y": "728.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "cc1aec58-3c26-4e7f-adab-10e2458ec185",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "name": "DateTimeFieldExtract",
+      "description": "creates a new DataFrame by extracting Date and Time fields.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeDateTimeFieldExtract",
+      "x": "18px",
+      "y": "537.656px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "Datetime",
+          "widget": "variable",
+          "title": "Column",
+          "description": "The input column name",
+          "datatypes": [
+            "timestamp"
+          ],
+          "required": false
+        },
+        {
+          "name": "extractYear",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Year",
+          "required": false
+        },
+        {
+          "name": "extractMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Month",
+          "required": false
+        },
+        {
+          "name": "extractDayOfMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Day of Month",
+          "required": false
+        },
+        {
+          "name": "extractHour",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Hour",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "210px",
+      "y": "740px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select Datetime, Datetime_year, Datetime_month, Datetime_dayofmonth, Datetime_hour, cast(from_unixtime(unix_timestamp(Datetime,'dd-MM-yyyy'),'u') as int) as day_of_week from fire_temp_table",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"Datetime\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "schema_col_names",
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"TIMESTAMP\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\"]",
+          "widget": "schema_col_types",
+          "title": "Output Column Types",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\",\"\",\"\",\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Output Column Formats",
+          "description": "Format of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "name": "CastColumnType",
+      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "213px",
+      "y": "491.656px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be cast to new data type",
+          "required": false
+        },
+        {
+          "name": "outputColType",
+          "value": "DOUBLE",
+          "widget": "textfield",
+          "title": "New Data Types",
+          "description": "New data type (integer, double, string, long, short)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "name": "StringIndexer",
+      "description": "StringIndexer encodes a string column of labels to a column of label indices",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeStringIndexer",
+      "x": "362px",
+      "y": "742px",
+      "fields": [
+        {
+          "name": "handleInvalid",
+          "value": "error",
+          "widget": "array",
+          "title": "Handle Invalid",
+          "description": "Invalid entries to be skipped or thrown error",
+          "optionsArray": [
+            "skip",
+            "error"
+          ],
+          "required": false
+        },
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Column containing labels",
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"\",\"\",\"\",\"\",\"datetime_hour_index\",\"day_of_week_index\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output  columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "name": "OneHotEncoder",
+      "description": "Maps a column of label indices to a column of binary vectors, with at most a single one-value",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeOneHotEncoder",
+      "x": "393px",
+      "y": "618.656px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\",\"datetime_hour_index\",\"day_of_week_index\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Input columns for encoding",
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"\",\"\",\"\",\"\",\"\",\"\",\"datetime_hour_index_encode\",\"day_of_week_index_encode\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "name": "VectorAssembler",
+      "description": "Merges multiple columns into a vector column",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "564px",
+      "y": "734.656px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Datetime_month\",\"Datetime_dayofmonth\",\"datetime_hour_index_encode\",\"day_of_week_index_encode\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "feature_vector",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "26",
+      "name": "Split",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSplit",
+      "x": "589px",
+      "y": "593.656px",
+      "fields": [
+        {
+          "name": "fraction1",
+          "value": "1.0",
+          "widget": "textfield",
+          "title": "Fraction 1",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "30",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "488px",
+      "y": "384.641px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select Datetime, prediction from fire_temp_table order by Datetime LIMIT 10",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"Datetime\",\"prediction\"]",
+          "widget": "schema_col_names",
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"TIMESTAMP\",\"DOUBLE\"]",
+          "widget": "schema_col_types",
+          "title": "Output Column Types",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Output Column Formats",
+          "description": "Format of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "name": "SaveParquet",
+      "description": "Saves the DataFrame into the specified location in Parquet Format",
+      "type": "transform",
+      "nodeClass": "fire.nodes.save.NodeSaveParquet",
+      "x": "674px",
+      "y": "381.656px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "data/jetrailLinearModelOutput",
+          "widget": "textfield",
+          "title": "Path",
+          "required": false
+        },
+        {
+          "name": "overwrite",
+          "value": "true",
+          "widget": "array",
+          "title": "Overwrite Output",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "3",
+      "target": "6",
+      "id": 3
+    },
+    {
+      "source": "14",
+      "target": "8",
+      "id": 4
+    },
+    {
+      "source": "6",
+      "target": "15",
+      "id": 5
+    },
+    {
+      "source": "15",
+      "target": "14",
+      "id": 6
+    },
+    {
+      "source": "8",
+      "target": "17",
+      "id": 7
+    },
+    {
+      "source": "17",
+      "target": "18",
+      "id": 8
+    },
+    {
+      "source": "19",
+      "target": "20",
+      "id": 9
+    },
+    {
+      "source": "20",
+      "target": "21",
+      "id": 10
+    },
+    {
+      "source": "21",
+      "target": "22",
+      "id": 11
+    },
+    {
+      "source": "22",
+      "target": "23",
+      "id": 12
+    },
+    {
+      "source": "23",
+      "target": "24",
+      "id": 13
+    },
+    {
+      "source": "24",
+      "target": "25",
+      "id": 14
+    },
+    {
+      "source": "25",
+      "target": "26",
+      "id": 15
+    },
+    {
+      "source": "26",
+      "target": "18",
+      "id": 16
+    },
+    {
+      "source": "18",
+      "target": "30",
+      "id": 17
+    },
+    {
+      "source": "30",
+      "target": "31",
+      "id": 18
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "id": 34,
+  "userId": 1,
+  "uuid": "1e404f69-a44f-4a76-be90-13cbffd06dfd",
+  "version": 1,
+  "name": "Cars2",
+  "header": true,
+  "path": "data/cars_detailed.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "filterLinesContaining": "economy",
+  "datasetSchema": "{colNames:[\"economy (mpg)\",\"name\",\"cylinders\",\"displacement (cc)\",\"power (hp)\",\"weight (lb)\",\"0-60 mph (s)\",\"year\"],colTypes:[\"DOUBLE\",\"STRING\",\"INTEGER\",\"DOUBLE\",\"INTEGER\",\"INTEGER\",\"DOUBLE\",\"INTEGER\"],colFormats:[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],colMLTypes:[\"NUMERIC\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\"]}",
+  "dateCreated": "Jun 26, 2016 12:28:00 PM",
+  "dateLastUpdated": "Jun 26, 2016 12:28:00 PM",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "economy (mpg)",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "name",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "cylinders",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "displacement (cc)",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "power (hp)",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "weight (lb)",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "0-60 mph (s)",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "year",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      }
+    ]
+  }
+}
+                

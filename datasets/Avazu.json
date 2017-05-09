@@ -1,0 +1,136 @@
+{
+  "id": 1,
+  "userId": 1,
+  "uuid": "7fff0810-eb50-4b7e-8c9a-a55dcc2578f3",
+  "version": 2,
+  "name": "Avazu",
+  "header": false,
+  "path": "data/ctr_avazu_dataset/train_sample.csv",
+  "delimiter": ",",
+  "datasetType":"CSV",
+  "datasetSchema": "{colNames:[\"id\",\"click\",\"hour\",\"C1\",\"banner_pos\",\"site_id\",\"site_domain\",\"site_category\",\"app_id\",\"app_domain\",\"app_category\",\"device_id\",\"device_ip\",\"device_model\",\"device_type\",\"device_conn_type\",\"col16\",\"col17\",\"col18\",\"col19\",\"col20\",\"col21\",\"col22\",\"col23\"],colTypes:[\"STRING\",\"DOUBLE\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\"],colMLTypes:[\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\"]}",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "id",
+        "colType": "STRING",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "click",
+        "colType": "DOUBLE",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "hour",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "C1",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "banner_pos",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "site_id",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "site_domain",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "site_category",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "app_id",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "app_domain",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "app_category",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "device_id",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "device_ip",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "device_model",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "device_type",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "device_conn_type",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "col16",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "col17",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "col18",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "col19",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "col20",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "col21",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "col22",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "col23",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      }
+    ]
+  }
+}

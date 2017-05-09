@@ -1,0 +1,236 @@
+{
+  "name": "Test For Logistic",
+  "category": "Machine Learning",
+  "description": "Test For Logistic",
+  "nodes": [
+    {
+      "id": "2",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "90px",
+      "y": "145.65625px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "VectorAssembler",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "452px",
+      "y": "82.66666412353516px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"c3\",\"c4\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "optionsMap": {
+            "0": "c1",
+            "1": "c2",
+            "2": "c3",
+            "3": "c4"
+          },
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ]
+        },
+        {
+          "name": "outputCol",
+          "value": "abc",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "LogisticRegression",
+      "description": "Logistic regression is a popular method to predict a binary response. It is a special case of Generalized Linear models that predicts the probability of the outcome.",
+      "type": "ml",
+      "nodeClass": "fire.nodes.ml.NodeLogisticRegression",
+      "x": "592px",
+      "y": "231.65625px",
+      "fields": [
+        {
+          "name": "featuresCol",
+          "value": "abc",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Feature column of type vectorUDT for model fitting",
+          "optionsMap": {
+            "0": "abc"
+          },
+          "datatypes": [
+            "vectorudt"
+          ]
+        },
+        {
+          "name": "labelCol",
+          "value": "c2",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting",
+          "optionsMap": {
+            "0": "c1",
+            "1": "c2",
+            "2": "c3",
+            "3": "c4"
+          },
+          "datatypes": [
+            "double"
+          ]
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Predictor Columns",
+          "description": "The prediction column created during model scoring"
+        },
+        {
+          "name": "rawPredictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Raw Prediction Column",
+          "description": "The raw prediction (a.k.a. confidence) column name"
+        },
+        {
+          "name": "probabilityCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Probability Column",
+          "description": "The column name for predicted class conditional probabilities"
+        },
+        {
+          "name": "maxIter",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Maximum Iterations",
+          "description": "Maximum number of iterations (>= 0)",
+          "datatypes": [
+            "int"
+          ]
+        },
+        {
+          "name": "regParam",
+          "value": "0.1",
+          "widget": "textfield",
+          "title": "Regularization Parameter",
+          "description": "The regularization parameter",
+          "datatypes": [
+            "double"
+          ]
+        },
+        {
+          "name": "fitIntercept",
+          "value": "True",
+          "widget": "array",
+          "title": "Fit Intercept",
+          "description": "Whether to fit an intercept term",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "standardization",
+          "value": "True",
+          "widget": "array",
+          "title": "Standardization",
+          "description": "Whether to standardize the training features before fitting the model",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "elasticNetParam",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "ElasticNet Parameter",
+          "description": "The ElasticNet mixing parameter. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty",
+          "datatypes": [
+            "double"
+          ]
+        },
+        {
+          "name": "threshold",
+          "value": "0.5",
+          "widget": "textfield",
+          "title": "Threshold",
+          "description": "Whether to standardize the training features before fitting the model",
+          "datatypes": [
+            "double"
+          ]
+        },
+        {
+          "name": "tol",
+          "value": "0.01",
+          "widget": "textfield",
+          "title": "Tolerance Of Iterative",
+          "description": "The convergence tolerance for iterative algorithms",
+          "datatypes": [
+            "double"
+          ]
+        },
+        {
+          "name": "weightCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Weight Column",
+          "description": "If the 'weight column' is not specified, all instances are treated equally with a weight 1.0"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Predict",
+      "type": "predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "397px",
+      "y": "396.65625px",
+      "fields": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "2",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 2
+    },
+    {
+      "source": "4",
+      "target": "5",
+      "id": 3
+    }
+  ]
+}
+    

@@ -1,0 +1,268 @@
+{
+  "name": "PaymentData_Analysis",
+  "category": "Analytics",
+  "description": "monthly dollar spend in - 2013",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "64px",
+      "y": "44.625px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "de0b65b3-9bc5-4d01-b4ca-7d189ef77b57",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "ColumnFilter",
+      "description": "This node creates a new DataFrame that contains only the selected columns",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeColumnFilter",
+      "x": "260px",
+      "y": "225.625px",
+      "fields": [
+        {
+          "name": "outputCols",
+          "value": "[\"Total_Amount_of_Payment_USDollars\",\"Date_of_Payment\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be included in the output DataFrame",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "FieldSplitter",
+      "description": "",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeFieldSplitter",
+      "x": "452px",
+      "y": "35.625px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "Date_of_Payment",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "",
+          "datatypes": [
+            "string"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "Month,Date,Year",
+          "widget": "textfield",
+          "title": "Column Names",
+          "description": "new column names separed by comma','.(ex: col1,co2,col3)",
+          "required": false
+        },
+        {
+          "name": "sep",
+          "value": "/",
+          "widget": "textfield",
+          "title": "Separator",
+          "description": "separator to split the input column value(default: space)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "CastColumnType",
+      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "703px",
+      "y": "126.656px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Month\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be casted to new data type",
+          "required": false
+        },
+        {
+          "name": "outputColType",
+          "value": "DOUBLE",
+          "widget": "textfield",
+          "title": "New Data Types",
+          "description": "New data type (integer, double, string, long, short)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "493px",
+      "y": "245.641px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "temptable",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select temptable.Month, sum(Total_Amount_of_Payment_USDollars)as Total_Dollars from temptable group by Month order by Month",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"Month\",\"Total_Dollars\"]",
+          "widget": "schema_col_names",
+          "title": "Column Names for the CSV",
+          "description": "New Output Columns of the SQL",
+          "required": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"DOUBLE\",\"DOUBLE\"]",
+          "widget": "schema_col_types",
+          "title": "Column Types for the CSV",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Column Formats for the CSV",
+          "description": "Format of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "392px",
+      "y": "411.641px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "GraphValues",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeGraphValues",
+      "x": "550px",
+      "y": "410.656px",
+      "fields": [
+        {
+          "name": "title",
+          "value": "Graph",
+          "widget": "textfield",
+          "title": "Title",
+          "required": false
+        },
+        {
+          "name": "xlabel",
+          "value": "Month",
+          "widget": "textfield",
+          "title": "X Label",
+          "required": false
+        },
+        {
+          "name": "ylabel",
+          "value": "Total_Dollars",
+          "widget": "textfield",
+          "title": "Y Label",
+          "required": false
+        },
+        {
+          "name": "graphType",
+          "value": "LINECHART",
+          "widget": "enum",
+          "title": "Chart Type",
+          "optionsMap": {
+            "LINECHART": "Line Chart",
+            "COLUMNCHART": "Side by Side Bar Chart",
+            "BARCHART": "Stacked Bar Chart",
+            "PIE": "Pie Chart"
+          },
+          "required": false
+        },
+        {
+          "name": "xCol",
+          "value": "",
+          "widget": "variable",
+          "title": "X Column",
+          "required": false
+        },
+        {
+          "name": "yCols",
+          "value": "[\"Month\",\"Total_Dollars\"]",
+          "widget": "variables",
+          "title": "Y Columns",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 2
+    },
+    {
+      "source": "4",
+      "target": "7",
+      "id": 3
+    },
+    {
+      "source": "7",
+      "target": "9",
+      "id": 4
+    },
+    {
+      "source": "9",
+      "target": "12",
+      "id": 5
+    },
+    {
+      "source": "9",
+      "target": "14",
+      "id": 6
+    }
+  ]
+}

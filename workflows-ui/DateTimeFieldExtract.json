@@ -1,0 +1,197 @@
+{
+  "name": "DateTimeFieldExtract",
+  "category": "ETL",
+  "description": "Extracts Date, Time and related fields",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "68px",
+      "y": "316.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "735ee5eb-b634-42f2-8b4e-386883be019f",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "DateTimeFieldExtract",
+      "description": "creates a new DataFrame by extracting Date and Time fields.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeDateTimeFieldExtract",
+      "x": "391px",
+      "y": "359.656px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "Datetime",
+          "widget": "variable",
+          "title": "Column",
+          "description": "The input column name",
+          "datatypes": [
+            "timestamp"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractYear",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Year",
+          "description": "Extract Year",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Month",
+          "description": "Extract Month",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractDayOfMonth",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Day of Month",
+          "description": "Extract Day of Month",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractHour",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Hour",
+          "description": "Extract Hour",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractMinute",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Minute",
+          "description": "Extract Minute",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractSecond",
+          "value": "true",
+          "widget": "array",
+          "title": "Extract Second",
+          "description": "Extract Second",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "728px",
+      "y": "340.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "420px",
+      "y": "529.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p><br/><span style=\"font-size: 14px;float: none;\">It demonstrate the creating ETL workflow to extract  Year, Month, Day of month, Hour, Minute, Second fields from &#34;TimeStamp&#34;. </span><br/></p><!--EndFragment--><p><br/></p><p><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "id": 6,
+  "uuid": "3d045ee1-7125-48b6-afeb-b26bae9cc47d",
+  "version": 2,
+  "name": "KidneyLabResults",
+  "description": "Lab results and readings of patients",
+  "path": "data/kidney_cdr_lab_result.csv",
+  "delimiter": ",",
+  "datasetType":"CSV",
+  "filterLinesContaining": "idlab_result",
+  "datasetSchema": "{colNames:[\"idlab_result\",\"iddatasrcdtl\",\"idperson\",\"valuename\",\"idstatus\",\"idlaborder\",\"srcvaluestr\",\"idencounter\",\"resultdate\",\"fasting\",\"resultvaluenum\",\"resultvaluestr\",\"resultvalueum\",\"resultvaluenormalrangelab\",\"resultvalueabncode\",\"labperformedby\",\"labtype\",\"labreasoncode\",\"labreasonrelated\",\"dateadded\",\"dateupdated\"],colTypes:[\"INTEGER\",\"INTEGER\",\"INTEGER\",\"STRING\",\"INTEGER\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"DOUBLE\",\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\"],colMLTypes:[\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\"]}",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "idlab_result",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "iddatasrcdtl",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "idperson",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "valuename",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "idstatus",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "idlaborder",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "srcvaluestr",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "idencounter",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "resultdate",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "fasting",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "resultvaluenum",
+        "colType": "DOUBLE",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "resultvaluestr",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "resultvalueum",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "resultvaluenormalrangelab",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "resultvalueabncode",
+        "colType": "INTEGER",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "labperformedby",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "labtype",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "labreasoncode",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "labreasonrelated",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "dateadded",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "dateupdated",
+        "colType": "STRING",
+        "colMLType": "TEXT"
+      }
+    ]
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "name": "Dedup Customers",
+  "category": "ETL",
+  "description": "Finding the similar users in two different data sets.",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "63.6389px",
+      "y": "414.309px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "21687a6d-2e70-4374-ba90-9648e82b565e",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "482.649px",
+      "y": "398.306px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "753ffcfa-495b-496f-945c-345a4d20e492",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "JoinUsingColumn",
+      "description": "This node joins the incoming dataframes on a joinCol",
+      "type": "join",
+      "nodeClass": "fire.nodes.etl.NodeJoinUsingColumn",
+      "x": "274.969px",
+      "y": "224.625px",
+      "fields": [
+        {
+          "name": "joinCol",
+          "value": "state",
+          "widget": "textfield",
+          "title": "Join Column",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "ColumnFilter",
+      "description": "This node creates a new DataFrame that contains only the selected columns",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeColumnFilter",
+      "x": "288.656px",
+      "y": "48.3056px",
+      "fields": [
+        {
+          "name": "outputCols",
+          "value": "[\"first_name\",\"last_name\",\"id\",\"error_first_name\",\"error_last_name\",\"error_id\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be included in the output DataFrame",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Dedup",
+      "description": "Performs Dedup",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeDedup",
+      "x": "633.653px",
+      "y": "49.3021px",
+      "fields": [
+        {
+          "name": "confidenceScore",
+          "value": "confidenceScore",
+          "widget": "textfield",
+          "title": "Confidence Score",
+          "description": "Confidence Score",
+          "required": false
+        },
+        {
+          "name": "lhsCols",
+          "value": "[\"first_name\",\"last_name\",\"id\",\"error_first_name\",\"error_last_name\",\"error_id\"]",
+          "widget": "variables_map",
+          "title": "LHS Variables",
+          "description": "LHS columns for matching",
+          "required": false
+        },
+        {
+          "name": "rhsCols",
+          "value": "[\"error_first_name\",\"error_last_name\",\"\",\"\",\"\",\"\"]",
+          "widget": "variables_map_select",
+          "title": "RHS Variables",
+          "description": "RHS columns for matching",
+          "required": false
+        },
+        {
+          "name": "matchingAlgorithms",
+          "value": "[\"levenshtein\",\"levenshtein\",\"\",\"\",\"\",\"\"]",
+          "widget": "variables_map_array",
+          "title": "Algorithm to use",
+          "description": "Algorithm to use for matching",
+          "optionsArray": [
+            "levenshtein",
+            "jarowinkler"
+          ],
+          "required": false
+        },
+        {
+          "name": "matchingWeights",
+          "value": "[\"0.5\",\"0.5\",\"\",\"\",\"\",\"\"]",
+          "widget": "variables_map_edit",
+          "title": "Weights for matches",
+          "description": "Weights for matches",
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"levenshteinScoreFirstName\",\"levenshteinScorelastName\",\"\",\"\",\"\",\"\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Column",
+          "description": "Output Column",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "836.997px",
+      "y": "58.7778px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "100",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Documentation Large",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "412.986px",
+      "y": "568.767px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "This workflow finds matching records between 2 given datasets.\n\nIt first joins them with the columns state. Then it applies distance algorithms on a few fields to find the distance between the records.",
+          "widget": "textarea_large",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 3
+    },
+    {
+      "source": "4",
+      "target": "5",
+      "id": 4
+    },
+    {
+      "source": "5",
+      "target": "6",
+      "id": 5
+    }
+  ]
+}

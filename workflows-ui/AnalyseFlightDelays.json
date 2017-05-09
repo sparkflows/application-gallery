@@ -1,0 +1,254 @@
+{
+  "name": "Analyse_flights_dly",
+  "category": "Machine Learning",
+  "description": "analysing the flights delay",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "18px",
+      "y": "388.641px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "2ff32692-9b3c-49de-91a7-401daf2590c1",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "46px",
+      "y": "249.641px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "CastColumnType",
+      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "58px",
+      "y": "85.6406px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"CRS_DEP_TIME\",\"CRS_ARR_TIME\",\"CRS_ELAPSED_TIME\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be casted to new data type",
+          "optionsMap": {},
+          "required": false
+        },
+        {
+          "name": "outputColType",
+          "value": "DOUBLE",
+          "widget": "textfield",
+          "title": "New Data Types",
+          "description": "New data type",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "CastColumnType",
+      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "278px",
+      "y": "278.656px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"DAY_OF_MONTH\",\"DAY_OF_WEEK\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be cast to new data type",
+          "optionsMap": {},
+          "required": false
+        },
+        {
+          "name": "outputColType",
+          "value": "STRING",
+          "widget": "textfield",
+          "title": "New Data Types",
+          "description": "New data type",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "StringIndexer",
+      "description": "StringIndexer encodes a string column of labels to a column of label indices",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeStringIndexer",
+      "x": "331px",
+      "y": "62.6406px",
+      "fields": [
+        {
+          "name": "handleInvalid",
+          "value": "skip",
+          "widget": "array",
+          "title": "Handle Invalid",
+          "description": "Invalid entries to be skipped or thrown error",
+          "optionsArray": [
+            "skip",
+            "error"
+          ],
+          "required": false
+        },
+        {
+          "name": "inputCols",
+          "value": "[\"DAY_OF_MONTH\",\"DAY_OF_WEEK\",\"CARRIER\",\"TAIL_NUM\",\"FL_NUM\",\"ORIGIN_AIRPORT_ID\",\"ORIGIN\",\"DEST_AIRPORT_ID\",\"DEST\",\"CRS_DEP_TIME\",\"DEP_TIME\",\"DEP_DELAY_NEW\",\"CRS_ARR_TIME\",\"ARR_TIME\",\"ARR_DELAY_NEW\",\"CRS_ELAPSED_TIME\",\"DISTANCE\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Column containing labels",
+          "required": false
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"DAY_OF_MONTH_INDEX\",\"DAY_OF_WEEK_INDEX\",\"CARRIER_INDEX\",\"\",\"\",\"ORIGIN_AIRPORT_ID_INDEX\",\"\",\"DEST_AIRPORT_ID_INDEX\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output  columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "630px",
+      "y": "68.6406px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "722px",
+      "y": "230.656px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false
+        },
+        {
+          "name": "sql",
+          "value": "select fire_temp_table.* , case  when fire_temp_table.DEP_DELAY_NEW > 40 then 1.0 else 0.0 END as label from fire_temp_table",
+          "widget": "textarea_large",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false
+        },
+        {
+          "name": "columns",
+          "value": "DAY_OF_MONTH DAY_OF_WEEK CARRIER TAIL_NUM FL_NUM ORIGIN_AIRPORT_ID ORIGIN DEST_AIRPORT_ID DEST CRS_DEP_TIME DEP_TIME DEP_DELAY_NEW CRS_ARR_TIME ARR_TIME ARR_DELAY_NEW CRS_ELAPSED_TIME DISTANCE DAY_OF_MONTH_INDEX DAY_OF_WEEK_INDEX CARRIER_INDEX ORIGIN_AIRPORT_ID_INDEX DEST_AIRPORT_ID_INDEX label",
+          "widget": "textarea_small",
+          "title": "SQL Output Column Names separated by space",
+          "description": "New Output Columns of the SQL",
+          "required": false
+        },
+        {
+          "name": "columnTypes",
+          "value": "string string string string int int string int string double int int double int int double int double double double double double double",
+          "widget": "textarea_small",
+          "title": "SQL Output Column Types separated by space",
+          "description": "Data Type of the Output Columns",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "527px",
+      "y": "344.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 3
+    },
+    {
+      "source": "4",
+      "target": "5",
+      "id": 4
+    },
+    {
+      "source": "5",
+      "target": "6",
+      "id": 5
+    },
+    {
+      "source": "6",
+      "target": "7",
+      "id": 6
+    },
+    {
+      "source": "7",
+      "target": "8",
+      "id": 7
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": 3,
+  "userId": 1,
+  "uuid": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+  "version": 3,
+  "name": "Cars",
+  "description": "Cars Dataset",
+  "header": true,
+  "path": "data/cars.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "datasetSchema": "{colNames:[\"c1\",\"c2\",\"c3\",\"c4\"],colTypes:[\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\"],colFormats:[\"\",\"\",\"\",\"\"],colMLTypes:[\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\"]}",
+  "dateCreated": "Feb 25, 2017 10:24:22 AM",
+  "dateLastUpdated": "Feb 25, 2017 10:24:22 AM",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "c1",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "c2",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "c3",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "c4",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      }
+    ]
+  }
+}
+        

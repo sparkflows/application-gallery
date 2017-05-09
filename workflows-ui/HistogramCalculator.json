@@ -1,0 +1,115 @@
+{
+  "name": "HitsoGram Calculator",
+  "category": "ETL",
+  "description": "Calculates HistoGram Chart for selected column",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "83px",
+      "y": "233.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "d8a1a0b1-93b8-4096-ab95-8e3a02d65263",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "HistoGram",
+      "description": "Computes a histogram of the data using number of bins evenly spaced between the minimum and maximum of the RDD.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeHistoGramCal",
+      "x": "413px",
+      "y": "231.656px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "rating",
+          "widget": "variable",
+          "title": "ColumnName",
+          "description": "Name of column",
+          "datatypes": [
+            "double",
+            "integer"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "bins",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Bins",
+          "description": "Number of bins",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "679px",
+      "y": "240.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "310px",
+      "y": "351.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p>It demonstrate the creating  workflow to analyze the distribution of numerical data with given bins(intervals).<br/><br/><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}
+                        

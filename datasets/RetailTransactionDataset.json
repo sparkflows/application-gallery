@@ -1,0 +1,50 @@
+{
+  "id": 11,
+  "userId": 1,
+  "uuid": "9fb4dea1-daa3-4abc-ad92-0200d56fcead",
+  "version": 1,
+  "name": "Retail-Transation Datset",
+  "description": "transaction datset-dummy",
+  "header": true,
+  "path": "data/retail_recommendations/transaction.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "filterLinesContaining": "id",
+  "datasetSchema": "{colNames:[\"id\",\"customer_id\",\"product_id\",\"amount\",\"date\"],colTypes:[\"LONG\",\"STRING\",\"STRING\",\"DOUBLE\",\"STRING\"],colFormats:[\"\",\"\",\"\",\"\",\"\"],colMLTypes:[\"NUMERIC\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"TEXT\"]}",
+  "dateCreated": "Sep 21, 2016 3:11:51 PM",
+  "dateLastUpdated": "Sep 21, 2016 3:11:51 PM",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "id",
+        "colType": "LONG",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "customer_id",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "product_id",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "amount",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "date",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      }
+    ]
+  }
+}

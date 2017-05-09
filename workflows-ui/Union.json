@@ -1,0 +1,112 @@
+{
+  "name": "Union",
+  "category": "ETL",
+  "description": "Union data",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "216px",
+      "y": "138px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "228px",
+      "y": "268px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "UnionDistinct",
+      "description": "This node creates a new DataFrame by performing a DISTINCT on the result set, eliminating any duplicate rows",
+      "type": "join",
+      "nodeClass": "fire.nodes.etl.NodeUnionDistinct",
+      "x": "599px",
+      "y": "191px",
+      "fields": []
+    },
+    {
+      "id": "4",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "788px",
+      "y": "200px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "396px",
+      "y": "398.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p><br/></p><p><br/></p><!--StartFragment--><p style=\"font-size: 14px;\">It demonstrate the creating ETL workflow to merge the two dataset with same datatype and equal number fields, with UNION operation.</p><!--EndFragment--><p><br/></p><p><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 3
+    }
+  ]
+}

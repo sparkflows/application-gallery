@@ -1,0 +1,93 @@
+{
+  "id": 33,
+  "userId": 1,
+  "uuid": "753ffcfa-495b-496f-945c-345a4d20e492",
+  "version": 2,
+  "name": "dedupErrorDataset",
+  "description": "dedupErrorDataset",
+  "header": true,
+  "path": "data/dedup/rl/errordata.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "filterLinesContaining": "id",
+  "datasetSchema": "{colNames:[\"error_first_name\",\"error_last_name\",\"gender\",\"birth_date\",\"ethnicity\",\"SSN\",\"med_number\",\"state\",\"city\",\"address\",\"zip\",\"error_id\"],colTypes:[\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"DOUBLE\",\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"INTEGER\"],colFormats:[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],colMLTypes:[\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\"]}",
+  "dateCreated": "Dec 7, 2016 7:52:21 PM",
+  "dateLastUpdated": "Dec 7, 2016 7:52:21 PM",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "error_first_name",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "error_last_name",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "gender",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "birth_date",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "ethnicity",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "SSN",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "med_number",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "state",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "city",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "address",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "zip",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "error_id",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      }
+    ]
+  }
+}
+        

@@ -1,0 +1,98 @@
+{
+  "name": "Bar Chart Calculator",
+  "category": "ETL",
+  "description": "Calculates Bar Chart for selected column",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "103px",
+      "y": "260.656px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "51273c4b-a101-43b5-94ca-06a928a0ea97",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "BarChart",
+      "description": "Distribution of categorical data",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeBarChartCal",
+      "x": "418px",
+      "y": "206.656px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "BIRTH_DT",
+          "widget": "variable",
+          "title": "ColumnName",
+          "description": "Name of column",
+          "required": true,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "707px",
+      "y": "234.656px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "335px",
+      "y": "367.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p><br/><br/><!--StartFragment--><span style=\"font-size: 14px;float: none;\">It demonstrate the creating  workflow to analyze the distribution of categorical data.</span><br style=\"font-size: 14px;\"/><!--EndFragment--><br/><br/><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}

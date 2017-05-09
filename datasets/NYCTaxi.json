@@ -1,0 +1,104 @@
+{
+  "id": 20,
+  "userId": 1,
+  "uuid": "452e77f9-2d70-4c2b-8673-41dd2e9aa668",
+  "version": 4,
+  "name": "NYC_trip_data_analysis",
+  "description": "NYC_TRIP_DATA",
+  "header": true,
+  "path": "data/trips-subset.csv",
+  "delimiter": ",",
+  "datasetType": "CSV",
+  "filterLinesContaining": "passenger_count",
+  "datasetSchema": "{colNames:[\"medallion\",\"hack_license\",\"vendor_id\",\"rate_code\",\"store_and_fwd_flag\",\"pickup_datetime\",\"dropoff_datetime\",\"passenger_count\",\"trip_time_in_secs\",\"trip_distance\",\"pickup_longitude\",\"pickup_latitude\",\"dropoff_longitude\",\"dropoff_latitude\"],colTypes:[\"STRING\",\"STRING\",\"STRING\",\"INTEGER\",\"STRING\",\"TIMESTAMP\",\"TIMESTAMP\",\"INTEGER\",\"INTEGER\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\"],colFormats:[\"\",\"\",\"\",\"\",\"\",\"dd/MM/yyyy HH:mm\",\"dd/MM/yyyy HH:mm\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],colMLTypes:[\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"TEXT\",\"TEXT\",\"TEXT\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\",\"NUMERIC\"]}",
+  "dateCreated": "Jul 16, 2016 12:55:29 PM",
+  "dateLastUpdated": "Jul 16, 2016 12:55:29 PM",
+  "schemaModel": {
+    "schemaColList": [
+      {
+        "colName": "medallion",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "hack_license",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "vendor_id",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "rate_code",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "store_and_fwd_flag",
+        "colType": "STRING",
+        "colFormat": "",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "pickup_datetime",
+        "colType": "TIMESTAMP",
+        "colFormat": "dd/MM/yyyy HH:mm",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "dropoff_datetime",
+        "colType": "TIMESTAMP",
+        "colFormat": "dd/MM/yyyy HH:mm",
+        "colMLType": "TEXT"
+      },
+      {
+        "colName": "passenger_count",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "trip_time_in_secs",
+        "colType": "INTEGER",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "trip_distance",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "pickup_longitude",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "pickup_latitude",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "dropoff_longitude",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      },
+      {
+        "colName": "dropoff_latitude",
+        "colType": "DOUBLE",
+        "colFormat": "",
+        "colMLType": "NUMERIC"
+      }
+    ]
+  }
+}

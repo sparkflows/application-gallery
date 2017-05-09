@@ -1,0 +1,135 @@
+{
+  "name": "SQL",
+  "category": "ETL",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "428.5px",
+      "y": "97.6562px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "sql",
+          "value": "select * from fire_temp_table",
+          "widget": "textarea_medium",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"c1\",\"c2\",\"c3\",\"c4\"]",
+          "widget": "schema_col_names",
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\"]",
+          "widget": "schema_col_types",
+          "title": "Output Column Types",
+          "description": "Data Type of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\",\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Output Column Formats",
+          "description": "Format of the Output Columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "84.5px",
+      "y": "93.6562px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "676.5px",
+      "y": "92.6562px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "331px",
+      "y": "199.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p><br/><br/><!--StartFragment--><span style=\"font-size: 14px;float: none;\">It demonstrate the creating ETL workflow to execute  SQL queries by using SQL node.</span><!--EndFragment--><br/><br/><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "2",
+      "target": "1",
+      "id": 1
+    },
+    {
+      "source": "1",
+      "target": "3",
+      "id": 2
+    }
+  ]
+}
+                        

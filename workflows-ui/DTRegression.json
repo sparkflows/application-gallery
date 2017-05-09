@@ -1,0 +1,272 @@
+{
+  "name": "DTRegression",
+  "category": "Machine Learning",
+  "description": "Decision Tree Regression Test",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "55px",
+      "y": "371.641px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "optionsMap": {
+          },
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "VectorAssembler",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "210px",
+      "y": "212.656px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"c3\",\"c4\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "optionsMap": {
+            "0": "c1",
+            "1": "c2",
+            "2": "c3",
+            "3": "c4"
+          },
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "outputCol",
+          "value": "feature_vector",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "DecisionTreeRegression",
+      "description": "It supports both continuous and categorical features.",
+      "type": "ml",
+      "nodeClass": "fire.nodes.ml.NodeDecisionTreeRegression",
+      "x": "89px",
+      "y": "542.656px",
+      "fields": [
+        {
+          "name": "featuresCol",
+          "value": "feature_vector",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Features column of type vectorUDT for model fitting",
+          "optionsMap": {
+            "0": "feature_vector"
+          },
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false
+        },
+        {
+          "name": "impurity",
+          "value": "variance",
+          "widget": "array",
+          "title": "Impurity",
+          "description": "The Criterion used for information gain calculation",
+          "optionsArray": [
+            "variance"
+          ],
+          "required": false
+        },
+        {
+          "name": "labelCol",
+          "value": "c2",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting",
+          "optionsMap": {
+            "0": "c1",
+            "1": "c2",
+            "2": "c3",
+            "3": "c4"
+          },
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxBins",
+          "value": "32",
+          "widget": "textfield",
+          "title": "Max Bins",
+          "description": "The maximum number of bins used for discretizing continuous features.Must be >= 2 and >= number of categories in any categorical feature.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxDepth",
+          "value": "2",
+          "widget": "textfield",
+          "title": "Max Depth",
+          "description": "The Maximum depth of a tree",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "minInfoGain",
+          "value": "0.0",
+          "widget": "textfield",
+          "title": "Min Information Gain",
+          "description": "The Minimum information gain for a split to be considered at a tree node",
+          "datatypes": [
+            "double"
+          ],
+          "required": false
+        },
+        {
+          "name": "minInstancesPerNode",
+          "value": "1",
+          "widget": "textfield",
+          "title": "Min Instances Per Node",
+          "description": "The Minimum number of instances each child must have after split",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Predictor Columns",
+          "description": "The prediction column created during model scoring.",
+          "required": false
+        },
+        {
+          "name": "seed",
+          "value": "",
+          "widget": "textfield",
+          "title": "Seed",
+          "description": "The random seed",
+          "datatypes": [
+            "long"
+          ],
+          "required": false
+        },
+        {
+          "name": "cacheNodeIds",
+          "value": "false",
+          "widget": "array",
+          "title": "Cache Node Ids",
+          "description": "The caching nodes IDs. Can speed up training of deeper trees.",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "false",
+            "true"
+          ],
+          "required": false
+        },
+        {
+          "name": "checkpointInterval",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Checkpoint Interval",
+          "description": "The checkpoint interval. E.g. 10 means that the cache will get checkpointed every 10 iterations.Set checkpoint interval (>= 1) or disable checkpoint (-1)",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        },
+        {
+          "name": "maxMemoryInMB",
+          "value": "256",
+          "widget": "textfield",
+          "title": "Max memory",
+          "description": "Maximum memory in MB allocated to histogram aggregation.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Split",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSplit",
+      "x": "406px",
+      "y": "370.656px",
+      "fields": [
+        {
+          "name": "fraction1",
+          "value": ".5",
+          "widget": "textfield",
+          "title": "Fraction 1",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Predict",
+      "type": "predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "437px",
+      "y": "545.656px",
+      "fields": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "2",
+      "target": "4",
+      "id": 2
+    },
+    {
+      "source": "4",
+      "target": "3",
+      "id": 3
+    },
+    {
+      "source": "4",
+      "target": "5",
+      "id": 4
+    },
+    {
+      "source": "3",
+      "target": "5",
+      "id": 5
+    }
+  ]
+}

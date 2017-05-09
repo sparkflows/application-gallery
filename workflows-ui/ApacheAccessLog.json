@@ -1,0 +1,52 @@
+{
+  "name": "ApacheAccessLog",
+  "category": "Logs",
+  "description": "Apache Access Logs",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "ApacheLogs",
+      "description": "Reads in Apache Log files from a given path, parses them and loads them into a DataFrame",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.logs.NodeApacheFileAccessLog",
+      "x": "127.984px",
+      "y": "259.984px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "data/apacheaccesslog.log",
+          "widget": "textfield",
+          "title": "Path",
+          "description": "Full path for the directory or file for the Apache File Logs",
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "565.984px",
+      "y": "255.984px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "3",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}
+    

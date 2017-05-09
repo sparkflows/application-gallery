@@ -1,0 +1,161 @@
+{
+  "name": "Convert To Timestamp",
+  "category": "ETL",
+  "description": "ETL",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "CSV",
+      "description": "Dataset Node for CSV",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetCSV",
+      "x": "162.813px",
+      "y": "89.0972px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "/Users/jayant/data/transaction.csv",
+          "widget": "textfield",
+          "title": "Path",
+          "description": "Path of the Text file/directory",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "separator",
+          "value": ",",
+          "widget": "textfield",
+          "title": "Separator",
+          "description": "CSV Separator",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "header",
+          "value": "true",
+          "widget": "array",
+          "title": "Header",
+          "description": "Does the file have a header row",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"id\",\"chain\",\"dept\",\"category\",\"company\",\"brand\",\"date\",\"productsize\",\"productmeasure\",\"purchasequantity\",\"purchaseamount\"]",
+          "widget": "schema_col_names",
+          "title": "Column Names for the CSV",
+          "description": "New Output Columns of the SQL",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"STRING\",\"INTEGER\",\"STRING\",\"INTEGER\",\"DOUBLE\"]",
+          "widget": "schema_col_types",
+          "title": "Column Types for the CSV",
+          "description": "Data Type of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Column Formats for the CSV",
+          "description": "Format of the Output Columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "404.809px",
+      "y": "153.097px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "StringToDate",
+      "description": "This node converts a string column to date using the given date/time format",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeStringToDate",
+      "x": "706.497px",
+      "y": "121.774px",
+      "fields": [
+        {
+          "name": "inputColName",
+          "value": "date",
+          "widget": "variable",
+          "title": "Input Column Name",
+          "description": "Input Column Name",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "inputColFormat",
+          "value": "yyyy-MM-dd",
+          "widget": "textfield",
+          "title": "Input Column Format",
+          "description": "Input Column Format",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColName",
+          "value": "date_type",
+          "widget": "textfield",
+          "title": "Output Column Name",
+          "description": "Output Column Name",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColType",
+          "value": "TIMESTAMP",
+          "widget": "array",
+          "title": "Output Column Type",
+          "description": "Output Column Type",
+          "optionsArray": [
+            "DATE",
+            "TIMESTAMP"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 2
+    }
+  ]
+}

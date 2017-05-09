@@ -1,0 +1,79 @@
+{
+  "name": "Correlation",
+  "category": "Machine Learning",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "280.766px",
+      "y": "137.844px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "a4ca862a-4127-449d-a7e0-c2fffd69fc14",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Correlation",
+      "description": "calculates the correlation between two series of data.",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeCorrelation",
+      "x": "551.773px",
+      "y": "159.848px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"c1\",\"c2\",\"c3\",\"c4\"]",
+          "widget": "variables",
+          "title": "Input Column for Correlation",
+          "description": "Column Names to check correlation ",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "296px",
+      "y": "304.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p>CORRELATIONS:</p><p><br/></p><p><br/></p><p>We can also perform our own statistical analysis using Correlation Node</p><p><br/></p><p><br/></p><p>The main result of a correlation is called the correlation coefficient (or &#34;r&#34;). It ranges from -1.0 to +1.0. The closer r is to +1 or -1, the more closely the two variables are related.</p><p><br/></p><p><br/></p><p>If r is close to 0, it means there is no relationship between the variables. If r is positive, it means that as one variable gets larger the other gets larger. If r is negative it means that as one gets larger, the other gets smaller (often called an &#34;inverse&#34; correlation).</p><p><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    }
+  ]
+}
