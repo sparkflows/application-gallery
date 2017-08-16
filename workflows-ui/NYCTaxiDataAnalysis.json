@@ -1,5 +1,5 @@
 {
-  "name": "NYC_taxidata_analyis",
+  "name": "NYC Taxidata Analysis",
   "category": "ETL",
   "description": "average speed of taxis at each hour",
   "nodes": [
@@ -348,7 +348,7 @@
       "fields": [
         {
           "name": "comment",
-          "value": "<p style=\"font-size: 14px;\">It demonstrate the creating to analyze the data.</p><p style=\"font-size: 14px;\">Task: Average speed of the taxi in each hour in NewYork city.</p><p style=\"font-size: 14px;\"> 1. Extract the hour and minute fields from pickup field of type timestamp.</p><p style=\"font-size: 14px;\"> 2. By selecting only required fields calculate speed field by using total distance traveled and travel time.</p><p style=\"font-size: 14px;\"> 3.By pickup hour field calculate the average speed of each hour.</p><p style=\"font-size: 14px;\"> 4. Visualize the analysis by using GraphValues node. </p><p style=\"font-size: 14px;\"><br/></p><p style=\"font-size: 14px;\"><br/></p><!--EndFragment--><p><br/></p><p><br/></p>",
+          "value": "<p style=\"font-size: 14px;\">It demonstrate the creating of workflow to analyze the data.</p><p style=\"font-size: 14px;\">Task: Average speed of the taxi in each hour in NewYork city.</p><p style=\"font-size: 14px;\"> 1. Extract the hour and minute fields from pickup field of type timestamp.</p><p style=\"font-size: 14px;\"> 2. By selecting only required fields calculate speed field by using total distance traveled and travel time.</p><p style=\"font-size: 14px;\"> 3.By pickup hour field calculate the average speed of each hour.</p><p style=\"font-size: 14px;\"> 4. Visualize the analysis by using GraphValues node. </p><p style=\"font-size: 14px;\"><br/></p><p style=\"font-size: 14px;\"><br/></p><!--EndFragment--><p><br/></p><p><br/></p>",
           "widget": "textarea_rich",
           "title": "Comment",
           "description": "Comments for Documentation",

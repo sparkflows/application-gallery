@@ -315,7 +315,7 @@
         {
           "name": "predictionCol",
           "widget": "textfield",
-          "title": "Predictor Columns",
+          "title": "Prediction Columns",
           "description": "The prediction column created during model scoring.",
           "required": false
         },

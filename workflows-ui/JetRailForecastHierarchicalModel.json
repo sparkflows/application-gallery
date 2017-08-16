@@ -1,3 +1,4 @@
+
 {
   "name": "Jetrail_Hierarchical",
   "category": "Machine Learning",
@@ -17,7 +18,8 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
@@ -39,35 +41,104 @@
           "datatypes": [
             "timestamp"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "extractYear",
           "value": "true",
           "widget": "array",
           "title": "Extract Year",
-          "required": false
+          "description": "Extract Year",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         },
         {
           "name": "extractMonth",
           "value": "true",
           "widget": "array",
           "title": "Extract Month",
-          "required": false
+          "description": "Extract Month",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         },
         {
           "name": "extractDayOfMonth",
           "value": "true",
           "widget": "array",
           "title": "Extract Day of Month",
-          "required": false
+          "description": "Extract Day of Month",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         },
         {
           "name": "extractHour",
           "value": "true",
           "widget": "array",
           "title": "Extract Hour",
-          "required": false
+          "description": "Extract Hour",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractMinute",
+          "value": "false",
+          "widget": "array",
+          "title": "Extract Minute",
+          "description": "Extract Minute",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractSecond",
+          "value": "false",
+          "widget": "array",
+          "title": "Extract Second",
+          "description": "Extract Second",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -86,46 +157,51 @@
           "widget": "textfield",
           "title": "Temp Table",
           "description": "Temp Table Name to be used",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "sql",
           "value": "select Datetime, Count, Datetime_year, Datetime_month, Datetime_dayofmonth, Datetime_hour, cast(from_unixtime(unix_timestamp(Datetime,'dd-MM-yyyy'),'u') as int) as day_of_week from fire_temp_table",
-          "widget": "textarea_large",
+          "widget": "textarea_medium",
           "title": "SQL",
           "description": "SQL to be run",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColNames",
           "value": "[\"Datetime\",\"Count\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
           "widget": "schema_col_names",
-          "title": "Column Names for the CSV",
-          "description": "New Output Columns of the SQL",
-          "required": false
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColTypes",
           "value": "[\"TIMESTAMP\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\"]",
           "widget": "schema_col_types",
-          "title": "Column Types for the CSV",
+          "title": "Output Column Types",
           "description": "Data Type of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColFormats",
           "value": "[\"\",\"\",\"\",\"\",\"\",\"\",\"\"]",
           "widget": "schema_col_formats",
-          "title": "Column Formats for the CSV",
+          "title": "Output Column Formats",
           "description": "Format of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "4",
       "name": "CastColumnType",
-      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "description": "This node creates a new DataFrame by casting input columns with a new data type",
       "type": "transform",
       "nodeClass": "fire.nodes.etl.NodeCastColumnType",
       "x": "236px",
@@ -136,16 +212,30 @@
           "value": "[\"Count\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
           "widget": "variables",
           "title": "Columns",
-          "description": "Columns to be casted to new data type",
-          "required": false
+          "description": "Columns to be cast to new data type",
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColType",
           "value": "DOUBLE",
-          "widget": "textfield",
-          "title": "New Data Types",
-          "description": "New data type (integer, double, string, long, short)",
-          "required": false
+          "widget": "array",
+          "title": "New Data Type",
+          "description": "New data type(INTEGER, DOUBLE, STRING, LONG, SHORT)",
+          "optionsArray": [
+            "BOOLEAN",
+            "BYTE",
+            "DATE",
+            "DOUBLE",
+            "FLOAT",
+            "INTEGER",
+            "LONG",
+            "SHORT",
+            "STRING",
+            "TIMESTAMP"
+          ],
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -168,7 +258,8 @@
             "skip",
             "error"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "inputCols",
@@ -176,7 +267,8 @@
           "widget": "variables_map",
           "title": "Input Columns",
           "description": "Column containing labels",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCols",
@@ -184,7 +276,8 @@
           "widget": "variables_map_edit",
           "title": "Output Columns",
           "description": "Output  columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -210,7 +303,8 @@
             "float",
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCol",
@@ -218,7 +312,8 @@
           "widget": "textfield",
           "title": "Output Column",
           "description": "Output column name",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -240,7 +335,8 @@
           "datatypes": [
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "labelCol",
@@ -251,7 +347,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "predictionCol",
@@ -259,7 +356,8 @@
           "widget": "textfield",
           "title": "Predictor Columns",
           "description": "The prediction column created during model scoring.",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "impurity",
@@ -270,7 +368,8 @@
           "optionsArray": [
             "variance"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "lossType",
@@ -282,18 +381,20 @@
             "squared",
             "absolute"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxBins",
           "value": "25",
           "widget": "textfield",
           "title": "Max Bins",
-          "description": "The maximum number of bins used for discretizing continuous features.Must be &gt;= 2 and &gt;= number of categories in any categorical feature.",
+          "description": "The maximum number of bins used for discretizing continuous features.Must be >= 2 and >= number of categories in any categorical feature.",
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxDepth",
@@ -304,18 +405,20 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxIter",
           "value": "10",
           "widget": "textfield",
           "title": "Max Iterations",
-          "description": "The maximum number of iterations(&gt;=0)(a.k.a numtrees)",
+          "description": "The maximum number of iterations(>=0)(a.k.a numtrees)",
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "minInfoGain",
@@ -326,7 +429,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "minInstancesPerNode",
@@ -337,7 +441,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "subsamplingRate",
@@ -348,7 +453,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "seed",
@@ -359,7 +465,8 @@
           "datatypes": [
             "long"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "stepSize",
@@ -370,7 +477,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "cacheNodeIds",
@@ -385,18 +493,20 @@
             "false",
             "true"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "checkpointInterval",
           "value": "10",
           "widget": "textfield",
           "title": "Checkpoint Interval",
-          "description": "The checkpoint interval. E.g. 10 means that the cache will get checkpointed every 10 iterations.Set checkpoint interval (&gt;= 1) or disable checkpoint (-1)",
+          "description": "The checkpoint interval. E.g. 10 means that the cache will get checkpointed every 10 iterations.Set checkpoint interval (>= 1) or disable checkpoint (-1)",
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxMemoryInMB",
@@ -407,14 +517,16 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "gridSearch",
           "value": "",
           "widget": "tab",
           "title": "Grid Search",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "minInfoGainGrid",
@@ -422,7 +534,8 @@
           "widget": "textfield",
           "title": "Min Info Gain Grid Search",
           "description": "Min Info Gain Grid Search",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxBinsGrid",
@@ -430,7 +543,8 @@
           "widget": "textfield",
           "title": "Max Bins Grid Search",
           "description": "Max Bins for Grid Search",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxDepthGrid",
@@ -438,7 +552,8 @@
           "widget": "textfield",
           "title": "Max Depth Grid Search",
           "description": "Regularization Parameters for Grid Search",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxIterGrid",
@@ -446,7 +561,8 @@
           "widget": "textfield",
           "title": "Max Iterations Grid Search",
           "description": "Max Iterations for Grid Search",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -473,7 +589,8 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
@@ -495,35 +612,104 @@
           "datatypes": [
             "timestamp"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "extractYear",
           "value": "true",
           "widget": "array",
           "title": "Extract Year",
-          "required": false
+          "description": "Extract Year",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         },
         {
           "name": "extractMonth",
           "value": "true",
           "widget": "array",
           "title": "Extract Month",
-          "required": false
+          "description": "Extract Month",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         },
         {
           "name": "extractDayOfMonth",
           "value": "true",
           "widget": "array",
           "title": "Extract Day of Month",
-          "required": false
+          "description": "Extract Day of Month",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         },
         {
           "name": "extractHour",
           "value": "true",
           "widget": "array",
           "title": "Extract Hour",
-          "required": false
+          "description": "Extract Hour",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractMinute",
+          "value": "false",
+          "widget": "array",
+          "title": "Extract Minute",
+          "description": "Extract Minute",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractSecond",
+          "value": "false",
+          "widget": "array",
+          "title": "Extract Second",
+          "description": "Extract Second",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -542,46 +728,51 @@
           "widget": "textfield",
           "title": "Temp Table",
           "description": "Temp Table Name to be used",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "sql",
           "value": "select Datetime, Datetime_year, Datetime_month, Datetime_dayofmonth, Datetime_hour, cast(from_unixtime(unix_timestamp(Datetime,'dd-MM-yyyy'),'u') as int) as day_of_week from fire_temp_table",
-          "widget": "textarea_large",
+          "widget": "textarea_medium",
           "title": "SQL",
           "description": "SQL to be run",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColNames",
           "value": "[\"Datetime\",\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
           "widget": "schema_col_names",
-          "title": "Column Names for the CSV",
-          "description": "New Output Columns of the SQL",
-          "required": false
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColTypes",
           "value": "[\"TIMESTAMP\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\",\"INTEGER\"]",
           "widget": "schema_col_types",
-          "title": "Column Types for the CSV",
+          "title": "Output Column Types",
           "description": "Data Type of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColFormats",
           "value": "[\"\",\"\",\"\",\"\",\"\",\"\"]",
           "widget": "schema_col_formats",
-          "title": "Column Formats for the CSV",
+          "title": "Output Column Formats",
           "description": "Format of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "18",
       "name": "CastColumnType",
-      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "description": "This node creates a new DataFrame by casting input columns with a new data type",
       "type": "transform",
       "nodeClass": "fire.nodes.etl.NodeCastColumnType",
       "x": "136px",
@@ -592,16 +783,30 @@
           "value": "[\"Datetime_year\",\"Datetime_month\",\"Datetime_dayofmonth\",\"Datetime_hour\",\"day_of_week\"]",
           "widget": "variables",
           "title": "Columns",
-          "description": "Columns to be casted to new data type",
-          "required": false
+          "description": "Columns to be cast to new data type",
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColType",
           "value": "DOUBLE",
-          "widget": "textfield",
-          "title": "New Data Types",
-          "description": "New data type (integer, double, string, long, short)",
-          "required": false
+          "widget": "array",
+          "title": "New Data Type",
+          "description": "New data type(INTEGER, DOUBLE, STRING, LONG, SHORT)",
+          "optionsArray": [
+            "BOOLEAN",
+            "BYTE",
+            "DATE",
+            "DOUBLE",
+            "FLOAT",
+            "INTEGER",
+            "LONG",
+            "SHORT",
+            "STRING",
+            "TIMESTAMP"
+          ],
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -624,7 +829,8 @@
             "skip",
             "error"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "inputCols",
@@ -632,7 +838,8 @@
           "widget": "variables_map",
           "title": "Input Columns",
           "description": "Column containing labels",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCols",
@@ -640,7 +847,8 @@
           "widget": "variables_map_edit",
           "title": "Output Columns",
           "description": "Output  columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -666,7 +874,8 @@
             "float",
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCol",
@@ -674,7 +883,8 @@
           "widget": "textfield",
           "title": "Output Column",
           "description": "Output column name",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -691,7 +901,8 @@
           "value": "1.0",
           "widget": "textfield",
           "title": "Fraction 1",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -710,39 +921,44 @@
           "widget": "textfield",
           "title": "Temp Table",
           "description": "Temp Table Name to be used",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "sql",
           "value": "select Datetime, prediction from fire_temp_table order by Datetime",
-          "widget": "textarea_large",
+          "widget": "textarea_medium",
           "title": "SQL",
           "description": "SQL to be run",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColNames",
           "value": "[]",
           "widget": "schema_col_names",
-          "title": "Column Names for the CSV",
-          "description": "New Output Columns of the SQL",
-          "required": false
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColTypes",
           "value": "[]",
           "widget": "schema_col_types",
-          "title": "Column Types for the CSV",
+          "title": "Output Column Types",
           "description": "Data Type of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColFormats",
           "value": "[]",
           "widget": "schema_col_formats",
-          "title": "Column Formats for the CSV",
+          "title": "Output Column Formats",
           "description": "Format of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -760,21 +976,74 @@
           "value": "data/jetrailHierarcModelOutput",
           "widget": "textfield",
           "title": "Path",
-          "required": false
+          "description": "Path where to save the Parquet files",
+          "required": false,
+          "display": false
         },
         {
-          "name": "overwrite",
-          "value": "false",
+          "name": "saveMode",
+          "value": "Append",
           "widget": "array",
-          "title": "Overwrite Output",
-          "datatypes": [
-            "boolean"
-          ],
+          "title": "Save Mode",
+          "description": "Whether to Append, Overwrite or Error if the path Exists",
           "optionsArray": [
-            "true",
-            "false"
+            "Append",
+            "Overwrite",
+            "ErrorIfExists",
+            "Ignore"
           ],
-          "required": false
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "name": "RegressionEvaluator",
+      "description": "Evaluator for regression, which expects two input columns: prediction and label.",
+      "type": "ml-evaluator",
+      "nodeClass": "fire.nodes.ml.NodeRegressionEvaluator",
+      "x": "559px",
+      "y": "617px",
+      "fields": [
+        {
+          "name": "labelCol",
+          "value": "Count",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "prediction",
+          "widget": "variable",
+          "title": "PredictionCol Column",
+          "description": "The prediction column.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "metricName",
+          "value": "rmse",
+          "widget": "array",
+          "title": "Metric Name",
+          "description": "The metric used in evaluation.",
+          "optionsArray": [
+            "rmse",
+            "mse",
+            "r2",
+            "mae"
+          ],
+          "required": false,
+          "display": false
         }
       ]
     }
@@ -859,6 +1128,11 @@
       "source": "22",
       "target": "23",
       "id": 16
+    },
+    {
+      "source": "11",
+      "target": "24",
+      "id": 17
     }
   ]
 }

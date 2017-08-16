@@ -1,5 +1,5 @@
 {
-  "name": "Analyse_flights_dly",
+  "name": "Analyze Flights Delay",
   "category": "Machine Learning",
   "description": "analysing the flights delay",
   "nodes": [
@@ -8,8 +8,8 @@
       "name": "DatasetStructured",
       "type": "dataset",
       "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
-      "x": "18px",
-      "y": "388.641px",
+      "x": "38.9492px",
+      "y": "275.613px",
       "fields": [
         {
           "name": "dataset",
@@ -17,7 +17,8 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
@@ -27,54 +28,69 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "46px",
-      "y": "249.641px",
+      "x": "38.4336px",
+      "y": "59.1094px",
       "fields": [
         {
           "name": "n",
           "value": "10",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "3",
       "name": "CastColumnType",
-      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "description": "This node creates a new DataFrame by casting input columns with a new data type",
       "type": "transform",
       "nodeClass": "fire.nodes.etl.NodeCastColumnType",
-      "x": "58px",
-      "y": "85.6406px",
+      "x": "313.223px",
+      "y": "61.8633px",
       "fields": [
         {
           "name": "inputCols",
           "value": "[\"CRS_DEP_TIME\",\"CRS_ARR_TIME\",\"CRS_ELAPSED_TIME\"]",
           "widget": "variables",
           "title": "Columns",
-          "description": "Columns to be casted to new data type",
-          "optionsMap": {},
-          "required": false
+          "description": "Columns to be cast to new data type",
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColType",
           "value": "DOUBLE",
-          "widget": "textfield",
-          "title": "New Data Types",
-          "description": "New data type",
-          "required": false
+          "widget": "array",
+          "title": "New Data Type",
+          "description": "New data type(INTEGER, DOUBLE, STRING, LONG, SHORT)",
+          "optionsArray": [
+            "BOOLEAN",
+            "BYTE",
+            "DATE",
+            "DOUBLE",
+            "FLOAT",
+            "INTEGER",
+            "LONG",
+            "SHORT",
+            "STRING",
+            "TIMESTAMP"
+          ],
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "4",
       "name": "CastColumnType",
-      "description": "This node creates a new DataFrame by casting input columns with input data types",
+      "description": "This node creates a new DataFrame by casting input columns with a new data type",
       "type": "transform",
       "nodeClass": "fire.nodes.etl.NodeCastColumnType",
-      "x": "278px",
-      "y": "278.656px",
+      "x": "322.949px",
+      "y": "275.633px",
       "fields": [
         {
           "name": "inputCols",
@@ -82,16 +98,29 @@
           "widget": "variables",
           "title": "Columns",
           "description": "Columns to be cast to new data type",
-          "optionsMap": {},
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColType",
           "value": "STRING",
-          "widget": "textfield",
-          "title": "New Data Types",
-          "description": "New data type",
-          "required": false
+          "widget": "array",
+          "title": "New Data Type",
+          "description": "New data type(INTEGER, DOUBLE, STRING, LONG, SHORT)",
+          "optionsArray": [
+            "BOOLEAN",
+            "BYTE",
+            "DATE",
+            "DOUBLE",
+            "FLOAT",
+            "INTEGER",
+            "LONG",
+            "SHORT",
+            "STRING",
+            "TIMESTAMP"
+          ],
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -101,8 +130,8 @@
       "description": "StringIndexer encodes a string column of labels to a column of label indices",
       "type": "ml-transformer",
       "nodeClass": "fire.nodes.ml.NodeStringIndexer",
-      "x": "331px",
-      "y": "62.6406px",
+      "x": "630.238px",
+      "y": "272.879px",
       "fields": [
         {
           "name": "handleInvalid",
@@ -114,7 +143,8 @@
             "skip",
             "error"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "inputCols",
@@ -122,7 +152,8 @@
           "widget": "variables_map",
           "title": "Input Columns",
           "description": "Column containing labels",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCols",
@@ -130,7 +161,8 @@
           "widget": "variables_map_edit",
           "title": "Output Columns",
           "description": "Output  columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -140,15 +172,17 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "630px",
-      "y": "68.6406px",
+      "x": "626.492px",
+      "y": "63.1289px",
       "fields": [
         {
           "name": "n",
           "value": "10",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -158,8 +192,8 @@
       "description": "This node runs the given SQL on the incoming DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.etl.NodeSQL",
-      "x": "722px",
-      "y": "230.656px",
+      "x": "954.219px",
+      "y": "59.8711px",
       "fields": [
         {
           "name": "tempTable",
@@ -167,31 +201,44 @@
           "widget": "textfield",
           "title": "Temp Table",
           "description": "Temp Table Name to be used",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "sql",
           "value": "select fire_temp_table.* , case  when fire_temp_table.DEP_DELAY_NEW > 40 then 1.0 else 0.0 END as label from fire_temp_table",
-          "widget": "textarea_large",
+          "widget": "textarea_medium",
           "title": "SQL",
           "description": "SQL to be run",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
-          "name": "columns",
-          "value": "DAY_OF_MONTH DAY_OF_WEEK CARRIER TAIL_NUM FL_NUM ORIGIN_AIRPORT_ID ORIGIN DEST_AIRPORT_ID DEST CRS_DEP_TIME DEP_TIME DEP_DELAY_NEW CRS_ARR_TIME ARR_TIME ARR_DELAY_NEW CRS_ELAPSED_TIME DISTANCE DAY_OF_MONTH_INDEX DAY_OF_WEEK_INDEX CARRIER_INDEX ORIGIN_AIRPORT_ID_INDEX DEST_AIRPORT_ID_INDEX label",
-          "widget": "textarea_small",
-          "title": "SQL Output Column Names separated by space",
-          "description": "New Output Columns of the SQL",
-          "required": false
+          "name": "outputColNames",
+          "value": "[]",
+          "widget": "schema_col_names",
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
         },
         {
-          "name": "columnTypes",
-          "value": "string string string string int int string int string double int int double int int double int double double double double double double",
-          "widget": "textarea_small",
-          "title": "SQL Output Column Types separated by space",
+          "name": "outputColTypes",
+          "value": "[]",
+          "widget": "schema_col_types",
+          "title": "Output Column Types",
           "description": "Data Type of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[]",
+          "widget": "schema_col_formats",
+          "title": "Output Column Formats",
+          "description": "Format of the Output Columns",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -201,15 +248,17 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "527px",
-      "y": "344.656px",
+      "x": "927.477px",
+      "y": "291.137px",
       "fields": [
         {
           "name": "n",
           "value": "10",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     }

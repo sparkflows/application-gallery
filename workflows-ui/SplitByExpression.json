@@ -17,7 +17,8 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
@@ -25,9 +26,9 @@
       "id": "2",
       "name": "Split By Expression",
       "type": "transform",
-      "nodeClass": "fire.nodes.ml.NodeSplitByExpression",
-      "x": "385.469px",
-      "y": "163.764px",
+      "nodeClass": "fire.nodes.etl.NodeSplitByExpression",
+      "x": "446.965px",
+      "y": "83.25px",
       "fields": [
         {
           "name": "conditionExpr",
@@ -35,7 +36,8 @@
           "widget": "textfield",
           "title": "Conditional Expression to split the Data on",
           "description": "Conditional Expression to be used for Splitting the Dataset into two",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -45,15 +47,17 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "716.139px",
-      "y": "33.4097px",
+      "x": "793.621px",
+      "y": "18.8945px",
       "fields": [
         {
           "name": "n",
           "value": "10",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -63,15 +67,133 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "720.816px",
-      "y": "281.094px",
+      "x": "781.051px",
+      "y": "175.344px",
       "fields": [
         {
           "name": "n",
           "value": "10",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Split By Multiple Expressions",
+      "description": "Splits the incoming DataFrame into multiple output DataFrames by applying the conditional logic",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSplitByMultipleExpressions",
+      "x": "448.961px",
+      "y": "301.027px",
+      "fields": [
+        {
+          "name": "conditionExpr1",
+          "value": "c1 < 3",
+          "widget": "textfield",
+          "title": "Conditional Expression 1 to split the Data on",
+          "description": "Conditional Expression 1 to be used for Splitting the Dataset",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "conditionExpr2",
+          "value": "c1 >= 3 and c1 < 5",
+          "widget": "textfield",
+          "title": "Conditional Expression 2 to split the Data on",
+          "description": "Conditional Expression 2 to be used for Splitting the Dataset",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "conditionExpr3",
+          "value": "c1 >= 5",
+          "widget": "textfield",
+          "title": "Conditional Expression 3 to split the Data on",
+          "description": "Conditional Expression 3 to be used for Splitting the Dataset",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "conditionExpr4",
+          "value": "",
+          "widget": "textfield",
+          "title": "Conditional Expression 4 to split the Data on",
+          "description": "Conditional Expression 4 to be used for Splitting the Dataset",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "conditionExpr5",
+          "value": "",
+          "widget": "textfield",
+          "title": "Conditional Expression 5 to split the Data on",
+          "description": "Conditional Expression 5 to be used for Splitting the Dataset",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "63.6992px",
+      "y": "479.789px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "502.734px",
+      "y": "490.801px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "773.231px",
+      "y": "488.312px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     }
@@ -91,7 +213,26 @@
       "source": "2",
       "target": "4",
       "id": 3
+    },
+    {
+      "source": "1",
+      "target": "5",
+      "id": 4
+    },
+    {
+      "source": "5",
+      "target": "6",
+      "id": 5
+    },
+    {
+      "source": "5",
+      "target": "7",
+      "id": 6
+    },
+    {
+      "source": "5",
+      "target": "8",
+      "id": 7
     }
   ]
 }
-                        

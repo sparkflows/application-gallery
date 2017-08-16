@@ -17,7 +17,8 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
@@ -27,8 +28,8 @@
       "description": "creates a new DataFrame by extracting Date and Time fields.",
       "type": "transform",
       "nodeClass": "fire.nodes.etl.NodeDateTimeFieldExtract",
-      "x": "26px",
-      "y": "227.641px",
+      "x": "46.7461px",
+      "y": "255.387px",
       "fields": [
         {
           "name": "inputCol",
@@ -39,23 +40,105 @@
           "datatypes": [
             "timestamp"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "extractYear",
           "value": "true",
           "widget": "array",
           "title": "Extract Year",
-          "required": false
+          "description": "Extract Year",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         },
         {
           "name": "extractMonth",
           "value": "true",
           "widget": "array",
           "title": "Extract Month",
-          "required": false
+          "description": "Extract Month",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractDayOfMonth",
+          "value": "false",
+          "widget": "array",
+          "title": "Extract Day of Month",
+          "description": "Extract Day of Month",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractHour",
+          "value": "false",
+          "widget": "array",
+          "title": "Extract Hour",
+          "description": "Extract Hour",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractMinute",
+          "value": "false",
+          "widget": "array",
+          "title": "Extract Minute",
+          "description": "Extract Minute",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "extractSecond",
+          "value": "false",
+          "widget": "array",
+          "title": "Extract Second",
+          "description": "Extract Second",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         }
-
       ]
     },
     {
@@ -64,8 +147,8 @@
       "description": "This node runs the given SQL on the incoming DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.etl.NodeSQL",
-      "x": "264px",
-      "y": "38.6406px",
+      "x": "301.469px",
+      "y": "69.125px",
       "fields": [
         {
           "name": "tempTable",
@@ -73,39 +156,44 @@
           "widget": "textfield",
           "title": "Temp Table",
           "description": "Temp Table Name to be used",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "sql",
           "value": "select cast(Datetime_year as string) as Datetime_year , cast(Datetime_month as string) as Datetime_month , sum(Count) as Count  from fire_temp_table group by Datetime_year, Datetime_month",
-          "widget": "textarea_large",
+          "widget": "textarea_medium",
           "title": "SQL",
           "description": "SQL to be run",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColNames",
           "value": "[\"Datetime_year\",\"Datetime_month\",\"Count\"]",
           "widget": "schema_col_names",
-          "title": "Column Names for the CSV",
-          "description": "New Output Columns of the SQL",
-          "required": false
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColTypes",
           "value": "[\"STRING\",\"STRING\",\"LONG\"]",
           "widget": "schema_col_types",
-          "title": "Column Types for the CSV",
+          "title": "Output Column Types",
           "description": "Data Type of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColFormats",
           "value": "[\"\",\"\",\"\"]",
           "widget": "schema_col_formats",
-          "title": "Column Formats for the CSV",
+          "title": "Output Column Formats",
           "description": "Format of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -115,8 +203,8 @@
       "description": "This node runs the given SQL on the incoming DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.etl.NodeSQL",
-      "x": "509px",
-      "y": "71.6406px",
+      "x": "559.469px",
+      "y": "77.1094px",
       "fields": [
         {
           "name": "tempTable",
@@ -124,39 +212,44 @@
           "widget": "textfield",
           "title": "Temp Table",
           "description": "Temp Table Name to be used",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "sql",
           "value": "select cast(concat(Datetime_year,Datetime_month) as double)as year_month, cast(Count as double) as Count  from fire_temp_table",
-          "widget": "textarea_large",
+          "widget": "textarea_medium",
           "title": "SQL",
           "description": "SQL to be run",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColNames",
           "value": "[\"year_month\",\"Count\"]",
           "widget": "schema_col_names",
-          "title": "Column Names for the CSV",
-          "description": "New Output Columns of the SQL",
-          "required": false
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColTypes",
           "value": "[\"DOUBLE\",\"DOUBLE\"]",
           "widget": "schema_col_types",
-          "title": "Column Types for the CSV",
+          "title": "Output Column Types",
           "description": "Data Type of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColFormats",
           "value": "[\"\",\"\"]",
           "widget": "schema_col_formats",
-          "title": "Column Formats for the CSV",
+          "title": "Output Column Formats",
           "description": "Format of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -166,15 +259,17 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "355px",
-      "y": "239.656px",
+      "x": "415.484px",
+      "y": "273.141px",
       "fields": [
         {
           "name": "n",
           "value": "100",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -183,29 +278,32 @@
       "name": "GraphValues",
       "type": "transform",
       "nodeClass": "fire.nodes.graph.NodeGraphValues",
-      "x": "589px",
-      "y": "243.656px",
+      "x": "763.469px",
+      "y": "295.141px",
       "fields": [
         {
           "name": "title",
           "value": "Graph",
           "widget": "textfield",
           "title": "Title",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "xlabel",
           "value": "year_month",
           "widget": "textfield",
           "title": "X Label",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "ylabel",
           "value": "count",
           "widget": "textfield",
           "title": "Y Label",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "graphType",
@@ -218,21 +316,44 @@
             "BARCHART": "Stacked Bar Chart",
             "PIE": "Pie Chart"
           },
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "xCol",
           "value": "",
           "widget": "variable",
           "title": "X Column",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "yCols",
           "value": "[\"Count\"]",
           "widget": "variables",
           "title": "Y Columns",
-          "required": false
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "245px",
+      "y": "419.656px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<p>It demonstrate the creating of workflow to analyze(distribution of) the data.<br/><br/>Task: Sum of the counts of the passengers monthly.<br/><br/> 1. Extract the year and month fields from DateTime field of type timestamp.<br/><br/> 2. By grouping &amp; selecting only required fields calculate the sum of counts.<br/><br/> 3. Print &amp; Visualize the analysis by using GraphValues node. <br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
         }
       ]
     }
@@ -265,3 +386,4 @@
     }
   ]
 }
+                        

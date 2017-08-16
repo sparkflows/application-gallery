@@ -63,7 +63,7 @@
       "fields": [
         {
           "name": "comment",
-          "value": "<p>It demonstrate the creating ETL workflow to drop the rows with null values(in any fields).<br/></p>",
+          "value": "<h2>Drop Rows with Null</h2><p><br/></p><p>This workflows demonstrate an ETL workflow to drop the rows with null values (in any fields).<br/></p>",
           "widget": "textarea_rich",
           "title": "Comment",
           "description": "Comments for Documentation",

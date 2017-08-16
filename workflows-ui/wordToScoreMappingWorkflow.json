@@ -1,5 +1,5 @@
 {
-  "name": "wordToscoreMapping",
+  "name": "Word To Score Mapping",
   "category": "ETL",
   "description": "wordToscoreMapping",
   "nodes": [

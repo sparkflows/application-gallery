@@ -13,11 +13,12 @@
       "fields": [
         {
           "name": "dataset",
-          "value": "6fe6f5ec-5dca-453f-8f51-af33a96ebf63",
+          "value": "6fe6f5ec-5dca-453f-8f51-af31a96ebf63",
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
@@ -36,39 +37,44 @@
           "widget": "textfield",
           "title": "Temp Table",
           "description": "Temp Table Name to be used",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "sql",
           "value": "select PassengerId,  Survived , Pclass, Sex, Age  from fire_temp_table LIMIT 10",
-          "widget": "textarea_large",
+          "widget": "textarea_medium",
           "title": "SQL",
           "description": "SQL to be run",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColNames",
           "value": "[\"PassengerId\",\"Survived\",\"Pclass\",\"Sex\",\"Age\"]",
           "widget": "schema_col_names",
-          "title": "Column Names for the CSV",
-          "description": "New Output Columns of the SQL",
-          "required": false
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColTypes",
           "value": "[\"INTEGER\",\"INTEGER\",\"INTEGER\",\"STRING\",\"STRING\"]",
           "widget": "schema_col_types",
-          "title": "Column Types for the CSV",
+          "title": "Output Column Types",
           "description": "Data Type of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColFormats",
           "value": "[\"\",\"\",\"\",\"\",\"\"]",
           "widget": "schema_col_formats",
-          "title": "Column Formats for the CSV",
+          "title": "Output Column Formats",
           "description": "Format of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -87,7 +93,8 @@
           "widget": "textarea_large",
           "title": "Scala",
           "description": "Scala code to be run. Input dataframe is in \"inDF\". Output/Result dataframe should be registered as a temporary table - df.registerTempTable(\"outDF\")",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColNames",
@@ -95,7 +102,8 @@
           "widget": "schema_col_names",
           "title": "Column Names for the CSV",
           "description": "New Output Columns of the SQL",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColTypes",
@@ -103,7 +111,8 @@
           "widget": "schema_col_types",
           "title": "Column Types for the CSV",
           "description": "Data Type of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColFormats",
@@ -111,7 +120,8 @@
           "widget": "schema_col_formats",
           "title": "Column Formats for the CSV",
           "description": "Format of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     }
@@ -129,3 +139,4 @@
     }
   ]
 }
+                        

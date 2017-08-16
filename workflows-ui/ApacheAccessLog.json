@@ -9,8 +9,8 @@
       "description": "Reads in Apache Log files from a given path, parses them and loads them into a DataFrame",
       "type": "dataset",
       "nodeClass": "fire.nodes.logs.NodeApacheFileAccessLog",
-      "x": "127.984px",
-      "y": "259.984px",
+      "x": "129.461px",
+      "y": "177.469px",
       "fields": [
         {
           "name": "path",
@@ -18,7 +18,8 @@
           "widget": "textfield",
           "title": "Path",
           "description": "Full path for the directory or file for the Apache File Logs",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -28,15 +29,37 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "565.984px",
-      "y": "255.984px",
+      "x": "566.727px",
+      "y": "179.727px",
       "fields": [
         {
           "name": "n",
           "value": "3",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "383.5px",
+      "y": "406.898px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<h2>Apache Access Logs</h2><p><br/></p><p>This workflow reads in the apache access logs and prints them.</p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
         }
       ]
     }
@@ -49,4 +72,3 @@
     }
   ]
 }
-    

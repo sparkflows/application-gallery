@@ -8,8 +8,8 @@
       "name": "DatasetStructured",
       "type": "dataset",
       "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
-      "x": "139.953px",
-      "y": "256.969px",
+      "x": "77.1641px",
+      "y": "216.195px",
       "fields": [
         {
           "name": "dataset",
@@ -17,7 +17,8 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
@@ -27,15 +28,17 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "781.972px",
-      "y": "357.972px",
+      "x": "680.188px",
+      "y": "443.203px",
       "fields": [
         {
           "name": "n",
           "value": "10",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -44,37 +47,40 @@
       "name": "GraphGroupByColumn",
       "type": "transform",
       "nodeClass": "fire.nodes.graph.NodeGraphGroupByColumn",
-      "x": "448px",
-      "y": "361px",
+      "x": "335.961px",
+      "y": "399.969px",
       "fields": [
         {
           "name": "title",
           "value": "Histogram",
           "widget": "textfield",
           "title": "Title",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "xlabel",
           "value": "X axis",
           "widget": "textfield",
           "title": "X Label",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "ylabel",
           "value": "Y axis",
           "widget": "textfield",
           "title": "Y Label",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "groupByColumn",
           "value": "rating",
           "widget": "variable",
           "title": "Group By Column",
-          "optionsMap": {},
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "graphType",
@@ -87,55 +93,28 @@
             "2": "Line Chart",
             "3": "Histogram Chart"
           },
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "5",
       "name": "ALS",
-      "description": "",
+      "description": "Alternating Least Squares (ALS) matrix factorization.",
       "type": "ml-estimator",
       "nodeClass": "fire.nodes.ml.NodeALS",
-      "x": "650px",
-      "y": "34.6562px",
+      "x": "674.5px",
+      "y": "14.1406px",
       "fields": [
         {
-          "name": "alpha",
-          "value": "1.0",
-          "widget": "textfield",
-          "title": "Alpha",
-          "description": "The alpha parameter in the implicit preference formulation.(>=0)",
-          "datatypes": [
-            "double"
-          ],
-          "required": false
-        },
-        {
-          "name": "checkpointInterval",
-          "value": "10",
-          "widget": "textfield",
-          "title": "CheckpointInterval",
-          "description": "The checkpoint interval.",
-          "datatypes": [
-            "integer"
-          ],
-          "required": false
-        },
-        {
-          "name": "implicitPrefs",
-          "value": "false",
-          "widget": "array",
-          "title": "ImplicitPrefs",
-          "description": "whether to use implicit preference",
-          "datatypes": [
-            "boolean"
-          ],
-          "optionsArray": [
-            "true",
-            "false"
-          ],
-          "required": false
+          "name": "userCol",
+          "value": "user",
+          "widget": "variable",
+          "title": "User Column",
+          "description": "The column name for user ids.",
+          "required": false,
+          "display": false
         },
         {
           "name": "itemCol",
@@ -143,13 +122,26 @@
           "widget": "variable",
           "title": "Item Column",
           "description": "The column name for item ids.",
-          "optionsMap": {
-            "0": "user",
-            "1": "movie",
-            "2": "rating",
-            "3": "ts"
-          },
-          "required": false
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "ratingCol",
+          "value": "rating",
+          "widget": "variable",
+          "title": "Rating Column",
+          "description": "The column name for ratings.",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Predictor Columns",
+          "description": "The prediction column created during model scoring",
+          "required": false,
+          "display": false
         },
         {
           "name": "maxIter",
@@ -160,7 +152,44 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "regParam",
+          "value": "0.1",
+          "widget": "textfield",
+          "title": "Regularization Param",
+          "description": "The regularization parameter.(>=0)",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "alpha",
+          "value": "1.0",
+          "widget": "textfield",
+          "title": "Alpha",
+          "description": "The alpha parameter in the implicit preference formulation.(>=0)",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "checkpointInterval",
+          "value": "10",
+          "widget": "textfield",
+          "title": "CheckpointInterval",
+          "description": "The checkpoint interval.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false,
+          "display": false
         },
         {
           "name": "nonnegative",
@@ -175,7 +204,8 @@
             "true",
             "false"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "numItemBlocks",
@@ -186,7 +216,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "numUserBlocks",
@@ -197,15 +228,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
-        },
-        {
-          "name": "predictionCol",
-          "value": "",
-          "widget": "textfield",
-          "title": "Predictor Columns",
-          "description": "The prediction column created during model scoring",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "rank",
@@ -216,32 +240,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
-        },
-        {
-          "name": "ratingCol",
-          "value": "rating",
-          "widget": "variable",
-          "title": "Rating Column",
-          "description": "The column name for ratings.",
-          "optionsMap": {
-            "0": "user",
-            "1": "movie",
-            "2": "rating",
-            "3": "ts"
-          },
-          "required": false
-        },
-        {
-          "name": "regParam",
-          "value": "0.1",
-          "widget": "textfield",
-          "title": "Regularization Param",
-          "description": "The regularization parameter.(>=0)",
-          "datatypes": [
-            "double"
-          ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "seed",
@@ -252,21 +252,24 @@
           "datatypes": [
             "long"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
-          "name": "userCol",
-          "value": "user",
-          "widget": "variable",
-          "title": "User Column",
-          "description": "The column name for user ids.",
-          "optionsMap": {
-            "0": "user",
-            "1": "movie",
-            "2": "rating",
-            "3": "ts"
-          },
-          "required": false
+          "name": "implicitPrefs",
+          "value": "false",
+          "widget": "array",
+          "title": "ImplicitPrefs",
+          "description": "whether to use implicit preference",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -275,15 +278,16 @@
       "name": "Split",
       "type": "transform",
       "nodeClass": "fire.nodes.ml.NodeSplit",
-      "x": "418px",
-      "y": "145.656px",
+      "x": "385.227px",
+      "y": "124.891px",
       "fields": [
         {
           "name": "fraction1",
           "value": ".5",
           "widget": "textfield",
           "title": "Fraction 1",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -292,8 +296,8 @@
       "name": "Predict",
       "type": "ml-predict",
       "nodeClass": "fire.nodes.ml.NodePredict",
-      "x": "672px",
-      "y": "165.656px",
+      "x": "672.484px",
+      "y": "242.137px",
       "fields": []
     },
     {
@@ -302,9 +306,33 @@
       "description": "Evaluator for regression, which expects two input columns: prediction and label.",
       "type": "ml-evaluator",
       "nodeClass": "fire.nodes.ml.NodeRegressionEvaluator",
-      "x": "849px",
-      "y": "125.656px",
+      "x": "950.207px",
+      "y": "232.891px",
       "fields": [
+        {
+          "name": "labelCol",
+          "value": "rating",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "prediction",
+          "widget": "variable",
+          "title": "PredictionCol Column",
+          "description": "The prediction column.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
         {
           "name": "metricName",
           "value": "rmse",
@@ -317,41 +345,8 @@
             "r2",
             "mae"
           ],
-          "required": false
-        },
-        {
-          "name": "labelCol",
-          "value": "rating",
-          "widget": "variable",
-          "title": "Label Column",
-          "description": "The label column for model fitting.",
-          "optionsMap": {
-            "0": "user",
-            "1": "movie",
-            "2": "rating",
-            "3": "prediction"
-          },
-          "datatypes": [
-            "double"
-          ],
-          "required": false
-        },
-        {
-          "name": "predictionCol",
-          "value": "prediction",
-          "widget": "variable",
-          "title": "PredictionCol Column",
-          "description": "The prediction column.",
-          "optionsMap": {
-            "0": "user",
-            "1": "movie",
-            "2": "rating",
-            "3": "prediction"
-          },
-          "datatypes": [
-            "double"
-          ],
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     }
@@ -394,4 +389,3 @@
     }
   ]
 }
-    

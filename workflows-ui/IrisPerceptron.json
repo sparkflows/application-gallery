@@ -1,0 +1,413 @@
+{
+  "name": "IrisPerceptronNetwork",
+  "category": "-",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "CSV",
+      "description": "Dataset Node for reading CSV files",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetCSV",
+      "x": "75px",
+      "y": "40.6406px",
+      "fields": [
+        {
+          "name": "path",
+          "value": "/Users/nikhilshekhar/Desktop/iris.data.txt",
+          "widget": "textfield",
+          "title": "Path",
+          "description": "Path of the Text file/directory",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "separator",
+          "value": ",",
+          "widget": "textfield",
+          "title": "Separator",
+          "description": "CSV Separator",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "header",
+          "value": "false",
+          "widget": "array",
+          "title": "Header",
+          "description": "Does the file have a header row",
+          "datatypes": [
+            "boolean"
+          ],
+          "optionsArray": [
+            "true",
+            "false"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"C0\",\"C1\",\"C2\",\"C3\",\"C4\"]",
+          "widget": "schema_col_names",
+          "title": "Column Names for the CSV",
+          "description": "New Output Columns of the SQL",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"DOUBLE\",\"STRING\"]",
+          "widget": "schema_col_types",
+          "title": "Column Types for the CSV",
+          "description": "Data Type of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\",\"\",\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Column Formats for the CSV",
+          "description": "Format of the Output Columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "VectorAssembler",
+      "description": "Merges multiple columns into a vector column",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
+      "x": "46px",
+      "y": "265.625px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"C0\",\"C1\",\"C2\",\"C3\"]",
+          "widget": "variables",
+          "title": "Input Columns",
+          "description": "Input column of type - all numeric, boolean and vector",
+          "datatypes": [
+            "integer",
+            "long",
+            "double",
+            "float",
+            "vectorudt"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputCol",
+          "value": "features",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "StringIndexer",
+      "description": "StringIndexer encodes a string column of labels to a column of label indices",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeStringIndexer",
+      "x": "340px",
+      "y": "57.625px",
+      "fields": [
+        {
+          "name": "handleInvalid",
+          "value": "error",
+          "widget": "array",
+          "title": "Handle Invalid",
+          "description": "Invalid entries to be skipped or thrown error",
+          "optionsArray": [
+            "skip",
+            "error"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "inputCols",
+          "value": "[\"C0\",\"C1\",\"C2\",\"C3\",\"C4\",\"features\"]",
+          "widget": "variables_map",
+          "title": "Input Columns",
+          "description": "Column containing labels",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputCols",
+          "value": "[\"\",\"\",\"\",\"\",\"label\",\"\"]",
+          "widget": "variables_map_edit",
+          "title": "Output Columns",
+          "description": "Output  columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "VectorIndexer",
+      "description": "Vector Indexer indexes categorical features inside of a Vector. It decides which features are categorical and converts them to category indices. The decision is based on the number of distinct values of a feature.",
+      "type": "ml-transformer",
+      "nodeClass": "fire.nodes.ml.NodeVectorIndexer",
+      "x": "516px",
+      "y": "196.641px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "features",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "The Input column name",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputCol",
+          "value": "indexedFeatures",
+          "widget": "textfield",
+          "title": "Output Column",
+          "description": "Output column name",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "maxCategories",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Maximum Categories",
+          "description": "Threshold for the number of values a categorical feature can take. If a feature is found to have > maxCategories values, then it is declared continuous. Must be >= 2",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Split",
+      "type": "transform",
+      "nodeClass": "fire.nodes.ml.NodeSplit",
+      "x": "791px",
+      "y": "161.641px",
+      "fields": [
+        {
+          "name": "fraction1",
+          "value": ".7",
+          "widget": "textfield",
+          "title": "Fraction 1",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "MultiLayerPerceptron",
+      "description": "It supports creation of full connected neural network.",
+      "type": "ml-estimator",
+      "nodeClass": "fire.nodes.ml.NodeMultilayerPerceptron",
+      "x": "1059px",
+      "y": "31.625px",
+      "fields": [
+        {
+          "name": "featuresCol",
+          "value": "indexedFeatures",
+          "widget": "variable",
+          "title": "Features Column",
+          "description": "Features column of type vectorUDT for model fitting",
+          "datatypes": [
+            "vectorudt"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "labelCol",
+          "value": "label",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Predictor Columns",
+          "description": "The prediction column created during model scoring.",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "layers",
+          "value": "4,5,5,3",
+          "widget": "textfield",
+          "title": "Layers - comma separated list of integers",
+          "description": "The integer array specifying the number of activation units in each layer",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "maxIter",
+          "value": "100",
+          "widget": "textfield",
+          "title": "Max number of iterations",
+          "description": "Number of iterations to train the Neural network",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "blockSize",
+          "value": "128",
+          "widget": "textfield",
+          "title": "Block Size",
+          "description": "Block size",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "seed",
+          "value": "123",
+          "widget": "textfield",
+          "title": "Seed",
+          "description": "The initial seed to initialise the neural network.",
+          "datatypes": [
+            "integer"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Predict",
+      "type": "ml-predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "1120px",
+      "y": "236.641px",
+      "fields": []
+    },
+    {
+      "id": "11",
+      "name": "MulticlassClassificationEvaluator",
+      "description": "Evaluator for multiclass classification, which expects two input columns: score and label.",
+      "type": "ml-evaluator",
+      "nodeClass": "fire.nodes.ml.NodeMulticlassClassificationEvaluator",
+      "x": "1046px",
+      "y": "474.641px",
+      "fields": [
+        {
+          "name": "labelCol",
+          "value": "label",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "prediction",
+          "widget": "variable",
+          "title": "PredictionCol Column",
+          "description": "The prediction column.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "metricName",
+          "value": "f1",
+          "widget": "array",
+          "title": "Metric Name",
+          "description": "The metric used in evaluation.",
+          "optionsArray": [
+            "f1",
+            "precision",
+            "recall",
+            "weightedPrecision",
+            "weightedRecall"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "3",
+      "target": "5",
+      "id": 2
+    },
+    {
+      "source": "5",
+      "target": "7",
+      "id": 4
+    },
+    {
+      "source": "7",
+      "target": "8",
+      "id": 5
+    },
+    {
+      "source": "8",
+      "target": "9",
+      "id": 6
+    },
+    {
+      "source": "8",
+      "target": "10",
+      "id": 7
+    },
+    {
+      "source": "9",
+      "target": "10",
+      "id": 8
+    },
+    {
+      "source": "10",
+      "target": "11",
+      "id": 9
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-    {
+{
   "name": "Car acceleration",
   "category": "Machine Learning",
   "description": "Predict how acceleration depends on car engine dynamics",
@@ -8,8 +8,8 @@
       "name": "DatasetStructured",
       "type": "dataset",
       "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
-      "x": "103.5px",
-      "y": "44.6406px",
+      "x": "28.9961px",
+      "y": "33.125px",
       "fields": [
         {
           "name": "dataset",
@@ -17,17 +17,19 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
     {
       "id": "2",
       "name": "VectorAssembler",
+      "description": "Merges multiple columns into a vector column",
       "type": "ml-transformer",
       "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
-      "x": "82.5px",
-      "y": "301.641px",
+      "x": "88.7188px",
+      "y": "283.867px",
       "fields": [
         {
           "name": "inputCols",
@@ -42,7 +44,8 @@
             "float",
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCol",
@@ -50,7 +53,8 @@
           "widget": "textfield",
           "title": "Output Column",
           "description": "Output column name",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -60,8 +64,8 @@
       "description": "Vector Indexer indexes categorical features inside of a Vector. It decides which features are categorical and converts them to category indices. The decision is based on the number of distinct values of a feature.",
       "type": "ml-transformer",
       "nodeClass": "fire.nodes.ml.NodeVectorIndexer",
-      "x": "352.5px",
-      "y": "49.625px",
+      "x": "247.996px",
+      "y": "51.0938px",
       "fields": [
         {
           "name": "inputCol",
@@ -72,7 +76,8 @@
           "datatypes": [
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCol",
@@ -83,7 +88,8 @@
           "datatypes": [
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxCategories",
@@ -94,7 +100,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -103,15 +110,16 @@
       "name": "Split",
       "type": "transform",
       "nodeClass": "fire.nodes.ml.NodeSplit",
-      "x": "740.5px",
-      "y": "297.641px",
+      "x": "413.188px",
+      "y": "238.344px",
       "fields": [
         {
           "name": "fraction1",
           "value": ".7",
           "widget": "textfield",
           "title": "Fraction 1",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -121,8 +129,8 @@
       "description": "",
       "type": "ml-estimator",
       "nodeClass": "fire.nodes.ml.NodeLinearRegression",
-      "x": "396.5px",
-      "y": "304.641px",
+      "x": "720.203px",
+      "y": "135.344px",
       "fields": [
         {
           "name": "featuresCol",
@@ -133,7 +141,8 @@
           "datatypes": [
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "labelCol",
@@ -144,15 +153,17 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "predictionCol",
           "value": "",
           "widget": "textfield",
-          "title": "Prediction Columns",
+          "title": "Prediction Column",
           "description": "The prediction column created during model scoring",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "fitIntercept",
@@ -167,7 +178,8 @@
             "true",
             "false"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxIter",
@@ -178,7 +190,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "regParam",
@@ -189,7 +202,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "elasticNetParam",
@@ -200,11 +214,12 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "solver",
-          "value": "auto",
+          "value": "l-bfgs",
           "widget": "array",
           "title": "Solver",
           "description": "The solver algorithm for optimization",
@@ -213,7 +228,8 @@
             "l-bfgs",
             "normal"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "standardization",
@@ -228,7 +244,8 @@
             "true",
             "false"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "tol",
@@ -239,7 +256,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "weightCol",
@@ -247,7 +265,43 @@
           "widget": "textfield",
           "title": "Weight Column",
           "description": "If the 'weight column' is not specified, all instances are treated equally with a weight 1.0",
-          "required": false
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "gridSearch",
+          "value": "",
+          "widget": "tab",
+          "title": "Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "regParamGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Regularization Param Grid Search",
+          "description": "Regularization Parameters for Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "elasticNetGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "ElasticNet Param Grid Search",
+          "description": "ElasticNet Parameters for Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "maxIterGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "MaxIter Param Grid Search",
+          "description": "Maximum iteration Parameters for Grid Search",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -256,8 +310,8 @@
       "name": "Predict",
       "type": "ml-predict",
       "nodeClass": "fire.nodes.ml.NodePredict",
-      "x": "499.5px",
-      "y": "524.641px",
+      "x": "680.688px",
+      "y": "288.844px",
       "fields": []
     },
     {
@@ -266,8 +320,8 @@
       "description": "Evaluator for regression, which expects two input columns: prediction and label.",
       "type": "ml-evaluator",
       "nodeClass": "fire.nodes.ml.NodeRegressionEvaluator",
-      "x": "122.5px",
-      "y": "679.641px",
+      "x": "439.719px",
+      "y": "534.859px",
       "fields": [
         {
           "name": "labelCol",
@@ -278,7 +332,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "predictionCol",
@@ -289,7 +344,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "metricName",
@@ -303,7 +359,8 @@
             "r2",
             "mae"
           ],
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -313,15 +370,17 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "762.5px",
-      "y": "650.641px",
+      "x": "761.719px",
+      "y": "466.859px",
       "fields": [
         {
           "name": "n",
           "value": "10",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -331,8 +390,8 @@
       "description": "StringIndexer encodes a string column of labels to a column of label indices",
       "type": "ml-transformer",
       "nodeClass": "fire.nodes.ml.NodeStringIndexer",
-      "x": "696.5px",
-      "y": "46.6562px",
+      "x": "551.199px",
+      "y": "53.375px",
       "fields": [
         {
           "name": "handleInvalid",
@@ -344,7 +403,8 @@
             "skip",
             "error"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "inputCols",
@@ -352,7 +412,8 @@
           "widget": "variables_map",
           "title": "Input Columns",
           "description": "Column containing labels",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCols",
@@ -360,7 +421,8 @@
           "widget": "variables_map_edit",
           "title": "Output Columns",
           "description": "Output  columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     }
@@ -399,13 +461,17 @@
     {
       "source": "10",
       "target": "5",
-      "id": 8
+      "id": 7
     },
     {
       "source": "3",
       "target": "10",
+      "id": 8
+    },
+    {
+      "source": "5",
+      "target": "7",
       "id": 9
     }
   ]
 }
-    

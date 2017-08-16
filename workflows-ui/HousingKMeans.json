@@ -1,5 +1,5 @@
 {
-  "name": "HousingKmeans",
+  "name": "Housing Kmeans Clustering",
   "category": "Machine Learning",
   "description": "KMeans clustering on housing dataset",
   "nodes": [
@@ -17,7 +17,8 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
@@ -27,15 +28,17 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "512.969px",
-      "y": "245.969px",
+      "x": "549.453px",
+      "y": "244.449px",
       "fields": [
         {
           "name": "n",
           "value": "10",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -45,8 +48,8 @@
       "description": "Merges multiple columns into a vector column",
       "type": "ml-transformer",
       "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
-      "x": "293px",
-      "y": "114px",
+      "x": "256.48px",
+      "y": "36.4688px",
       "fields": [
         {
           "name": "inputCols",
@@ -61,7 +64,8 @@
             "float",
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCol",
@@ -69,7 +73,8 @@
           "widget": "textfield",
           "title": "Output Column",
           "description": "Output column name",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -79,8 +84,8 @@
       "description": "K-means clustering with support for k-means|| initialization proposed by Bahmani et al",
       "type": "ml-estimator",
       "nodeClass": "fire.nodes.ml.NodeKMeans",
-      "x": "586px",
-      "y": "33.6563px",
+      "x": "561.246px",
+      "y": "38.9023px",
       "fields": [
         {
           "name": "featuresCol",
@@ -91,7 +96,8 @@
           "datatypes": [
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "k",
@@ -102,7 +108,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxIter",
@@ -113,15 +120,17 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "predictionCol",
-          "value": "price",
-          "widget": "variable",
+          "value": "",
+          "widget": "textfield",
           "title": "Prediction Column",
           "description": "The prediction column created during model scoring.",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "seed",
@@ -132,7 +141,8 @@
           "datatypes": [
             "long"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "tol",
@@ -143,7 +153,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "initMode",
@@ -155,7 +166,8 @@
             "k-means||",
             "random"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "initSteps",
@@ -166,7 +178,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -176,8 +189,8 @@
       "description": "This node runs the given SQL on the incoming DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.etl.NodeSQL",
-      "x": "199.5px",
-      "y": "402.656px",
+      "x": "243.742px",
+      "y": "444.887px",
       "fields": [
         {
           "name": "tempTable",
@@ -185,39 +198,44 @@
           "widget": "textfield",
           "title": "Temp Table",
           "description": "Temp Table Name to be used",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "sql",
           "value": "select avg(price) as avgPrice, avg(lotsize) as avgLotSize, bedrooms from fire_temp_table group by bedrooms order by bedrooms asc",
-          "widget": "textarea_large",
+          "widget": "textarea_medium",
           "title": "SQL",
           "description": "SQL to be run",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColNames",
           "value": "[\"avgPrice\",\"avgLotSize\",\"bedrooms\"]",
           "widget": "schema_col_names",
-          "title": "Column Names for the CSV",
-          "description": "New Output Columns of the SQL",
-          "required": false
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColTypes",
           "value": "[\"DOUBLE\",\"DOUBLE\",\"INTEGER\"]",
           "widget": "schema_col_types",
-          "title": "Column Types for the CSV",
+          "title": "Output Column Types",
           "description": "Data Type of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputColFormats",
           "value": "[\"\",\"\",\"\"]",
           "widget": "schema_col_formats",
-          "title": "Column Formats for the CSV",
+          "title": "Output Column Formats",
           "description": "Format of the Output Columns",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -226,29 +244,32 @@
       "name": "GraphValues",
       "type": "transform",
       "nodeClass": "fire.nodes.graph.NodeGraphValues",
-      "x": "381.5px",
-      "y": "539.656px",
+      "x": "569.227px",
+      "y": "443.395px",
       "fields": [
         {
           "name": "title",
           "value": "Graph",
           "widget": "textfield",
           "title": "Title",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "xlabel",
           "value": "X axis",
           "widget": "textfield",
           "title": "X Label",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "ylabel",
           "value": "Y axis",
           "widget": "textfield",
           "title": "Y Label",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "graphType",
@@ -261,21 +282,53 @@
             "BARCHART": "Stacked Bar Chart",
             "PIE": "Pie Chart"
           },
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "xCol",
           "value": "bedrooms",
           "widget": "variable",
           "title": "X Column",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "yCols",
           "value": "[\"avgPrice\",\"avgLotSize\"]",
           "widget": "variables",
           "title": "Y Columns",
-          "required": false
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Predict",
+      "type": "ml-predict",
+      "nodeClass": "fire.nodes.ml.NodePredict",
+      "x": "806.223px",
+      "y": "38.3008px",
+      "fields": []
+    },
+    {
+      "id": "17",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "1062.48px",
+      "y": "43.5352px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     }
@@ -305,6 +358,16 @@
       "source": "14",
       "target": "15",
       "id": 5
+    },
+    {
+      "source": "6",
+      "target": "16",
+      "id": 6
+    },
+    {
+      "source": "16",
+      "target": "17",
+      "id": 7
     }
   ]
 }

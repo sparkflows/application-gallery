@@ -1,5 +1,5 @@
 {
-  "name": "kmeans",
+  "name": "KMeans Clustering",
   "category": "Machine Learning",
   "description": "KMeans",
   "nodes": [
@@ -116,7 +116,7 @@
         },
         {
           "name": "predictionCol",
-          "widget": "variable",
+          "widget": "textfield",
           "title": "Prediction Column",
           "description": "The prediction column created during model scoring.",
           "required": false

@@ -9,12 +9,12 @@
       "description": "Dataset Node for CSV",
       "type": "dataset",
       "nodeClass": "fire.nodes.dataset.NodeDatasetCSV",
-      "x": "105px",
-      "y": "271.641px",
+      "x": "105.75px",
+      "y": "196.391px",
       "fields": [
         {
           "name": "path",
-          "value": "\\mockaroo\\YearSample.csv",
+          "value": "data/YearSample.csv",
           "widget": "textfield",
           "title": "Path",
           "description": "Path of the Text file/directory",
@@ -57,7 +57,7 @@
         },
         {
           "name": "outputColTypes",
-          "value": "[\"INTEGER\",\"DATE\",\"DATE\"]",
+          "value": "[\"INTEGER\",\"STRING\",\"STRING\"]",
           "widget": "schema_col_types",
           "title": "Column Types for the CSV",
           "description": "Data Type of the Output Columns",
@@ -81,8 +81,8 @@
       "description": "This node Finds the distribution of months from Date values",
       "type": "transform",
       "nodeClass": "fire.nodes.graph.NodeMonthDistribution",
-      "x": "509px",
-      "y": "117.656px",
+      "x": "448.734px",
+      "y": "32.3867px",
       "fields": [
         {
           "name": "graphType",
@@ -120,8 +120,8 @@
       "description": "This node Finds the distribution of Week Days from Date values",
       "type": "transform",
       "nodeClass": "fire.nodes.graph.NodeWeekDayDistribution",
-      "x": "492px",
-      "y": "272.641px",
+      "x": "445.477px",
+      "y": "185.125px",
       "fields": [
         {
           "name": "graphType",
@@ -159,8 +159,8 @@
       "description": "This node Finds the distribution of Years from Date values",
       "type": "transform",
       "nodeClass": "fire.nodes.graph.NodeYearDistribution",
-      "x": "408px",
-      "y": "453.641px",
+      "x": "473.738px",
+      "y": "364.383px",
       "fields": [
         {
           "name": "graphType",

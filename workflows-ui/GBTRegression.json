@@ -17,16 +17,16 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "optionsMap": {
-          },
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
     {
       "id": "2",
       "name": "VectorAssembler",
-      "type": "transform",
+      "description": "Merges multiple columns into a vector column",
+      "type": "ml-transformer",
       "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
       "x": "151px",
       "y": "97.6563px",
@@ -37,7 +37,6 @@
           "widget": "variables",
           "title": "Input Columns",
           "description": "Input column of type - all numeric, boolean and vector",
-          "optionsMap": {},
           "datatypes": [
             "integer",
             "long",
@@ -45,7 +44,8 @@
             "float",
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCol",
@@ -53,15 +53,16 @@
           "widget": "textfield",
           "title": "Output Column",
           "description": "Output column name",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "3",
-      "name": "NodeGBTRegression",
+      "name": "GBTRegression",
       "description": "It supports both continuous and categorical features.",
-      "type": "ml",
+      "type": "ml-estimator",
       "nodeClass": "fire.nodes.ml.NodeGBTRegression",
       "x": "256px",
       "y": "340.656px",
@@ -72,13 +73,32 @@
           "widget": "variable",
           "title": "Features Column",
           "description": "Features column of type vectorUDT for model fitting",
-          "optionsMap": {
-            "0": "feature_vector"
-          },
           "datatypes": [
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "labelCol",
+          "value": "c4",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Predictor Columns",
+          "description": "The prediction column created during model scoring.",
+          "required": false,
+          "display": false
         },
         {
           "name": "impurity",
@@ -89,24 +109,8 @@
           "optionsArray": [
             "variance"
           ],
-          "required": false
-        },
-        {
-          "name": "labelCol",
-          "value": "c4",
-          "widget": "variable",
-          "title": "Label Column",
-          "description": "The label column for model fitting",
-          "optionsMap": {
-            "0": "c1",
-            "1": "c2",
-            "2": "c3",
-            "3": "c4"
-          },
-          "datatypes": [
-            "double"
-          ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "lossType",
@@ -118,7 +122,8 @@
             "squared",
             "absolute"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxBins",
@@ -129,7 +134,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxDepth",
@@ -140,7 +146,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxIter",
@@ -151,7 +158,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "minInfoGain",
@@ -162,7 +170,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "minInstancesPerNode",
@@ -173,15 +182,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
-        },
-        {
-          "name": "predictionCol",
-          "value": "",
-          "widget": "textfield",
-          "title": "Predictor Columns",
-          "description": "The prediction column created during model scoring.",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "subsamplingRate",
@@ -192,7 +194,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "seed",
@@ -203,7 +206,8 @@
           "datatypes": [
             "long"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "stepSize",
@@ -214,7 +218,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "cacheNodeIds",
@@ -229,7 +234,8 @@
             "false",
             "true"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "checkpointInterval",
@@ -240,7 +246,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxMemoryInMB",
@@ -251,7 +258,52 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "gridSearch",
+          "value": "",
+          "widget": "tab",
+          "title": "Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "minInfoGainGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Min Info Gain Grid Search",
+          "description": "Min Info Gain Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "maxBinsGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Max Bins Grid Search",
+          "description": "Max Bins for Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "maxDepthGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Max Depth Grid Search",
+          "description": "Regularization Parameters for Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "maxIterGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Max Iterations Grid Search",
+          "description": "Max Iterations for Grid Search",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -268,18 +320,69 @@
           "value": ".5",
           "widget": "textfield",
           "title": "Fraction 1",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "5",
       "name": "Predict",
-      "type": "predict",
+      "type": "ml-predict",
       "nodeClass": "fire.nodes.ml.NodePredict",
-      "x": "480px",
-      "y": "479.656px",
+      "x": "541px",
+      "y": "327.641px",
       "fields": []
+    },
+    {
+      "id": "6",
+      "name": "RegressionEvaluator",
+      "description": "Evaluator for regression, which expects two input columns: prediction and label.",
+      "type": "ml-evaluator",
+      "nodeClass": "fire.nodes.ml.NodeRegressionEvaluator",
+      "x": "470px",
+      "y": "503px",
+      "fields": [
+        {
+          "name": "labelCol",
+          "value": "c4",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "prediction",
+          "widget": "variable",
+          "title": "PredictionCol Column",
+          "description": "The prediction column.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "metricName",
+          "value": "rmse",
+          "widget": "array",
+          "title": "Metric Name",
+          "description": "The metric used in evaluation.",
+          "optionsArray": [
+            "rmse",
+            "mse",
+            "r2",
+            "mae"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
     }
   ],
   "edges": [
@@ -307,6 +410,11 @@
       "source": "4",
       "target": "5",
       "id": 5
+    },
+    {
+      "source": "5",
+      "target": "6",
+      "id": 6
     }
   ]
 }

@@ -1,0 +1,332 @@
+{
+  "name": "Kafka Streaming - Flights Delay",
+  "category": "Streaming",
+  "description": "Kafka Streaming",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Streaming Kafka",
+      "description": "Reads in streaming text from topics in Kafka",
+      "type": "sparkstreaming",
+      "nodeClass": "fire.nodes.streaming.NodeStreamingKafka",
+      "x": "63.2109px",
+      "y": "51.3594px",
+      "fields": [
+        {
+          "name": "batchDuration",
+          "value": "30",
+          "widget": "textfield",
+          "title": "Batch Duration in Seconds",
+          "description": "Batch Duration in Seconds",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "brokers",
+          "value": "localhost:9092",
+          "widget": "textfield",
+          "title": "Kafka Brokers",
+          "description": "Kafka Brokers",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "group",
+          "value": "21",
+          "widget": "textfield",
+          "title": "Consumer Group",
+          "description": "Consumer Group",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "topics",
+          "value": "flights",
+          "widget": "textfield",
+          "title": "Kafka Topics",
+          "description": "List of Topics separated by , (comma)",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "numThreads",
+          "value": "1",
+          "widget": "textfield",
+          "title": "Number of Threads",
+          "description": "Number of Threads",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "783.199px",
+      "y": "262.328px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "10",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "377.082px",
+      "y": "435.055px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<h2>Kafka Streaming Workflow</h2><p><br/></p><p>This workflow reads in events from the Kafka topic '<b>flights</b>'</p><ul><li>The Mini Batch Duration for spark streaming is 30 seconds</li><li>​It finds the total number of flights Originating from an airport and being delayed by greater than certain duration.</li><li>It plots that data in a graph with the airport code being on the X-axis.</li></ul><div><br/></div><h3>Start Kafka and create Topic 'bike-sharing'</h3><p><br/></p><ul><li>​The quick start guide of Kafka is at : <b>https://kafka.apache.org/quickstart</b></li><li>The steps for Kafka are:</li><ul><li>Download Kafka</li><li>Start the server</li><ul><li><b>bin/zookeeper-server-start.sh config/zookeeper.properties</b></li><li><b>bin/kafka-server-start.sh config/server.properties</b></li></ul><li>Create the topic '<b>bike-sharing</b>'</li><ul><li><b>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic flights</b></li></ul></ul></ul><h3>Send the data file 'flights_data.csv' to the Kafka Topic</h3><p><br/></p><ul><li><b>flights_data.csv</b> is in the data directory of the Fire Install</li><li><b>cat flights_data.csv | b</b><b>in/kafka-console-producer.sh --broker-list localhost:9092 --topic flights</b></li></ul><div><b><br/></b></div><h3><b>Run the workflows on the Spark Cluster</b></h3><div><b><br/></b></div><div><ul><li><b>This would start a spark streaming job on the Spark Cluster</b></li><li><b>You can keep pushing the data file to the Kafka topic for processing</b></li></ul><div><b><br/></b></div></div><p><br/></p><p><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "FieldSplitter",
+      "description": "This node splits the string at specified delimiter",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeFieldSplitter",
+      "x": "71.1181px",
+      "y": "267.396px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "line",
+          "widget": "variable",
+          "title": "Input Column",
+          "description": "input column name",
+          "datatypes": [
+            "string"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputCols",
+          "value": "DAY_OF_MONTH,DAY_OF_WEEK,CARRIER,TAIL_NUM,FL_NUM,ORIGIN_AIRPORT_ID,ORIGIN,DEST_AIRPORT_ID,DEST,CRS_DEP_TIME,DEP_TIME,DEP_DELAY_NEW,CRS_ARR_TIME,ARR_TIME,ARR_DELAY_NEW,CRS_ELAPSED_TIME,DISTANCE",
+          "widget": "textfield",
+          "title": "Column Names",
+          "description": "new column names separed by comma','.(eg: col1,co2,col3)",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "sep",
+          "value": ",",
+          "widget": "textfield",
+          "title": "Separator",
+          "description": "separator to split the input column value(default: space)",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "464.184px",
+      "y": "53.6094px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "sql",
+          "value": "select ORIGIN, count(*) cnt  FROM fire_temp_table where ARR_DELAY_NEW > 5 group by ORIGIN",
+          "widget": "textarea_medium",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"ORIGIN\",\"cnt\"]",
+          "widget": "schema_col_names",
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"STRING\",\"LONG\"]",
+          "widget": "schema_col_types",
+          "title": "Output Column Types",
+          "description": "Data Type of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Output Column Formats",
+          "description": "Format of the Output Columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "GraphValues",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeGraphValues",
+      "x": "775.441px",
+      "y": "52.8906px",
+      "fields": [
+        {
+          "name": "title",
+          "value": "Graph",
+          "widget": "textfield",
+          "title": "Title",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "xlabel",
+          "value": "X axis",
+          "widget": "textfield",
+          "title": "X Label",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "ylabel",
+          "value": "Y axis",
+          "widget": "textfield",
+          "title": "Y Label",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "graphType",
+          "value": "COLUMNCHART",
+          "widget": "enum",
+          "title": "Chart Type",
+          "optionsMap": {
+            "LINECHART": "Line Chart",
+            "COLUMNCHART": "Side by Side Bar Chart",
+            "BARCHART": "Stacked Bar Chart",
+            "PIE": "Pie Chart"
+          },
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "xCol",
+          "value": "ORIGIN",
+          "widget": "variable",
+          "title": "X Column",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "yCols",
+          "value": "[\"cnt\"]",
+          "widget": "variables",
+          "title": "Y Columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "CastColumnType",
+      "description": "This node creates a new DataFrame by casting input columns with a new data type",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "416.723px",
+      "y": "273.133px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"ARR_DELAY_NEW\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be cast to new data type",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColType",
+          "value": "INTEGER",
+          "widget": "array",
+          "title": "New Data Type",
+          "description": "New data type(INTEGER, DOUBLE, STRING, LONG, SHORT)",
+          "optionsArray": [
+            "BOOLEAN",
+            "BYTE",
+            "DATE",
+            "DOUBLE",
+            "FLOAT",
+            "INTEGER",
+            "LONG",
+            "SHORT",
+            "STRING",
+            "TIMESTAMP"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "4",
+      "id": 1
+    },
+    {
+      "source": "6",
+      "target": "7",
+      "id": 2
+    },
+    {
+      "source": "7",
+      "target": "2",
+      "id": 3
+    },
+    {
+      "source": "4",
+      "target": "8",
+      "id": 4
+    },
+    {
+      "source": "8",
+      "target": "6",
+      "id": 5
+    }
+  ]
+}

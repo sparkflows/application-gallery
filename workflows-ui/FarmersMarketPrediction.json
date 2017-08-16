@@ -1,3 +1,4 @@
+
 {
   "name": "Farmer_markets_Prediction",
   "category": "Machine Learning",
@@ -399,7 +400,7 @@
           "name": "predictionCol",
           "value": "",
           "widget": "textfield",
-          "title": "Prediction Columns",
+          "title": "Prediction Column",
           "description": "The prediction column created during model scoring",
           "required": false,
           "display": false
@@ -559,8 +560,8 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "962.465px",
-      "y": "550.125px",
+      "x": "688.453px",
+      "y": "417.125px",
       "fields": [
         {
           "name": "n",
@@ -568,6 +569,56 @@
           "widget": "textfield",
           "title": "Num Rows to Print",
           "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "name": "RegressionEvaluator",
+      "description": "Evaluator for regression, which expects two input columns: prediction and label.",
+      "type": "ml-evaluator",
+      "nodeClass": "fire.nodes.ml.NodeRegressionEvaluator",
+      "x": "919px",
+      "y": "579px",
+      "fields": [
+        {
+          "name": "labelCol",
+          "value": "count",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "prediction",
+          "widget": "variable",
+          "title": "PredictionCol Column",
+          "description": "The prediction column.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "metricName",
+          "value": "rmse",
+          "widget": "array",
+          "title": "Metric Name",
+          "description": "The metric used in evaluation.",
+          "optionsArray": [
+            "rmse",
+            "mse",
+            "r2",
+            "mae"
+          ],
           "required": false,
           "display": false
         }
@@ -639,6 +690,11 @@
       "source": "16",
       "target": "17",
       "id": 13
+    },
+    {
+      "source": "16",
+      "target": "18",
+      "id": 14
     }
   ]
 }

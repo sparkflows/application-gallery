@@ -1,0 +1,209 @@
+{
+  "name": "Titanic Data Wrangling",
+  "category": "Data Wrangling",
+  "description": "Data Wrangling on Titanic Dataset",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "63.9531px",
+      "y": "57.8594px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "6fe6f5ec-5dca-453f-8f51-af31a96ebf63",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "DropRowsWithNull",
+      "description": "This node creates a new DataFrame by dropping rows containing null values",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeDropRowsWithNull",
+      "x": "346.949px",
+      "y": "112.867px",
+      "fields": []
+    },
+    {
+      "id": "4",
+      "name": "FilterByStringLength",
+      "description": "This node filters the Rows within the given string length",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeFilterByStringLength",
+      "x": "311.945px",
+      "y": "353.887px",
+      "fields": [
+        {
+          "name": "inputCol",
+          "value": "Age",
+          "widget": "variable",
+          "title": "Input Column Name",
+          "description": "input column name",
+          "required": true,
+          "display": false
+        },
+        {
+          "name": "minLength",
+          "value": "1",
+          "widget": "textfield",
+          "title": "Minimum length",
+          "description": "Minimum length of String",
+          "datatypes": [
+            "int"
+          ],
+          "required": true,
+          "display": false
+        },
+        {
+          "name": "maxLength",
+          "value": "99999",
+          "widget": "textfield",
+          "title": "Maximum length",
+          "description": "Maximum length of String",
+          "datatypes": [
+            "int"
+          ],
+          "required": true,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "RowFilter",
+      "description": "This node creates a new DataFrame containing only rows satisfying given condition",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeRowFilter",
+      "x": "864.203px",
+      "y": "244.137px",
+      "fields": [
+        {
+          "name": "conditionExpr",
+          "value": "Age > 30 and Sex = 'female'",
+          "widget": "textfield",
+          "title": "Conditional Expression",
+          "description": "The filtering condition. Rows not satisfying given condition will be excluded from output DataFrame",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "CastColumnType",
+      "description": "This node creates a new DataFrame by casting input columns with a new data type",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeCastColumnType",
+      "x": "642.207px",
+      "y": "368.125px",
+      "fields": [
+        {
+          "name": "inputCols",
+          "value": "[\"Age\"]",
+          "widget": "variables",
+          "title": "Columns",
+          "description": "Columns to be cast to new data type",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColType",
+          "value": "INTEGER",
+          "widget": "array",
+          "title": "New Data Type",
+          "description": "New data type(INTEGER, DOUBLE, STRING, LONG, SHORT)",
+          "optionsArray": [
+            "BOOLEAN",
+            "BYTE",
+            "DATE",
+            "DOUBLE",
+            "FLOAT",
+            "INTEGER",
+            "LONG",
+            "SHORT",
+            "STRING",
+            "TIMESTAMP"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "818.738px",
+      "y": "63.6602px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "100",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Documentation",
+      "description": "Allows documentation of the workflows",
+      "type": "doc",
+      "nodeClass": "fire.nodes.doc.NodeDocLarge",
+      "x": "446.988px",
+      "y": "524.898px",
+      "fields": [
+        {
+          "name": "comment",
+          "value": "<h2>​Data Wrangling of Titanic Dataset</h2><p><br/></p><h3>​This workflow shows how to wrangle the Titanic Dataset with Sparkflows.</h3><p><br/></p><h3>​This workflow performs the following steps:</h3><p><br/></p><ul><li>​Reads in the Titanic dataset</li><li>Drops Rows containing Null values</li><li>Filters the Rows for whom Age has not been specified</li><li>Changes the data type of the Age column to int</li><li>Filters rows for persons of age &gt; 30 and who are female</li></ul><p><br/></p><p><br/></p>",
+          "widget": "textarea_rich",
+          "title": "Comment",
+          "description": "Comments for Documentation",
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "id": 1
+    },
+    {
+      "source": "4",
+      "target": "6",
+      "id": 2
+    },
+    {
+      "source": "6",
+      "target": "5",
+      "id": 3
+    },
+    {
+      "source": "2",
+      "target": "4",
+      "id": 4
+    },
+    {
+      "source": "5",
+      "target": "7",
+      "id": 5
+    }
+  ]
+}
+                        

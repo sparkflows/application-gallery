@@ -1,0 +1,329 @@
+{
+  "name": "Geo Graph",
+  "category": "Analytics",
+  "description": "-",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "DatasetStructured",
+      "type": "dataset",
+      "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
+      "x": "113.5px",
+      "y": "97.8984px",
+      "fields": [
+        {
+          "name": "dataset",
+          "value": "9c96f8d9-44b9-4fe8-be58-35ba65953773",
+          "widget": "dataset",
+          "title": "Dataset",
+          "description": "Selected Dataset",
+          "required": false,
+          "display": true
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "RegionGeoGraph",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeRegionGeoGraph",
+      "x": "685.973px",
+      "y": "318.387px",
+      "fields": [
+        {
+          "name": "title",
+          "value": "State Map",
+          "widget": "textfield",
+          "title": "Title",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "col1",
+          "value": "State",
+          "widget": "variable",
+          "title": "Column 1",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "col2",
+          "value": "count",
+          "widget": "variable",
+          "title": "Column 2",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "displayMode",
+          "value": "markers",
+          "widget": "enum",
+          "title": "Display Mode",
+          "optionsMap": {
+            "regions": "regions",
+            "markers": "markers"
+          },
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "resolution",
+          "value": "provinces",
+          "widget": "enum",
+          "title": "Resolution",
+          "optionsMap": {
+            "countries": "countries",
+            "provinces": "provinces"
+          },
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "region",
+          "value": "US",
+          "widget": "array",
+          "title": "Region",
+          "description": "Region of the world to display",
+          "optionsArray": [
+            "world",
+            "US",
+            "IN"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "425.98px",
+      "y": "95.3906px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "sql",
+          "value": "select State, count(*) count from fire_temp_table group by State limit 10",
+          "widget": "textarea_medium",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"State\",\"count\"]",
+          "widget": "schema_col_names",
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"STRING\",\"LONG\"]",
+          "widget": "schema_col_types",
+          "title": "Output Column Types",
+          "description": "Data Type of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Output Column Formats",
+          "description": "Format of the Output Columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
+      "x": "678.231px",
+      "y": "103.641px",
+      "fields": [
+        {
+          "name": "n",
+          "value": "100",
+          "widget": "textfield",
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "SQL",
+      "description": "This node runs the given SQL on the incoming DataFrame",
+      "type": "transform",
+      "nodeClass": "fire.nodes.etl.NodeSQL",
+      "x": "114.227px",
+      "y": "304.637px",
+      "fields": [
+        {
+          "name": "tempTable",
+          "value": "fire_temp_table",
+          "widget": "textfield",
+          "title": "Temp Table",
+          "description": "Temp Table Name to be used",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "sql",
+          "value": "select city, count(*) count from fire_temp_table group by city limit 10",
+          "widget": "textarea_medium",
+          "title": "SQL",
+          "description": "SQL to be run",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColNames",
+          "value": "[\"city\",\"count\"]",
+          "widget": "schema_col_names",
+          "title": "Output Column Names",
+          "description": "Name of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColTypes",
+          "value": "[\"STRING\",\"LONG\"]",
+          "widget": "schema_col_types",
+          "title": "Output Column Types",
+          "description": "Data Type of the Output Columns",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "outputColFormats",
+          "value": "[\"\",\"\"]",
+          "widget": "schema_col_formats",
+          "title": "Output Column Formats",
+          "description": "Format of the Output Columns",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "RegionGeoGraph",
+      "type": "transform",
+      "nodeClass": "fire.nodes.graph.NodeRegionGeoGraph",
+      "x": "389.227px",
+      "y": "316.637px",
+      "fields": [
+        {
+          "name": "title",
+          "value": "City Map",
+          "widget": "textfield",
+          "title": "Title",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "col1",
+          "value": "city",
+          "widget": "variable",
+          "title": "Column 1",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "col2",
+          "value": "count",
+          "widget": "variable",
+          "title": "Column 2",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "displayMode",
+          "value": "markers",
+          "widget": "enum",
+          "title": "Display Mode",
+          "optionsMap": {
+            "regions": "regions",
+            "markers": "markers"
+          },
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "resolution",
+          "value": "provinces",
+          "widget": "enum",
+          "title": "Resolution",
+          "optionsMap": {
+            "countries": "countries",
+            "provinces": "provinces"
+          },
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "region",
+          "value": "US",
+          "widget": "array",
+          "title": "Region",
+          "description": "Region of the world to display",
+          "optionsArray": [
+            "world",
+            "US",
+            "IN"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "3",
+      "id": 1
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "id": 2
+    },
+    {
+      "source": "4",
+      "target": "2",
+      "id": 3
+    },
+    {
+      "source": "1",
+      "target": "5",
+      "id": 4
+    },
+    {
+      "source": "5",
+      "target": "6",
+      "id": 5
+    }
+  ]
+}

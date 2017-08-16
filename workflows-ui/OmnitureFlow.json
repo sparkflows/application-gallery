@@ -8,8 +8,8 @@
       "name": "DatasetStructured",
       "type": "dataset",
       "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
-      "x": "176.977px",
-      "y": "173.98px",
+      "x": "113.723px",
+      "y": "92.7148px",
       "fields": [
         {
           "name": "dataset",
@@ -17,8 +17,8 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "optionsMap": {
-          }
+          "required": false,
+          "display": true
         }
       ]
     },
@@ -27,8 +27,8 @@
       "name": "DatasetStructured",
       "type": "dataset",
       "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
-      "x": "151.963px",
-      "y": "360.974px",
+      "x": "120.703px",
+      "y": "250.707px",
       "fields": [
         {
           "name": "dataset",
@@ -36,40 +36,48 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "optionsMap": {
-          }
+          "required": false,
+          "display": true
         }
       ]
     },
     {
       "id": "3",
       "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "648.977px",
-      "y": "164.983px",
+      "x": "516.953px",
+      "y": "92.9805px",
       "fields": [
         {
           "name": "n",
           "value": "5",
           "widget": "textfield",
-          "title": "Num Rows to Print"
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "4",
       "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "418.955px",
-      "y": "356.946px",
+      "x": "527.188px",
+      "y": "249.168px",
       "fields": [
         {
           "name": "n",
           "value": "5",
           "widget": "textfield",
-          "title": "Num Rows to Print"
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -78,8 +86,8 @@
       "name": "DatasetStructured",
       "type": "dataset",
       "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
-      "x": "214px",
-      "y": "562.991px",
+      "x": "134.734px",
+      "y": "409.738px",
       "fields": [
         {
           "name": "dataset",
@@ -87,24 +95,28 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "optionsMap": {
-          }
+          "required": false,
+          "display": true
         }
       ]
     },
     {
       "id": "7",
       "name": "PrintNRows",
+      "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "603.977px",
-      "y": "552.974px",
+      "x": "534.203px",
+      "y": "415.207px",
       "fields": [
         {
           "name": "n",
           "value": "20",
           "widget": "textfield",
-          "title": "Num Rows to Print"
+          "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -113,33 +125,40 @@
       "name": "GraphGroupByColumn",
       "type": "transform",
       "nodeClass": "fire.nodes.graph.NodeGraphGroupByColumn",
-      "x": "671.949px",
-      "y": "325.972px",
+      "x": "863.184px",
+      "y": "255.176px",
       "fields": [
         {
           "name": "title",
           "value": "Histogram",
           "widget": "textfield",
-          "title": "Num Rows to Print"
+          "title": "Title",
+          "required": false,
+          "display": false
         },
         {
           "name": "xlabel",
           "value": "X axis",
           "widget": "textfield",
-          "title": "X Label"
+          "title": "X Label",
+          "required": false,
+          "display": false
         },
         {
           "name": "ylabel",
           "value": "Y axis",
           "widget": "textfield",
-          "title": "Y Label"
+          "title": "Y Label",
+          "required": false,
+          "display": false
         },
         {
           "name": "groupByColumn",
           "value": "GENDER_CD",
           "widget": "variable",
           "title": "Group By Column",
-          "optionsMap": {}
+          "required": false,
+          "display": false
         },
         {
           "name": "graphType",
@@ -151,7 +170,9 @@
             "1": "Bar Chart",
             "2": "Line Chart",
             "3": "Histogram Chart"
-          }
+          },
+          "required": false,
+          "display": false
         }
       ]
     }
@@ -159,20 +180,23 @@
   "edges": [
     {
       "source": "1",
-      "target": "3"
+      "target": "3",
+      "id": 1
     },
     {
       "source": "2",
-      "target": "4"
+      "target": "4",
+      "id": 2
     },
     {
       "source": "6",
-      "target": "7"
+      "target": "7",
+      "id": 3
     },
     {
       "source": "4",
-      "target": "8"
+      "target": "8",
+      "id": 4
     }
   ]
 }
-    

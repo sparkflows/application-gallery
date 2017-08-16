@@ -1,5 +1,5 @@
 {
-  "name": "cross validator",
+  "name": "Cross Validator",
   "category": "Machine Learning",
   "description": "Cross Validator",
   "nodes": [
@@ -8,8 +8,8 @@
       "name": "DatasetStructured",
       "type": "dataset",
       "nodeClass": "fire.nodes.dataset.NodeDatasetStructured",
-      "x": "362.984px",
-      "y": "568.969px",
+      "x": "475.699px",
+      "y": "474.684px",
       "fields": [
         {
           "name": "dataset",
@@ -17,18 +17,19 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "required": false
+          "required": false,
+          "display": true
         }
       ]
     },
     {
       "id": "6",
       "name": "LogisticRegression",
-      "description": "",
+      "description": "Logistic regression. Currently, this class only supports binary classification.",
       "type": "ml-estimator",
       "nodeClass": "fire.nodes.ml.NodeLogisticRegression",
-      "x": "738px",
-      "y": "379px",
+      "x": "355.965px",
+      "y": "46.9766px",
       "fields": [
         {
           "name": "featuresCol",
@@ -39,7 +40,8 @@
           "datatypes": [
             "vectorudt"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "labelCol",
@@ -50,7 +52,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "probabilityCol",
@@ -58,7 +61,8 @@
           "widget": "textfield",
           "title": "Probability Column",
           "description": "The column name for predicted class conditional probabilities",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "predictionCol",
@@ -66,14 +70,8 @@
           "widget": "textfield",
           "title": "Predictor Columns",
           "description": "The prediction column created during model scoring",
-          "required": false
-        },
-        {
-          "name": "gridSearch",
-          "value": "",
-          "widget": "tab",
-          "title": "Grid Search",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "rawPredictionCol",
@@ -81,7 +79,8 @@
           "widget": "textfield",
           "title": "Raw Prediction Column",
           "description": "The raw prediction (a.k.a. confidence) column name",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxIter",
@@ -92,7 +91,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "fitIntercept",
@@ -107,7 +107,8 @@
             "true",
             "false"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "regParam",
@@ -118,7 +119,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "standardization",
@@ -133,7 +135,8 @@
             "true",
             "false"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "threshold",
@@ -144,7 +147,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "tol",
@@ -155,7 +159,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "elasticNetParam",
@@ -166,7 +171,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "weightCol",
@@ -174,7 +180,16 @@
           "widget": "textfield",
           "title": "Weight Column",
           "description": "If the 'weight column' is not specified, all instances are treated equally with a weight 1.0",
-          "required": false
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "gridSearch",
+          "value": "",
+          "widget": "tab",
+          "title": "Grid Search",
+          "required": false,
+          "display": false
         },
         {
           "name": "regParamGrid",
@@ -182,17 +197,28 @@
           "widget": "textfield",
           "title": "Regularization Param Grid Search",
           "description": "Regularization Parameters for Grid Search",
-          "required": false
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "elasticNetGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "ElasticNet Param Grid Search",
+          "description": "ElasticNet Parameters for Grid Search",
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "8",
       "name": "HashingTF",
+      "description": "Maps a sequence of terms to term frequencies using the hashing trick.",
       "type": "ml-transformer",
       "nodeClass": "fire.nodes.ml.NodeHashingTF",
-      "x": "320px",
-      "y": "390.641px",
+      "x": "109.734px",
+      "y": "152.34px",
       "fields": [
         {
           "name": "inputCol",
@@ -203,7 +229,8 @@
           "datatypes": [
             "array"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCol",
@@ -211,17 +238,19 @@
           "widget": "textfield",
           "title": "Output Column",
           "description": "Output column name",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "10",
       "name": "Tokenizer",
+      "description": "A tokenizer that converts the input string to lowercase and then splits it by white spaces.",
       "type": "ml-transformer",
       "nodeClass": "fire.nodes.ml.NodeTokenizer",
-      "x": "162px",
-      "y": "328.641px",
+      "x": "115.965px",
+      "y": "380.602px",
       "fields": [
         {
           "name": "inputCol",
@@ -232,7 +261,8 @@
           "datatypes": [
             "string"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCol",
@@ -240,7 +270,8 @@
           "widget": "textfield",
           "title": "Output Column",
           "description": "Output column name",
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -250,8 +281,8 @@
       "description": "This node represents Pipeline from Spark ML",
       "type": "ml-pipeline",
       "nodeClass": "fire.nodes.ml.NodePipeline",
-      "x": "576px",
-      "y": "245.641px",
+      "x": "472.719px",
+      "y": "240.336px",
       "fields": []
     },
     {
@@ -260,8 +291,8 @@
       "description": "Evaluator for binary classification, which expects two input columns: rawPrediction and label.",
       "type": "ml-evaluator",
       "nodeClass": "fire.nodes.ml.NodeBinaryClassificationEvaluator",
-      "x": "670px",
-      "y": "80.6406px",
+      "x": "658.973px",
+      "y": "46.6016px",
       "fields": [
         {
           "name": "labelCol",
@@ -272,7 +303,8 @@
           "datatypes": [
             "double"
           ],
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "rawPredictionCol",
@@ -280,7 +312,8 @@
           "widget": "textfield",
           "title": "RawPrediction Column",
           "description": "The raw prediction (confidence) column.",
-          "required": false
+          "required": false,
+          "display": false
         },
         {
           "name": "metricName",
@@ -290,9 +323,11 @@
           "description": "The metric used in evaluation.",
           "optionsArray": [
             "areaUnderROC",
-            "areaUnderPR"
+            "areaUnderPR",
+            "gini"
           ],
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -302,8 +337,8 @@
       "description": "This node represents Cross Validator from Spark ML",
       "type": "ml-crossvalidator",
       "nodeClass": "fire.nodes.ml.NodeCrossValidator",
-      "x": "1067px",
-      "y": "139.641px",
+      "x": "852.23px",
+      "y": "251.859px",
       "fields": [
         {
           "name": "numFolds",
@@ -314,7 +349,8 @@
           "datatypes": [
             "integer"
           ],
-          "required": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -323,8 +359,8 @@
       "name": "Predict",
       "type": "ml-predict",
       "nodeClass": "fire.nodes.ml.NodePredict",
-      "x": "1041px",
-      "y": "410.641px",
+      "x": "909.492px",
+      "y": "430.125px",
       "fields": []
     },
     {
@@ -333,15 +369,17 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "973px",
-      "y": "557.656px",
+      "x": "929.738px",
+      "y": "647.387px",
       "fields": [
         {
           "name": "n",
           "value": "10",
           "widget": "textfield",
           "title": "Num Rows to Print",
-          "required": false
+          "description": "number of rows to be printed",
+          "required": false,
+          "display": false
         }
       ]
     }

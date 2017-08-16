@@ -1,6 +1,5 @@
 {
   "name": "GBTClassifier",
-  "uuid": "2a7c0296-4762-4549-9975-616298c3e77f",
   "category": "Machine Learning",
   "description": "GBTClassifier Test",
   "nodes": [
@@ -18,9 +17,8 @@
           "widget": "dataset",
           "title": "Dataset",
           "description": "Selected Dataset",
-          "optionsMap": {
-          },
-          "empty": false
+          "required": false,
+          "display": true
         }
       ]
     },
@@ -28,7 +26,7 @@
       "id": "2",
       "name": "StringIndexer",
       "description": "StringIndexer encodes a string column of labels to a column of label indices",
-      "type": "transform",
+      "type": "ml-transformer",
       "nodeClass": "fire.nodes.ml.NodeStringIndexer",
       "x": "128px",
       "y": "180.656px",
@@ -39,11 +37,12 @@
           "widget": "array",
           "title": "Handle Invalid",
           "description": "Invalid entries to be skipped or thrown error",
-          "arrayValues": [
+          "optionsArray": [
             "skip",
             "error"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "inputCols",
@@ -51,9 +50,8 @@
           "widget": "variables_map",
           "title": "Input Columns",
           "description": "Column containing labels",
-          "optionsMap": {
-          },
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCols",
@@ -61,14 +59,16 @@
           "widget": "variables_map_edit",
           "title": "Output Columns",
           "description": "Output  columns",
-          "empty": false
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "3",
       "name": "VectorAssembler",
-      "type": "transform",
+      "description": "Merges multiple columns into a vector column",
+      "type": "ml-transformer",
       "nodeClass": "fire.nodes.ml.NodeVectorAssembler",
       "x": "250px",
       "y": "47.6563px",
@@ -79,26 +79,6 @@
           "widget": "variables",
           "title": "Input Columns",
           "description": "Input column of type - all numeric, boolean and vector",
-          "optionsMap": {
-            "0": "account_length",
-            "1": "area_code",
-            "2": "number_vmail_messages",
-            "3": "total_day_minutes",
-            "4": "total_day_calls",
-            "5": "total_day_charge",
-            "6": "total_eve_minutes",
-            "7": "total_eve_calls",
-            "8": "total_eve_charge",
-            "9": "total_night_minutes",
-            "10": "total_night_calls",
-            "11": "total_night_charge",
-            "12": "total_intl_minutes",
-            "13": "total_intl_calls",
-            "14": "total_intl_charge",
-            "15": "number_customer_service_calls",
-            "16": "intl_plan_index",
-            "17": "label"
-          },
           "datatypes": [
             "integer",
             "long",
@@ -106,7 +86,8 @@
             "float",
             "vectorudt"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "outputCol",
@@ -114,7 +95,8 @@
           "widget": "textfield",
           "title": "Output Column",
           "description": "Output column name",
-          "empty": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -131,7 +113,8 @@
           "value": ".8",
           "widget": "textfield",
           "title": "Fraction 1",
-          "empty": false
+          "required": false,
+          "display": false
         }
       ]
     },
@@ -139,7 +122,7 @@
       "id": "5",
       "name": "GBTClassifier",
       "description": "Gradient-Boosted Trees (GBTs) is a learning algorithm for classification. It supports binary labels, as well as both continuous and categorical features. Note: Multiclass labels are not currently supported.",
-      "type": "ml",
+      "type": "ml-estimator",
       "nodeClass": "fire.nodes.ml.NodeGBTClassifier",
       "x": "283px",
       "y": "326.656px",
@@ -150,25 +133,11 @@
           "widget": "variable",
           "title": "Features Column",
           "description": "Features column of type vectorUDT for model fitting",
-          "optionsMap": {
-            "0": "feature_vector"
-          },
           "datatypes": [
             "vectorudt"
           ],
-          "empty": false
-        },
-        {
-          "name": "impurity",
-          "value": "gini",
-          "widget": "array",
-          "title": "Impurity",
-          "description": "The Criterion used for information gain calculation",
-          "arrayValues": [
-            "gini",
-            "entropy"
-          ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "labelCol",
@@ -176,30 +145,33 @@
           "widget": "variable",
           "title": "Label Column",
           "description": "The label column for model fitting",
-          "optionsMap": {
-            "0": "account_length",
-            "1": "area_code",
-            "2": "number_vmail_messages",
-            "3": "total_day_minutes",
-            "4": "total_day_calls",
-            "5": "total_day_charge",
-            "6": "total_eve_minutes",
-            "7": "total_eve_calls",
-            "8": "total_eve_charge",
-            "9": "total_night_minutes",
-            "10": "total_night_calls",
-            "11": "total_night_charge",
-            "12": "total_intl_minutes",
-            "13": "total_intl_calls",
-            "14": "total_intl_charge",
-            "15": "number_customer_service_calls",
-            "16": "intl_plan_index",
-            "17": "label"
-          },
           "datatypes": [
             "double"
           ],
-          "empty": false
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "predictionCol",
+          "value": "",
+          "widget": "textfield",
+          "title": "Predictor Columns",
+          "description": "The prediction column created during model scoring.",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "impurity",
+          "value": "gini",
+          "widget": "array",
+          "title": "Impurity",
+          "description": "The Criterion used for information gain calculation",
+          "optionsArray": [
+            "gini",
+            "entropy"
+          ],
+          "required": false,
+          "display": false
         },
         {
           "name": "lossType",
@@ -207,10 +179,11 @@
           "widget": "array",
           "title": "Loss Function",
           "description": "The Loss function which GBT tries to minimize",
-          "arrayValues": [
+          "optionsArray": [
             "logistic"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxBins",
@@ -221,7 +194,8 @@
           "datatypes": [
             "integer"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxDepth",
@@ -232,7 +206,8 @@
           "datatypes": [
             "integer"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxIter",
@@ -243,7 +218,8 @@
           "datatypes": [
             "integer"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "minInfoGain",
@@ -254,7 +230,8 @@
           "datatypes": [
             "double"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "minInstancesPerNode",
@@ -265,15 +242,8 @@
           "datatypes": [
             "integer"
           ],
-          "empty": false
-        },
-        {
-          "name": "predictionCol",
-          "value": "",
-          "widget": "textfield",
-          "title": "Predictor Columns",
-          "description": "The prediction column created during model scoring.",
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "subsamplingRate",
@@ -284,7 +254,8 @@
           "datatypes": [
             "double"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "seed",
@@ -295,7 +266,8 @@
           "datatypes": [
             "long"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "stepSize",
@@ -306,7 +278,8 @@
           "datatypes": [
             "double"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "cacheNodeIds",
@@ -317,11 +290,12 @@
           "datatypes": [
             "boolean"
           ],
-          "arrayValues": [
+          "optionsArray": [
             "false",
             "true"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "checkpointInterval",
@@ -332,7 +306,8 @@
           "datatypes": [
             "integer"
           ],
-          "empty": false
+          "required": false,
+          "display": false
         },
         {
           "name": "maxMemoryInMB",
@@ -343,18 +318,109 @@
           "datatypes": [
             "integer"
           ],
-          "empty": false
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "gridSearch",
+          "value": "",
+          "widget": "tab",
+          "title": "Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "minInfoGainGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Min Information Gain Param Grid Search",
+          "description": "Min Information Gain Parameters for Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "maxBinsGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Max Bins Param Grid Search",
+          "description": "Max Bins Parameters for Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "maxDepthGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Max Depth Param Grid Search",
+          "description": "Max Depth Parameters for Grid Search",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "maxIterGrid",
+          "value": "",
+          "widget": "textfield",
+          "title": "Max Iteration Param Grid Search",
+          "description": "Max Iteration Parameters for Grid Search",
+          "required": false,
+          "display": false
         }
       ]
     },
     {
       "id": "6",
       "name": "Predict",
-      "type": "predict",
+      "type": "ml-predict",
       "nodeClass": "fire.nodes.ml.NodePredict",
-      "x": "477px",
-      "y": "464.656px",
+      "x": "612px",
+      "y": "295.641px",
       "fields": []
+    },
+    {
+      "id": "7",
+      "name": "BinaryClassificationEvaluator",
+      "description": "Evaluator for binary classification, which expects two input columns: rawPrediction and label.",
+      "type": "ml-evaluator",
+      "nodeClass": "fire.nodes.ml.NodeBinaryClassificationEvaluator",
+      "x": "458px",
+      "y": "491px",
+      "fields": [
+        {
+          "name": "labelCol",
+          "value": "label",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "rawPredictionCol",
+          "value": "rawPrediction",
+          "widget": "textfield",
+          "title": "RawPrediction Column",
+          "description": "The raw prediction (confidence) column.",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "metricName",
+          "value": "areaUnderROC",
+          "widget": "array",
+          "title": "Metric Name",
+          "description": "The metric used in evaluation.",
+          "optionsArray": [
+            "areaUnderROC",
+            "areaUnderPR",
+            "gini"
+          ],
+          "required": false,
+          "display": false
+        }
+      ]
     }
   ],
   "edges": [
@@ -387,6 +453,11 @@
       "source": "4",
       "target": "6",
       "id": 6
+    },
+    {
+      "source": "6",
+      "target": "7",
+      "id": 7
     }
   ]
 }

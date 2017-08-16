@@ -24,7 +24,7 @@
     },
     {
       "id": "3",
-      "name": "Documentation Large",
+      "name": "Documentation",
       "description": "Allows documentation of the workflows",
       "type": "doc",
       "nodeClass": "fire.nodes.doc.NodeDocLarge",
@@ -34,7 +34,7 @@
         {
           "name": "comment",
           "value": "This workflow uses the dataset from :\n\nhttps://archive.ics.uci.edu/ml/datasets/SMS+Spam+Collection\n\nSMS Spam Collection dataset.\n\n\nThis workflow creates a model to predict spam",
-          "widget": "textarea_large",
+          "widget": "textarea_rich",
           "title": "Comment",
           "description": "Comments for Documentation",
           "required": false,
@@ -414,14 +414,15 @@
       "description": "Prints the specified number of records in the DataFrame",
       "type": "transform",
       "nodeClass": "fire.nodes.util.NodePrintFirstNRows",
-      "x": "1061.15px",
-      "y": "471.438px",
+      "x": "663.141px",
+      "y": "428.438px",
       "fields": [
         {
           "name": "n",
           "value": "10",
           "widget": "textfield",
           "title": "Num Rows to Print",
+          "description": "number of rows to be printed",
           "required": false,
           "display": false
         }
@@ -458,6 +459,52 @@
           "widget": "textfield",
           "title": "Output Column",
           "description": "Output column name",
+          "required": false,
+          "display": false
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "BinaryClassificationEvaluator",
+      "description": "Evaluator for binary classification, which expects two input columns: rawPrediction and label.",
+      "type": "ml-evaluator",
+      "nodeClass": "fire.nodes.ml.NodeBinaryClassificationEvaluator",
+      "x": "899px",
+      "y": "482px",
+      "fields": [
+        {
+          "name": "labelCol",
+          "value": "spam_idx",
+          "widget": "variable",
+          "title": "Label Column",
+          "description": "The label column for model fitting.",
+          "datatypes": [
+            "double"
+          ],
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "rawPredictionCol",
+          "value": "rawPrediction",
+          "widget": "textfield",
+          "title": "RawPrediction Column",
+          "description": "The raw prediction (confidence) column.",
+          "required": false,
+          "display": false
+        },
+        {
+          "name": "metricName",
+          "value": "areaUnderROC",
+          "widget": "array",
+          "title": "Metric Name",
+          "description": "The metric used in evaluation.",
+          "optionsArray": [
+            "areaUnderROC",
+            "areaUnderPR",
+            "gini"
+          ],
           "required": false,
           "display": false
         }
@@ -514,6 +561,11 @@
       "source": "13",
       "target": "8",
       "id": 10
+    },
+    {
+      "source": "10",
+      "target": "14",
+      "id": 11
     }
   ]
 }
