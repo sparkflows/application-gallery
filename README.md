@@ -13,6 +13,10 @@ For each application/workflow there is a directory. It contains the following:
 
 ## Workflows/Applications
 
+### Telco Churn Prediction
+
+Predict Churn on Telco Dataset using Random Forest Classification.
+
 ### Movie Ratings
 
 Uses ALS to recommend movies to users
