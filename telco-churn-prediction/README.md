@@ -40,4 +40,7 @@ number customer service calls: continuous.
 
 ## Workflow
 
+<img src="telco-churn-prediction-workflow.png"/>
+
+
 
