@@ -1,59 +1,29 @@
-# sample-workflows
+# Application Gallery
 
-This repository contains Sample Workflows for Sparkflows
+This repository provides a number of Applications which can be imported and used in Sparkflows.
 
-## Directories
+## Structure
 
-This repository has 3 directories.
+For each application/workflow there is a directory. It contains the following:
 
-- data : contains the sample data used by the workflows in this repository
-- datasets : contains the dataset definitions in json format. Datasets define the data and its schema
-- workflows-ui : contains the sample workflows
+- README.md : Described the dataset and workflow.
+- Data files : Sample data files for the workflow.
+- workflow.json : JSON representation of the workflow
 
-## Details
 
-Datasets allow defining new data. It defines the location and the schema of the data.
-
-Workflows define the execution path on the Datasets.
-
-## Using Datasets
-
-Datasets are represented as JSON files. Using the JSON, new datasets can be imported into Sparkflows to create new Datasets.
-
-## Using Workflows
-
-Workflows are also represented as JSON files. These JSON files can be imported into Sparkflows to create new workflows.
-
-## Workflows
+## Workflows/Applications
 
 ### Movie Ratings
 
 Uses ALS to recommend movies to users
 
-#### Dataset
-
-
-
-#### Workflow
-
-https://github.com/sparkflows/sample-workflows/blob/master/workflows-ui/Ratings.json
-
------------------------------------------------------------------------------------------
 
 ### Bike Sharing Data-Set Analysis
 
 Predicts "bike rental counts per hour" from past data
 
-#### Dataset
 
 http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset
-
-
-#### Workflow
-
-https://github.com/sparkflows/sample-workflows/blob/master/workflows-ui/BikeSharingAnalysis.json
-
------------------------------------------------------------------------------------------
 
 
 
