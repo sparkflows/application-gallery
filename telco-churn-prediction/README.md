@@ -10,7 +10,7 @@ The dataset is available from sgi.com
 - https://www.sgi.com/tech/mlc/db/churn.all
 - https://www.sgi.com/tech/mlc/db/churn.names
 
-### DESCRIPTION
+### Dataset Description
 
 Churn data (artificial based on claims similar to real world)
 
