@@ -40,7 +40,7 @@ Churn data (artificial based on claims similar to real world)
 
 <img src="telco-churn-prediction-workflow.png"/>
 
-The workflow consists of the following steps:
+**The workflow consists of the following steps:**
 
 - Reads in the CSV file
 - Uses StringIndexer to convert some features to numeric values
@@ -50,7 +50,7 @@ The workflow consists of the following steps:
 - Finally evaluates the test results
 
 
-The workflow does 2 more things:
+**The workflow does 2 more things:**
 
 - Finds the summary statistics of the various columns
 - Finds the correlations matrix between the various columns
