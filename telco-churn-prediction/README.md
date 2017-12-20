@@ -6,9 +6,9 @@ This workflow creates a model for predicting Telco Churn
 
 The dataset is available from sgi.com
 
-https://www.sgi.com/tech/mlc/db/
-https://www.sgi.com/tech/mlc/db/churn.all
-https://www.sgi.com/tech/mlc/db/churn.names
+- https://www.sgi.com/tech/mlc/db/
+- https://www.sgi.com/tech/mlc/db/churn.all
+- https://www.sgi.com/tech/mlc/db/churn.names
 
 ### DESCRIPTION
 
