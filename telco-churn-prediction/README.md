@@ -14,28 +14,26 @@ https://www.sgi.com/tech/mlc/db/churn.names
 
 Churn data (artificial based on claims similar to real world)
 
-discrete.
-
-state: discrete.
-account length: continuous.
-area code: continuous.
-phone number: discrete.
-international plan: discrete.
-voice mail plan: discrete.
-number vmail messages: continuous.
-total day minutes: continuous.
-total day calls: continuous.
-total day charge: continuous.
-total eve minutes: continuous.
-total eve calls: continuous.
-total eve charge: continuous.
-total night minutes: continuous.
-total night calls: continuous.
-total night charge: continuous.
-total intl minutes: continuous.
-total intl calls: continuous.
-total intl charge: continuous.
-number customer service calls: continuous.
+- state: discrete.
+- account length: continuous.
+- area code: continuous.
+- phone number: discrete.
+- international plan: discrete.
+- voice mail plan: discrete.
+- number vmail messages: continuous.
+- total day minutes: continuous.
+- total day calls: continuous.
+- total day charge: continuous.
+- total eve minutes: continuous.
+- total eve calls: continuous.
+- total eve charge: continuous.
+- total night minutes: continuous.
+- total night calls: continuous.
+- total night charge: continuous.
+- total intl minutes: continuous.
+- total intl calls: continuous.
+- total intl charge: continuous.
+- number customer service calls: continuous.
 
 
 ## Workflow
