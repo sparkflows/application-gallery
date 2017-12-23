@@ -48,4 +48,8 @@ The workflow also applies a SQL to aggregate the number of bikes rented per hour
 
 Below is the output of executing the workflow:
 
+<img src="bikes-rented-per-hour.png"/>
+
+
+
 
