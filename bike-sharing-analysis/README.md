@@ -19,7 +19,6 @@ The sample being used boils down to:
 
 **The workflow consists of the following steps:**
 
-This workflow consists of the following steps:
 
 - Reads in the dataset from a tab separated file:
 - Applies some basic pre-processing of the input data. This takes the form of:
