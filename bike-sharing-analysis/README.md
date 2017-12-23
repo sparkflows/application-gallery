@@ -17,7 +17,7 @@ The sample being used boils down to:
 
 <img src="bike-sharing-analysis-workflow.png"/>
 
-**The workflow consists of the following steps:**
+### The workflow consists of the following steps:
 
 
 - Reads in the dataset from a tab separated file:
@@ -39,7 +39,7 @@ The sample being used boils down to:
 
 - Finally evaluates the result.
 
-**More on the Workflow**
+### More on the Workflow
 
 The workflow also applies a SQL to aggregate the number of bikes rented per hour across the various days. This data is displayed on a Graph.
 
