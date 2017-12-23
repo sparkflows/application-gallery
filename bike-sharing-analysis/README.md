@@ -39,6 +39,9 @@ The sample being used boils down to:
 
 - Finally evaluates the result.
 
+**More on the Workflow**
+
+The workflow also applies a SQL to aggregate the number of bikes rented per hour across the various days. This data is displayed on a Graph.
 
 
 ## Output
